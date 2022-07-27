@@ -2,75 +2,79 @@ defmodule TailwindFormatter do
   @moduledoc """
   Documentation for `TailwindFormatter`.
   """
+  alias TailwindFormatter.Defaults
 
-  @behaviour Mix.Tasks.Format
+  if Version.match?(System.version(), ">= 1.13.0") do
+    @behaviour Mix.Tasks.Format
+  end
 
-  @impl Mix.Tasks.Format
   def features(_opts) do
     [sigils: [:H], extensions: [".heex"]]
   end
 
-  @impl Mix.Tasks.Format
-  def format(contents, opts) do
-    run(:default, [contents])
+  def format(contents, _opts) do
+    Regex.replace(Defaults.regex_pattern(), contents, fn original, _split, classes ->
+      {base_classes, variants} = separate(classes)
+
+      base_sorted = sort_base_classes(base_classes) |> Enum.join(" ")
+
+      variant_sorted =
+        Enum.map(variants, fn variant_class ->
+          String.split(variant_class, ":")
+        end)
+        |> Enum.group_by(&List.first/1, &List.last/1)
+        |> Map.to_list()
+        |> sort_variant_groups
+        |> Enum.map(fn variant_group ->
+          {variant, base_classes} = variant_group
+
+          sorted_classes = sort_base_classes(base_classes)
+
+          Enum.map(sorted_classes, fn class ->
+            "#{variant}:#{class}"
+          end)
+          |> Enum.join(" ")
+        end)
+        |> Enum.join(" ")
+
+      sorted_classes =
+        (base_sorted <> " " <> variant_sorted)
+        |> String.trim()
+
+      String.replace(original, ~r/"([^"]*)"/, "\"" <> sorted_classes <> "\"")
+    end)
   end
 
+  defp sort_variant_groups(variant_groups) do
+    Enum.map(variant_groups, fn variant_group ->
+      {Map.get(Defaults.variant_order(), elem(variant_group, 0), -1), variant_group}
+    end)
+    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
+    |> Enum.map(&elem(&1, 1))
+  end
 
-  @doc """
-  Returns the path to the executable.
-  The executable may not be available if it was not yet installed.
-  """
-  def bin_path do
-    name = "tailwindsort-#{target()}"
+  defp sort_base_classes(base_classes) do
+    Enum.map(base_classes, fn class ->
+      {Map.get(Defaults.class_order(), class, -1), class}
+    end)
+    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
+    |> Enum.map(&elem(&1, 1))
+    |> List.flatten()
+  end
 
-    Application.get_env(:tailwindsort, :path) ||
-      if Code.ensure_loaded?(Mix.Project) do
-        Path.join(Path.dirname(Mix.Project.build_path()), name)
+  defp separate(classes) do
+    classes
+    |> String.split(" ")
+    |> Enum.reduce({[], []}, fn class, tuple ->
+      if variant?(class) do
+        put_elem(tuple, 1, [class | elem(tuple, 1)])
       else
-        Path.expand("_build/#{name}")
+        put_elem(tuple, 0, [class | elem(tuple, 0)])
       end
+    end)
   end
 
-  @doc """
-  Runs the given command with `args`.
-  The given args will be appended to the configured args.
-  """
-  def run(profile, extra_args) when is_atom(profile) and is_list(extra_args) do
-    config = [] # config_for!(profile)
-    args = config[:args] || ["--config", "assets/tailwind.config.js"]
-
-    opts = [
-      cd: config[:cd] || File.cwd!(),
-      env: config[:env] || %{},
-      stderr_to_stdout: true
-    ]
-    
-    IO.inspect(bin_path())
-    IO.inspect(File.cwd!())
-    result = bin_path()
-    |> System.cmd(args ++ extra_args, opts)
-    IO.inspect(result)
-    elem(result, 0)
-  end
-
-  # Available targets:
-  #  tailwindsort-linux-arm64
-  #  tailwindsort-linux-x64
-  #  tailwindsort-macos-arm64
-  #  tailwindsort-macos-x64
-  #  tailwindsort-windows-x64.exe
-  defp target do
-    arch_str = :erlang.system_info(:system_architecture)
-    [arch | _] = arch_str |> List.to_string() |> String.split("-")
-
-    case {:os.type(), arch, :erlang.system_info(:wordsize) * 8} do
-      {{:win32, _}, _arch, 64} -> "windows-x64.exe"
-      {{:unix, :darwin}, arch, 64} when arch in ~w(arm aarch64) -> "macos-arm64"
-      {{:unix, :darwin}, "x86_64", 64} -> "macos-x64"
-      {{:unix, :linux}, "aarch64", 64} -> "linux-arm64"
-      {{:unix, _osname}, arch, 64} when arch in ~w(x86_64 amd64) -> "linux-x64"
-      {_os, _arch, _wordsize} -> raise "tailwind is not available for architecture: #{arch_str}"
-    end
+  defp variant?(class) do
+    String.contains?(class, ":")
   end
 end
-

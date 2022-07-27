@@ -2,7 +2,6 @@ defmodule TailwindFormatterTest do
   use ExUnit.Case
   doctest TailwindFormatter
 
-
   alias TailwindFormatter
 
   defp assert_formatter_output(input, expected, dot_formatter_opts \\ []) do
@@ -21,10 +20,9 @@ defmodule TailwindFormatterTest do
     assert second_pass == code
   end
 
-
   test "works without config" do
     input = """
-    <div class="sm:lowercase uppercase potato text-sm"></div>
+    <div class="text-sm potato sm:lowercase uppercase"></div>
     """
 
     expected = """
