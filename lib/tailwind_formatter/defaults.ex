@@ -26,6 +26,12 @@ defmodule TailwindFormatter.Defaults do
               "focus",
               "focus-visible",
               "active",
+              "portrait",
+              "landscape",
+              "phx-no-feedback",
+              "phx-click-loading",
+              "phx-submit-loading",
+              "phx-change-loading",
               "disabled"
             ]
             |> Enum.with_index()
@@ -718,8 +724,12 @@ defmodule TailwindFormatter.Defaults do
              "flex-none",
              "flex-grow-0",
              "flex-grow",
+             "grow",
+             "grow-0",
              "flex-shrink-0",
              "flex-shrink",
+             "shrink",
+             "shrink-0",
              "order-1",
              "order-2",
              "order-3",

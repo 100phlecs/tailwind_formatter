@@ -57,4 +57,16 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "supports phx-* variants" do
+    input = """
+    <div class="phx-click-loading:animate-pulse grow flex shrink disabled:bg-gray-500"></div>
+    """
+
+    expected = """
+    <div class="flex grow shrink phx-click-loading:animate-pulse disabled:bg-gray-500"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end

@@ -1,7 +1,10 @@
 defmodule TailwindFormatter do
-  @moduledoc """
-  Documentation for `TailwindFormatter`.
-  """
+  @external_resource "README.md"
+  @moduledoc "README.md"
+             |> File.read!()
+             |> String.split("<!-- MDOC !-->")
+             |> Enum.fetch!(1)
+
   alias TailwindFormatter.Defaults
 
   if Version.match?(System.version(), ">= 1.13.0") do
