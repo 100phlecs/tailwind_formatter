@@ -1,4 +1,6 @@
 defmodule TailwindFormatter.Defaults do
+  @moduledoc false
+
   @pattern ~r/\b(?:class(?:Name)*\s*(=|:)\s*["'])([_a-zA\.-Z0-9\s\-:\[\]]+)["']/i
 
   @variants [

@@ -1,13 +1,19 @@
 defmodule TailwindFormatter.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @url "https://github.com/100phlecs/catalog"
+
   def project do
     [
       app: :tailwind_formatter,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.13",
-      start_permanent: Mix.env() == :prod,
-      deps: deps()
+      name: "TailwindFormatter",
+      description: "A Mix formatter that sorts your Tailwind classes", 
+      deps: deps(),
+      docs: docs(),
+      package: package()
     ]
   end
 
@@ -18,11 +24,28 @@ defmodule TailwindFormatter.MixProject do
     ]
   end
 
+  defp docs do
+    [
+      main: "TailwindFormatter",
+      source_ref: "v#{@version}",
+      source_url: @url
+    ]
+  end
+
+  defp package do
+    %{
+      licenses: ["MIT"],
+      maintainers: ["100phlecs"],
+      links: %{"GitHub" => @url}
+    }
+  end
+
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+
+      # docs
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
 end

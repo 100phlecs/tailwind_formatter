@@ -4,7 +4,11 @@
 
 <!-- MDOC !-->
 
-Enforce a `class` attribute order with templates using [TailwindCSS](tailwindcss.com). 
+Enforce a `class` attribute order within markup using [TailwindCSS](tailwindcss.com). 
+
+this is a `mix format` [plugin](https://hexdocs.pm/mix/main/Mix.Tasks.Format.html#module-plugins).
+
+> Note: The Tailwind Formatter requires Elixir v1.13.4 or later
 
 ## Installation
 
@@ -36,7 +40,7 @@ Make sure to put in the `heex` extension to the possible inputs.
   ]
 ```
 
-Make sure to run `mix deps.get` and also `mix compile` to load in the plugin.
+Then run `mix deps.get` and also `mix compile` to load in the plugin.
 
 After that, run the formatter with `mix format`.
 
@@ -59,7 +63,6 @@ As a bonus, this plugin supports the [Phoenix variants](https://fly.io/phoenix-f
 that ship with new applications.
 
 As this is quite new, there may be some new Tailwind classes missing.
-
 
 ## Credits
 
