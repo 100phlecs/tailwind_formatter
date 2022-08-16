@@ -16,11 +16,15 @@ defmodule TailwindFormatter do
   end
 
   def format(contents, _opts) do
-    Regex.replace(Defaults.regex_pattern(), contents, fn original, _split, classes ->
-      class_list = String.split(classes)
-      sorted_list = sort(class_list) |> Enum.join(" ")
+    Regex.replace(Defaults.regex_pattern(), contents, fn original, classes, inline_elixir ->
+      original_shell = String.replace(original, classes, "temp")
+      basic_classes = String.replace(classes, inline_elixir, "")
+      class_list = String.split(basic_classes)
 
-      String.replace(original, ~r/"([^"]*)"/, "\"" <> sorted_list <> "\"")
+      sorted_list = sort(class_list)
+      sorted_list = Enum.join([inline_elixir | sorted_list], " ") |> String.trim()
+
+      String.replace(original_shell, "temp", sorted_list)
     end)
   end
 
