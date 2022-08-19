@@ -10,7 +10,7 @@ defmodule TailwindFormatter.MixProject do
       version: @version,
       elixir: "~> 1.13",
       name: "TailwindFormatter",
-      description: "A Mix formatter that sorts your Tailwind classes", 
+      description: "A Mix formatter that sorts your Tailwind classes",
       deps: deps(),
       docs: docs(),
       package: package()
@@ -43,7 +43,6 @@ defmodule TailwindFormatter.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-
       # docs
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]

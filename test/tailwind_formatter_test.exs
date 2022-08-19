@@ -32,13 +32,13 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
-  test "handles chained variants" do
+  test "handles and sorts chained variants" do
     input = """
-    <div class="text-sm odd:decoration-slate-50 sm:hover:bg-gray-500 tomato sm:lowercase uppercase sm:hover:bg-unknown-500 disabled:sm:text-lg dark:disabled:sm:lg:group-hover:text-blue-500"></div>
+    <div class="odd:decoration-slate-50 uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl"></div>
     """
 
     expected = """
-    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 dark:disabled:sm:lg:group-hover:text-blue-500 odd:decoration-slate-50 disabled:sm:text-lg"></div>
+    <div class="tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500"></div>
     """
 
     assert_formatter_output(input, expected)
@@ -46,13 +46,13 @@ defmodule TailwindFormatterTest do
 
   test "removes excess whitespace" do
     input = """
-    <div class="text-sm     sm:hover:bg-gray-500 tomato     sm:lowercase uppercase sm:hover:bg-unknown-500    disabled:sm:text-lg
+    <div class="text-sm     sm:hover:bg-gray-500 tomato     sm:lowercase uppercase sm:hover:bg-unknown-500    sm:disabled:text-lg
 
     "></div>
     """
 
     expected = """
-    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 disabled:sm:text-lg"></div>
+    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg"></div>
     """
 
     assert_formatter_output(input, expected)
@@ -64,7 +64,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = """
-    <div class="flex grow shrink phx-click-loading:animate-pulse disabled:bg-gray-500"></div>
+    <div class="flex shrink grow disabled:bg-gray-500 phx-click-loading:animate-pulse"></div>
     """
 
     assert_formatter_output(input, expected)
