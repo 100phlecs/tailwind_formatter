@@ -81,4 +81,16 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "supports multiple inline elixir codes" do
+    input = ~S"""
+    <div class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}></div>
+    """
+
+    expected = ~S"""
+    <div class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end

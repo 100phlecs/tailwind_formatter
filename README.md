@@ -60,7 +60,12 @@ that introduces the official Tailwind sorter plugin.
 
 ## How it diverges from the original formatter
 
-There are some differences in order to simplify the algorithm.
+There are some differences in order to simplify the algorithm and to support Elixir use cases.
+
+### Inline elixir functions are sorted toward the front
+
+With elixir templating one may add an `#{inline_elixir_function}` to the class list.
+The formatter supports this and sorts these toward the front.
 
 ### Variants are always grouped, even if the class is unknown
 
@@ -74,19 +79,19 @@ So, for example, a chain of `dark:sm:hover:text-gray-600` would be placed toward
 
 In this algorithm, classes are sorted by "layers". 
 All `sm:` variants are grouped together, even if it's a chain of 4 variants.
-So, for example, `dark:sm:hover:text-gray-600` will be placed before any `sm:` and `hover:` variants, because `dark:` has precedence over `sm:` and `hover:`.
+So for example, `dark:sm:hover:text-gray-600` will be placed before any `sm:` and `hover:` variants, because `dark:` has precedence over `sm:` and `hover:`.
 
-Thus, in order to achieve more consistency, the variant chain is ordered.
+Thus in order to achieve more consistency, the variant chain is ordered.
 So, `dark:sm:hover:text-gray-600` transforms to `sm:dark:hover:text-gray-600`.
 
 ## Custom classes
 
-As a bonus, this plugin supports the [Phoenix variants](https://fly.io/phoenix-files/phoenix-liveview-tailwind-variants/)
+As a bonus this plugin supports the [Phoenix variants](https://fly.io/phoenix-files/phoenix-liveview-tailwind-variants/)
 that ship with new applications.
 
-Otherwise, custom classes are not supported at this time. It may be supported in the future.
+Otherwise custom classes are not supported at this time. It may be supported in the future.
 
-As this is quite new, there may be some Tailwind classes missing.
+As this is quite new there may be some Tailwind classes missing.
 
 ## Credits
 

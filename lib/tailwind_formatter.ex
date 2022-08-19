@@ -16,16 +16,29 @@ defmodule TailwindFormatter do
   end
 
   def format(contents, _opts) do
-    Regex.replace(Defaults.regex_pattern(), contents, fn original, classes, inline_elixir ->
-      str_classes = String.replace(classes, inline_elixir, "")
-      class_list = String.split(str_classes)
+    Regex.replace(Defaults.class_regex(), contents, fn class_str ->
+      inline_elixir_functions = Regex.scan(Defaults.func_regex(), class_str)
 
-      sorted_list = sort(class_list)
-      sorted_list = Enum.join([inline_elixir | sorted_list], " ") |> String.trim()
+      inline_elixir_functions = inline_elixir_functions |> List.flatten() |> Enum.join(" ")
+      class_str = Regex.replace(Defaults.func_regex(), class_str, "")
+      [class_attr, class_val] = String.split(class_str, "=", parts: 2)
 
-      original_shell = String.replace(original, classes, "temp")
-      String.replace(original_shell, "temp", sorted_list)
+      needs_curlies = String.match?(class_val, ~r/{/)
+      class_list = class_val |> String.replace(["{", "}", "\""], "") |> String.split()
+
+      sorted_list = class_list |> sort_variant_chains() |> sort()
+      sorted_list = Enum.join([inline_elixir_functions | sorted_list], " ") |> String.trim()
+
+      class_attr <> "=" <> wrap_classes(sorted_list, needs_curlies)
     end)
+  end
+
+  defp wrap_classes(class_list, with_curlies) do
+    if with_curlies do
+      "{\"" <> class_list <> "\"}"
+    else
+      "\"" <> class_list <> "\""
+    end
   end
 
   defp sort([]) do
@@ -66,7 +79,6 @@ defmodule TailwindFormatter do
 
   defp sort_variant_classes(variants) do
     variants
-    |> sort_variant_chains()
     |> group_by_first_variant()
     |> sort_variant_groups()
     |> sort_classes_per_variant()
