@@ -42,6 +42,7 @@ defmodule TailwindFormatter do
   end
 
   defp sort([]) do
+    []
   end
 
   defp sort(class_list) do

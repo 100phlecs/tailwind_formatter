@@ -106,5 +106,19 @@ defmodule TailwindFormatterTest do
     """
 
     assert_formatter_output(input, expected)
-  end 
+  end
+
+  test "handles empty classes" do
+    input = ~S"""
+      <a class=""></a>
+      <a class={""} id={"id"}></a>
+    """
+
+    expected = ~S"""
+      <a class=""></a>
+      <a class={""} id={"id"}></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
