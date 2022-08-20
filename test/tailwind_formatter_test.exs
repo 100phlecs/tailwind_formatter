@@ -94,6 +94,24 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "supports eex templating code" do
+    input = ~S"""
+    <%= live_redirect to: Routes.dashboard_path(@socket, :index),
+        class: "text-emerald-300 flex-col justify-between flex md:items-center" do %>
+        <span class="text-slate-50 p-2 m-2 text-4xl font-semibold">dashboard</span>
+    <% end %>
+    """
+
+    expected = ~S"""
+    <%= live_redirect to: Routes.dashboard_path(@socket, :index),
+        class: "flex flex-col justify-between text-emerald-300 md:items-center" do %>
+        <span class="m-2 p-2 text-4xl font-semibold text-slate-50">dashboard</span>
+    <% end %>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   test "regex allows multiple attributes" do
     input = ~S"""
     <a id="testing" class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
@@ -184,6 +202,5 @@ defmodule TailwindFormatterTest do
 
       assert_formatter_output(input, expected)
     end
-
   end
 end

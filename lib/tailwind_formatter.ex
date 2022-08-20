@@ -21,17 +21,20 @@ defmodule TailwindFormatter do
         Regex.scan(Defaults.func_regex(), original_str) |> List.flatten() |> Enum.join(" ")
 
       classes_only = Regex.replace(Defaults.func_regex(), original_str, "")
-      [class_attr, class_val] = String.split(classes_only, "=", parts: 2)
+      [class_attr, class_val] = String.split(classes_only, ~r/[=:]/, parts: 2)
       needs_curlies = String.match?(class_val, ~r/{/)
-      trimmed_classes = class_val |> String.replace(["{", "}", "\""], "") |> String.trim()
+
+      trimmed_classes =
+        class_val |> String.trim() |> String.trim("{") |> String.trim("}") |> String.trim("\"") |> String.trim()
 
       if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
         original_str
       else
         sorted_list = trimmed_classes |> String.split() |> sort_variant_chains() |> sort()
         sorted_list = Enum.join([inline_elixir_functions | sorted_list], " ") |> String.trim()
+        delimiter = if String.contains?(original_str, "class:"), do: ": ", else: "="
 
-        class_attr <> "=" <> wrap_classes(sorted_list, needs_curlies)
+        class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
       end
     end)
   end
