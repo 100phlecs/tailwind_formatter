@@ -93,4 +93,18 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "regex allows multiple attributes" do
+    input = ~S"""
+    <a id="testing" class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a id="testing" class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end 
 end
