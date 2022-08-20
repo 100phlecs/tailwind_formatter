@@ -16,20 +16,23 @@ defmodule TailwindFormatter do
   end
 
   def format(contents, _opts) do
-    Regex.replace(Defaults.class_regex(), contents, fn class_str ->
-      inline_elixir_functions = Regex.scan(Defaults.func_regex(), class_str)
+    Regex.replace(Defaults.class_regex(), contents, fn original_str ->
+      inline_elixir_functions =
+        Regex.scan(Defaults.func_regex(), original_str) |> List.flatten() |> Enum.join(" ")
 
-      inline_elixir_functions = inline_elixir_functions |> List.flatten() |> Enum.join(" ")
-      class_str = Regex.replace(Defaults.func_regex(), class_str, "")
-      [class_attr, class_val] = String.split(class_str, "=", parts: 2)
-
+      classes_only = Regex.replace(Defaults.func_regex(), original_str, "")
+      [class_attr, class_val] = String.split(classes_only, "=", parts: 2)
       needs_curlies = String.match?(class_val, ~r/{/)
-      class_list = class_val |> String.replace(["{", "}", "\""], "") |> String.split()
+      trimmed_classes = class_val |> String.replace(["{", "}", "\""], "") |> String.trim()
 
-      sorted_list = class_list |> sort_variant_chains() |> sort()
-      sorted_list = Enum.join([inline_elixir_functions | sorted_list], " ") |> String.trim()
+      if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+        original_str
+      else
+        sorted_list = trimmed_classes |> String.split() |> sort_variant_chains() |> sort()
+        sorted_list = Enum.join([inline_elixir_functions | sorted_list], " ") |> String.trim()
 
-      class_attr <> "=" <> wrap_classes(sorted_list, needs_curlies)
+        class_attr <> "=" <> wrap_classes(sorted_list, needs_curlies)
+      end
     end)
   end
 

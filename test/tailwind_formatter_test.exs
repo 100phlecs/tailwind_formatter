@@ -108,6 +108,20 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "allows comparisons inline elixir" do
+    input = ~S"""
+    <a id="testing" class={"#{if @page <= 5, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a id="testing" class={"#{if @page <= 5, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   test "handles empty classes" do
     input = ~S"""
       <a class=""></a>
@@ -120,5 +134,56 @@ defmodule TailwindFormatterTest do
     """
 
     assert_formatter_output(input, expected)
+  end
+
+  describe "aborts on bad input" do
+    test "missing final quote" do
+      input = ~S"""
+      <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase
+        id="testing 
+        href="#"></a>
+      """
+
+      expected = ~S"""
+      <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase
+        id="testing 
+        href="#"></a>
+      """
+
+      assert_formatter_output(input, expected)
+    end
+
+    test "incomplete inline elixir" do
+      input = ~S"""
+      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
+        id="testing 
+        href="#"></a>
+      """
+
+      expected = ~S"""
+      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
+        id="testing 
+        href="#"></a>
+      """
+
+      assert_formatter_output(input, expected)
+    end
+
+    test "missing number tag inline elixir" do
+      input = ~S"""
+      <a class={"{if false, do: "bg-white"} text-sm potato sm:lowercase uppercase"}
+        id="testing 
+        href="#"></a>
+      """
+
+      expected = ~S"""
+      <a class={"{if false, do: "bg-white"} text-sm potato sm:lowercase uppercase"}
+        id="testing 
+        href="#"></a>
+      """
+
+      assert_formatter_output(input, expected)
+    end
+
   end
 end
