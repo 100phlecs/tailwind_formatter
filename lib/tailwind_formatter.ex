@@ -64,7 +64,7 @@ defmodule TailwindFormatter do
       sort_number = Map.get(Defaults.class_order(), class, -1)
       {sort_number, class}
     end)
-    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
+    |> Enum.sort(&(elem(&1, 0) < elem(&2, 0)))
     |> Enum.map(&elem(&1, 1))
     |> List.flatten()
   end
@@ -111,7 +111,7 @@ defmodule TailwindFormatter do
       sort_number = Map.get(Defaults.variant_order(), variant, -1)
       {sort_number, variant}
     end)
-    |> Enum.sort(&(elem(&1, 0) >= elem(&2, 0)))
+    |> Enum.sort(&(elem(&1, 0) > elem(&2, 0)))
     |> Enum.map(&elem(&1, 1))
   end
 
@@ -123,7 +123,7 @@ defmodule TailwindFormatter do
 
       {sort_number, variant_group}
     end)
-    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
+    |> Enum.sort(&(elem(&1, 0) < elem(&2, 0)))
     |> Enum.map(&elem(&1, 1))
   end
 

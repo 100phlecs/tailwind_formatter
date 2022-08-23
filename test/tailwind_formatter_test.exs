@@ -154,6 +154,19 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "keep consistent format order for unknown classes" do
+    input = """
+    <div class="text-sm potato unknown1 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato unknown1 unknown2 text-sm uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+
   describe "aborts on bad input" do
     test "missing final quote" do
       input = ~S"""
