@@ -57,7 +57,7 @@ Thie is because `mix format`, depending on your version, may not support multipl
 plugins ([just yet](https://github.com/elixir-lang/elixir/pull/12032))!
 
 To work around this, it is suggested to set up two `.formatter.exs`
-files and a script within your base directoery, i.e. `format.sh` which
+files and a script within your base directory, i.e. `format.sh` which
 runs both.
 
 In `format.sh`:
