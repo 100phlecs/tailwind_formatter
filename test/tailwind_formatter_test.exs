@@ -166,6 +166,16 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "variant ordering keeps prose-* as last variant" do
+    input = """
+    <div class="prose prose-a:text-sky-600 hover:prose-a:text-sky-300"></div>
+    """
+    expected = """
+    <div class="prose prose-a:text-sky-600 hover:prose-a:text-sky-300"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 
   describe "aborts on bad input" do
     test "missing final quote" do
