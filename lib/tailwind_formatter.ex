@@ -25,7 +25,12 @@ defmodule TailwindFormatter do
       needs_curlies = String.match?(class_val, ~r/{/)
 
       trimmed_classes =
-        class_val |> String.trim() |> String.trim("{") |> String.trim("}") |> String.trim("\"") |> String.trim()
+        class_val
+        |> String.trim()
+        |> String.trim("{")
+        |> String.trim("}")
+        |> String.trim("\"")
+        |> String.trim()
 
       if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
         original_str
@@ -60,11 +65,12 @@ defmodule TailwindFormatter do
   end
 
   defp sort_base_classes(base_classes) do
-    Enum.map(base_classes, fn class ->
+    base_classes
+    |> Enum.map(fn class ->
       sort_number = Map.get(Defaults.class_order(), class, -1)
       {sort_number, class}
     end)
-    |> Enum.sort(&(elem(&1, 0) < elem(&2, 0)))
+    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
     |> Enum.map(&elem(&1, 1))
     |> List.flatten()
   end
@@ -78,6 +84,13 @@ defmodule TailwindFormatter do
         put_elem(tuple, 0, [class | elem(tuple, 0)])
       end
     end)
+    |> reverse_lists()
+  end
+
+  # The lists were built up in reverse order.
+  # So reverse to get original order back.
+  defp reverse_lists({base_classes, variants}) do
+    {Enum.reverse(base_classes), Enum.reverse(variants)}
   end
 
   defp variant?(class) do
@@ -111,7 +124,7 @@ defmodule TailwindFormatter do
       sort_number = Map.get(Defaults.variant_order(), variant, -1)
       {sort_number, variant}
     end)
-    |> Enum.sort(&(elem(&1, 0) > elem(&2, 0)))
+    |> Enum.sort(&(elem(&1, 0) >= elem(&2, 0)))
     |> Enum.map(&elem(&1, 1))
   end
 
@@ -123,7 +136,7 @@ defmodule TailwindFormatter do
 
       {sort_number, variant_group}
     end)
-    |> Enum.sort(&(elem(&1, 0) < elem(&2, 0)))
+    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
     |> Enum.map(&elem(&1, 1))
   end
 
