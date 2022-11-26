@@ -219,16 +219,32 @@ defmodule TailwindFormatterTest do
       assert_formatter_output(input, expected)
     end
 
+    test "custom variant does not flip" do
+      input = ~S"""
+      <a class=" p-10  mx-auto xs:p-0 md:w-full md:max-w-md"
+      id="testing
+      href="#"></a>
+      """
+
+      expected = ~S"""
+      <a class="mx-auto p-10 xs:p-0 md:w-full md:max-w-md"
+      id="testing
+      href="#"></a>
+      """
+
+      assert_formatter_output(input, expected)
+    end
+
     test "incomplete inline elixir" do
       input = ~S"""
       <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
-        id="testing 
+        id="testing
         href="#"></a>
       """
 
       expected = ~S"""
       <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
-        id="testing 
+        id="testing
         href="#"></a>
       """
 
