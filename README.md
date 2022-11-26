@@ -17,7 +17,7 @@ Add `tailwind_formatter` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:tailwind_formatter, "~> 0.2.0"}
+    {:tailwind_formatter, "~> 0.3.0"}
 
     # alternatively, keep track with the latest release:
     {:tailwind_formatter, github: "100phlecs/tailwind_formatter"}
