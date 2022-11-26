@@ -44,11 +44,10 @@ Then run `mix deps.get` and also `mix compile` to load in the plugin.
 
 After that, run the formatter with `mix format`.
 
-If using different formatters on the template and you're running an
-Elixir version that supports multiple format plugins, it is suggested
-to list `TailwindFormatter` as the first extension. For the order by
-which the plugins are inserted are the order in which they are ran.
-
+Note: If you're using multiple formatters and you're running an Elixir
+version that supports multiple format plugins, keep in mind that the
+order by which the plugins are defined in the `plugins: []` array are
+the order in which they are ran.
 
 ### Setup multiple formatters for older versions 
 
@@ -56,9 +55,16 @@ If you plan to use this with another formatter, you may run into issues.
 Thie is because `mix format`, depending on your version, may not support multiple
 plugins ([just yet](https://github.com/elixir-lang/elixir/pull/12032))!
 
-To work around this, it is suggested to set up two `.formatter.exs`
-files and a script within your base directory, i.e. `format.sh` which
-runs both.
+There are two options to work around this. The first option is, if you
+are formatting with `Phoenix.LiveView.HTMLFormatter`, to use the
+`MultiFormatter` shipped with this library instead of
+`TailwindFormatter`.
+
+The `MultiFormatter` will first format with `HTMLFormatter` and then
+follow up with `TailwindFormatter`.
+
+The other option is to set up two `.formatter.exs` files and a script
+within your base directory, i.e. `format.sh` which runs both.
 
 In `format.sh`:
 
