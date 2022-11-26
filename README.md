@@ -53,13 +53,14 @@ plugin can be added after the HTML formatter in your `.formatter.exs`:
 ### Setup for Elixir v1.13.4 and v1.14
 
 Current stable versions of Elixir do not support applying multiple
-formatter plugins to the same extension type. To overcome this,
-a `MultiFormatter` is provided that is equivalent to running the
-`Phoenix.LiveView.HTMLFormatter` first, followed by `TailwindFormatter`.
+formatter plugins to the same extension type. To overcome this, a
+`MultiFormatter` is provided that is equivalent to running the
+`Phoenix.LiveView.HTMLFormatter` first, followed by
+`TailwindFormatter`.
 
 ```elixir
   [
-    plugins: [MultiFormatter],
+    plugins: [TailwindFormatter.MultiFormatter],
     inputs: [
       "*.{heex,ex,exs}",
       "priv/*/seeds.exs",

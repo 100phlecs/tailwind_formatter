@@ -1,5 +1,5 @@
 if Code.ensure_loaded?(Phoenix.LiveView.HTMLFormatter) do
-  defmodule MultiFormatter do
+  defmodule TailwindFormatter.MultiFormatter do
     if Version.match?(System.version(), ">= 1.13.0") do
       @behaviour Mix.Tasks.Format
     end

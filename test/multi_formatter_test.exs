@@ -1,7 +1,7 @@
 defmodule MultiFormatterTest do
   use ExUnit.Case
 
-  alias MultiFormatter
+  alias TailwindFormatter.MultiFormatter
 
   defp assert_formatter_output(input, expected, dot_formatter_opts \\ []) do
     first_pass = MultiFormatter.format(input, dot_formatter_opts)
