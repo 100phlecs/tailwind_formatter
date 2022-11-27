@@ -57,11 +57,19 @@ defmodule TailwindFormatter do
   end
 
   defp sort(class_list) do
-    {base_classes, variants} = separate(class_list)
+    {variants, base_classes} = separate(class_list)
     base_sorted = sort_base_classes(base_classes)
     variant_sorted = sort_variant_classes(variants)
 
     base_sorted ++ variant_sorted
+  end
+
+  defp separate(class_list) do
+    Enum.split_with(class_list, &variant?/1)
+  end
+
+  defp variant?(class) do
+    String.contains?(class, ":")
   end
 
   defp sort_base_classes(base_classes) do
@@ -70,31 +78,8 @@ defmodule TailwindFormatter do
       sort_number = Map.get(Defaults.class_order(), class, -1)
       {sort_number, class}
     end)
-    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
+    |> Enum.sort_by(&elem(&1, 0))
     |> Enum.map(&elem(&1, 1))
-    |> List.flatten()
-  end
-
-  defp separate(class_list) do
-    class_list
-    |> Enum.reduce({[], []}, fn class, tuple ->
-      if variant?(class) do
-        put_elem(tuple, 1, [class | elem(tuple, 1)])
-      else
-        put_elem(tuple, 0, [class | elem(tuple, 0)])
-      end
-    end)
-    |> reverse_lists()
-  end
-
-  # The lists were built up in reverse order.
-  # So reverse to get original order back.
-  defp reverse_lists({base_classes, variants}) do
-    {Enum.reverse(base_classes), Enum.reverse(variants)}
-  end
-
-  defp variant?(class) do
-    String.contains?(class, ":")
   end
 
   defp sort_variant_classes(variants) do
@@ -105,27 +90,10 @@ defmodule TailwindFormatter do
     |> grouped_variants_to_list()
   end
 
-  defp sort_variant_chains(variants) do
-    variants
-    |> Enum.map(&String.split(&1, ":"))
-    |> Enum.map(&sort_inverse_variant_order/1)
-    |> Enum.map(&Enum.join(&1, ":"))
-  end
-
   defp group_by_first_variant(variants) do
     variants
     |> Enum.map(&String.split(&1, ":", parts: 2))
     |> Enum.group_by(&List.first/1, &List.last/1)
-  end
-
-  defp sort_inverse_variant_order(variants) do
-    variants
-    |> Enum.map(fn variant ->
-      sort_number = Map.get(Defaults.variant_order(), variant, -1)
-      {sort_number, variant}
-    end)
-    |> Enum.sort(&(elem(&1, 0) >= elem(&2, 0)))
-    |> Enum.map(&elem(&1, 1))
   end
 
   defp sort_variant_groups(variant_groups) do
@@ -136,7 +104,7 @@ defmodule TailwindFormatter do
 
       {sort_number, variant_group}
     end)
-    |> Enum.sort(&(elem(&1, 0) <= elem(&2, 0)))
+    |> Enum.sort_by(&elem(&1, 0))
     |> Enum.map(&elem(&1, 1))
   end
 
@@ -148,13 +116,29 @@ defmodule TailwindFormatter do
   end
 
   defp grouped_variants_to_list(grouped_variants) do
-    Enum.map(grouped_variants, fn variant_group ->
+    Enum.flat_map(grouped_variants, fn variant_group ->
       {variant, base_classes} = variant_group
 
       Enum.map(base_classes, fn class ->
         "#{variant}:#{class}"
       end)
     end)
-    |> List.flatten()
+  end
+
+  defp sort_variant_chains(variants) do
+    variants
+    |> Enum.map(&String.split(&1, ":"))
+    |> Enum.map(&sort_inverse_variant_order/1)
+    |> Enum.map(&Enum.join(&1, ":"))
+  end
+
+  defp sort_inverse_variant_order(variants) do
+    variants
+    |> Enum.map(fn variant ->
+      sort_number = Map.get(Defaults.variant_order(), variant, -1)
+      {sort_number, variant}
+    end)
+    |> Enum.sort_by(&elem(&1, 0), :desc)
+    |> Enum.map(&elem(&1, 1))
   end
 end
