@@ -12,6 +12,12 @@ defmodule TailwindFormatterTest do
     assert second_pass == expected
   end
 
+  defp assert_formatter_raise(input, dot_formatter_opts \\ []) do
+    assert_raise ArgumentError, fn ->
+      TailwindFormatter.format(input, dot_formatter_opts)
+    end
+  end
+
   test "works" do
     input = """
     <div class="text-sm potato sm:lowercase uppercase"></div>
@@ -118,6 +124,34 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "dynamic classes" do
+    input = ~S"""
+    <a id="testing" class={"  text-sm potato sm:lowercase   grid-cols-#{@test} uppercase"}
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a id="testing" class={"grid-cols-#{@test} potato text-sm uppercase sm:lowercase"}
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "dynamic varient classes" do
+    input = ~S"""
+    <a id="testing" class={"  text-sm potato sm:lowercase   lg:grid-cols-#{@test} uppercase"}
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a id="testing" class={"potato text-sm uppercase sm:lowercase lg:grid-cols-#{@test}"}
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   test "allows comparisons inline elixir" do
     input = ~S"""
     <a id="testing" class={"#{if @page <= 5, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
@@ -141,6 +175,42 @@ defmodule TailwindFormatterTest do
     expected = ~S"""
       <a class=""></a>
       <a class={""} id={"id"}></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "decimal classes are sorted" do
+    input = """
+    <div class="text-sm potato unknown1 py-3.5 px-3.5 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato unknown1 unknown2 px-3.5 py-3.5 text-sm uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "classes with backslash are sorted" do
+    input = """
+    <div class="text-sm potato unknown1 -inset-1/2 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato unknown1 unknown2 -inset-1/2 text-sm uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "classes with hash are sorted" do
+    input = """
+    <div class="text-sm potato bg-[#333] unknown1 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato bg-[#333] unknown1 unknown2 text-sm uppercase sm:lowercase"></div>
     """
 
     assert_formatter_output(input, expected)
@@ -202,6 +272,22 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "placeholding does not change anything outside of class attr" do
+    input = ~S"""
+    <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+      id="testing-#{@id}"
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      id="testing-#{@id}"
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   describe "aborts on bad input" do
     test "missing final quote" do
       input = ~S"""
@@ -242,13 +328,7 @@ defmodule TailwindFormatterTest do
         href="#"></a>
       """
 
-      expected = ~S"""
-      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
-        id="testing
-        href="#"></a>
-      """
-
-      assert_formatter_output(input, expected)
+      assert_formatter_raise(input)
     end
 
     test "missing number tag inline elixir" do

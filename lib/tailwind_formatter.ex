@@ -16,31 +16,79 @@ defmodule TailwindFormatter do
   end
 
   def format(contents, _opts) do
-    Regex.replace(Defaults.class_regex(), contents, fn original_str ->
-      inline_elixir_functions =
-        Regex.scan(Defaults.func_regex(), original_str) |> List.flatten() |> Enum.join(" ")
+    {:ok, contents} = validate_inline_fns(contents)
 
-      classes_only = Regex.replace(Defaults.func_regex(), original_str, "")
-      [class_attr, class_val] = String.split(classes_only, ~r/[=:]/, parts: 2)
-      needs_curlies = String.match?(class_val, ~r/{/)
+    {:ok, placeholder_contents, dynamic_classes} = placehold_dynamic_classes(contents)
 
-      trimmed_classes =
-        class_val
-        |> String.trim()
-        |> String.trim("{")
-        |> String.trim("}")
-        |> String.trim("\"")
-        |> String.trim()
+    sorted_html =
+      Regex.replace(Defaults.class_regex(), placeholder_contents, fn class_html_attr ->
+        [class_attr, class_val] = String.split(class_html_attr, ~r/[=:]/, parts: 2)
+        needs_curlies = String.match?(class_val, ~r/{/)
 
-      if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
-        original_str
-      else
-        sorted_list = trimmed_classes |> String.split() |> sort_variant_chains() |> sort()
-        sorted_list = Enum.join([inline_elixir_functions | sorted_list], " ") |> String.trim()
-        delimiter = if String.contains?(original_str, "class:"), do: ": ", else: "="
+        trimmed_classes =
+          class_val
+          |> String.trim()
+          |> String.trim("{")
+          |> String.trim("}")
+          |> String.trim("\"")
+          |> String.trim()
 
-        class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
+        if trimmed_classes == "" or Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+          class_html_attr
+        else
+          sorted_list =
+            trimmed_classes
+            |> String.split()
+            |> sort_variant_chains()
+            |> sort()
+            |> Enum.join(" ")
+
+          delimiter = if String.contains?(class_html_attr, "class:"), do: ": ", else: "="
+
+          class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
+        end
+      end)
+
+    undo_placeholders(sorted_html, dynamic_classes)
+  end
+
+  defp validate_inline_fns(contents) do
+    Regex.scan(Defaults.func_regex(), contents, capture: :all_but_first)
+    |> Enum.map(&List.first/1)
+    |> Enum.each(fn elixir_fn ->
+      case Code.string_to_quoted(elixir_fn) do
+        {:error, {_meta, msg, tok}} ->
+          raise ArgumentError, "Invalid inlined elixir function:\n #{elixir_fn} -- #{msg}#{tok}"
+
+        {:ok, _quoted} ->
+          :ok
       end
+    end)
+
+    {:ok, contents}
+  end
+
+  defp placehold_dynamic_classes(contents) do
+    dynamic_classes =
+      Regex.scan(Defaults.dynamic_class_regex(), contents, capture: :first)
+      |> List.flatten()
+      |> Enum.with_index()
+
+    placeholder_contents =
+      dynamic_classes
+      |> Enum.reduce(contents, fn
+        {dynamic_class, index}, contents ->
+          String.replace(contents, dynamic_class, "$#{index}")
+      end)
+
+    {:ok, placeholder_contents, dynamic_classes}
+  end
+
+  defp undo_placeholders(sorted_html, dynamic_classes) do
+    dynamic_classes
+    |> Enum.reduce(sorted_html, fn
+      {dynamic_class, index}, html ->
+        String.replace(html, "$#{index}", dynamic_class)
     end)
   end
 
@@ -72,10 +120,26 @@ defmodule TailwindFormatter do
     String.contains?(class, ":")
   end
 
+  defp placeholder?(class) do
+    String.contains?(class, "$")
+  end
+
+  defp get_sort_position(class) do
+    if placeholder?(class) do
+      class
+      |> String.trim("$")
+      |> String.to_integer()
+      # offset to make sure fns are sorted to front
+      |> then(fn position -> position - 1_000_000 end)
+    else
+      Map.get(Defaults.class_order(), class, -1)
+    end
+  end
+
   defp sort_base_classes(base_classes) do
     base_classes
     |> Enum.map(fn class ->
-      sort_number = Map.get(Defaults.class_order(), class, -1)
+      sort_number = get_sort_position(class)
       {sort_number, class}
     end)
     |> Enum.sort_by(&elem(&1, 0))
