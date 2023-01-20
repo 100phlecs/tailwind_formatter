@@ -12,6 +12,12 @@ defmodule TailwindFormatterTest do
     assert second_pass == expected
   end
 
+  defp assert_formatter_raise(input, dot_formatter_opts \\ []) do
+    assert_raise ArgumentError, fn ->
+      TailwindFormatter.format(input, dot_formatter_opts)
+    end
+  end
+
   test "works" do
     input = """
     <div class="text-sm potato sm:lowercase uppercase"></div>
@@ -146,6 +152,42 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "decimal classes are sorted" do
+    input = """
+    <div class="text-sm potato unknown1 py-3.5 px-3.5 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato unknown1 unknown2 text-sm py-3.5 px-3.5 uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "classes with backslash are sorted" do
+    input = """
+    <div class="text-sm potato unknown1 -inset-1/2 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato unknown1 unknown2 -inset-1/2 text-sm uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "classes with hash are sorted" do
+    input = """
+    <div class="text-sm potato bg-[#333] unknown1 unknown2 sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div class="bg-[#333] potato unknown1 unknown2 text-sm uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   test "keep consistent format order for unknown classes" do
     input = """
     <div class="text-sm potato unknown1 unknown2 sm:lowercase uppercase"></div>
@@ -242,13 +284,7 @@ defmodule TailwindFormatterTest do
         href="#"></a>
       """
 
-      expected = ~S"""
-      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
-        id="testing
-        href="#"></a>
-      """
-
-      assert_formatter_output(input, expected)
+      assert_formatter_raise(input)
     end
 
     test "missing number tag inline elixir" do

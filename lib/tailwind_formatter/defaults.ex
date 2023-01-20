@@ -1,7 +1,7 @@
 defmodule TailwindFormatter.Defaults do
   @moduledoc false
   @class_pattern ~r/(?:class\s*(?:=|:)[\s{]*)('|")(.|\s)*?\1}*(?=[^"]*?(=|>))/i
-  @inline_func_pattern ~r/#\{[^}]+\}*/i
+  @inline_func_pattern ~r/#\{([^}]+)\}*/i
   @invalid_input ~r/[^_a-zA-Z0-9\s\-:\[\]]+/
 
   @variants "priv/variants.txt"

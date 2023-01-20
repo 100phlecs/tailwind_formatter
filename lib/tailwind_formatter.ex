@@ -16,6 +16,20 @@ defmodule TailwindFormatter do
   end
 
   def format(contents, _opts) do
+    elixir_func_map = %{}
+
+    Regex.scan(Defaults.func_regex(), contents, capture: :all_but_first)
+    |> Enum.map(&List.first/1)
+    |> Enum.each(fn elixir_fn ->
+      case Code.string_to_quoted(elixir_fn) do
+        {:error, {_meta, msg, tok}} ->
+          raise ArgumentError, "Invalid inlined elixir function:\n #{elixir_fn} -- #{msg}#{tok}"
+
+        {:ok, _quoted} ->
+          :ok
+      end
+    end)
+
     Regex.replace(Defaults.class_regex(), contents, fn original_str ->
       inline_elixir_functions =
         Regex.scan(Defaults.func_regex(), original_str) |> List.flatten() |> Enum.join(" ")
