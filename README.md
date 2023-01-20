@@ -133,6 +133,21 @@ So for example, `dark:sm:hover:text-gray-600` will be placed before any `sm:` an
 Thus in order to achieve more consistency, the variant chain is ordered.
 So, `dark:sm:hover:text-gray-600` transforms to `sm:dark:hover:text-gray-600`.
 
+
+### Dynamically rendered classes
+
+Sometimes you may want to dynamically render a class depending on a variable,
+i.e. `lg:grid-cols-#{@cols}` or `alert alert-#{@type}`.  The formatter supports
+this, and also sorts these toward the front of the variant group it is within.
+
+Note: you will need to define the full class either within the Tailwind
+[safelist](https://tailwindcss.com/docs/content-configuration#safelisting-classes)
+or have it fully written out somewhere else in the source file.
+
+So, for example, if `@cols = 5` within `grid-cols-#{@cols}`, then you will need
+`grid-cols-5` written in full somewhere in the source so Tailwind won't purge it
+in production.
+
 ## Custom classes
 
 As a bonus this plugin supports the [Phoenix variants](https://fly.io/phoenix-files/phoenix-liveview-tailwind-variants/)
