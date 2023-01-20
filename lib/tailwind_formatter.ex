@@ -16,8 +16,49 @@ defmodule TailwindFormatter do
   end
 
   def format(contents, _opts) do
-    elixir_func_map = %{}
+    {:ok, contents} = validate_inline_fns(contents)
 
+    {:ok, placeholder_contents, dynamic_classes} = placehold_dynamic_classes(contents)
+
+    sorted_html =
+      Regex.replace(Defaults.class_regex(), placeholder_contents, fn class_html_attr ->
+        [class_attr, class_val] = String.split(class_html_attr, ~r/[=:]/, parts: 2)
+        needs_curlies = String.match?(class_val, ~r/{/)
+
+        trimmed_classes =
+          class_val
+          |> String.trim()
+          |> String.trim("{")
+          |> String.trim("}")
+          |> String.trim("\"")
+          |> String.trim()
+
+        if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+          class_html_attr
+        else
+          placeholders =
+            Regex.scan(Defaults.placeholder_class_regex(), trimmed_classes)
+            |> List.flatten()
+            |> Enum.sort()
+
+          sorted_list =
+            Regex.replace(Defaults.placeholder_class_regex(), trimmed_classes, "")
+            |> String.split()
+            |> sort_variant_chains()
+            |> sort()
+            |> then(fn list -> placeholders ++ list end)
+            |> Enum.join(" ")
+
+          delimiter = if String.contains?(class_html_attr, "class:"), do: ": ", else: "="
+
+          class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
+        end
+      end)
+
+    undo_placeholders(sorted_html, dynamic_classes)
+  end
+
+  defp validate_inline_fns(contents) do
     Regex.scan(Defaults.func_regex(), contents, capture: :all_but_first)
     |> Enum.map(&List.first/1)
     |> Enum.each(fn elixir_fn ->
@@ -30,31 +71,30 @@ defmodule TailwindFormatter do
       end
     end)
 
-    Regex.replace(Defaults.class_regex(), contents, fn original_str ->
-      inline_elixir_functions =
-        Regex.scan(Defaults.func_regex(), original_str) |> List.flatten() |> Enum.join(" ")
+    {:ok, contents}
+  end
 
-      classes_only = Regex.replace(Defaults.func_regex(), original_str, "")
-      [class_attr, class_val] = String.split(classes_only, ~r/[=:]/, parts: 2)
-      needs_curlies = String.match?(class_val, ~r/{/)
+  defp placehold_dynamic_classes(contents) do
+    dynamic_classes =
+      Regex.scan(Defaults.dynamic_class_regex(), contents, capture: :first)
+      |> List.flatten()
+      |> Enum.with_index()
 
-      trimmed_classes =
-        class_val
-        |> String.trim()
-        |> String.trim("{")
-        |> String.trim("}")
-        |> String.trim("\"")
-        |> String.trim()
+    placeholder_contents =
+      dynamic_classes
+      |> Enum.reduce(contents, fn
+        {dynamic_class, index}, contents ->
+          String.replace(contents, dynamic_class, "$#{index}")
+      end)
 
-      if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
-        original_str
-      else
-        sorted_list = trimmed_classes |> String.split() |> sort_variant_chains() |> sort()
-        sorted_list = Enum.join([inline_elixir_functions | sorted_list], " ") |> String.trim()
-        delimiter = if String.contains?(original_str, "class:"), do: ": ", else: "="
+    {:ok, placeholder_contents, dynamic_classes}
+  end
 
-        class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
-      end
+  defp undo_placeholders(sorted_html, dynamic_classes) do
+    dynamic_classes
+    |> Enum.reduce(sorted_html, fn
+      {dynamic_class, index}, html ->
+        String.replace(html, "$#{index}", dynamic_class)
     end)
   end
 

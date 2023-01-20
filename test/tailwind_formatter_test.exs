@@ -112,12 +112,12 @@ defmodule TailwindFormatterTest do
 
   test "regex allows multiple attributes" do
     input = ~S"""
-    <a id="testing" class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+    <a id="testing" class={"#{if false, do: "bg-white"} grid-cols-#{@test} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
       href="#"></a>
     """
 
     expected = ~S"""
-    <a id="testing" class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+    <a id="testing" class={"#{if false, do: "bg-white"} grid-cols-#{@test} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
       href="#"></a>
     """
 
@@ -158,7 +158,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = """
-    <div class="potato unknown1 unknown2 text-sm py-3.5 px-3.5 uppercase sm:lowercase"></div>
+    <div class="potato unknown1 unknown2 px-3.5 py-3.5 text-sm uppercase sm:lowercase"></div>
     """
 
     assert_formatter_output(input, expected)
@@ -182,7 +182,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = """
-    <div class="bg-[#333] potato unknown1 unknown2 text-sm uppercase sm:lowercase"></div>
+    <div class="potato bg-[#333] unknown1 unknown2 text-sm uppercase sm:lowercase"></div>
     """
 
     assert_formatter_output(input, expected)
