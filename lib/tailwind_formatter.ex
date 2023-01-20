@@ -33,20 +33,14 @@ defmodule TailwindFormatter do
           |> String.trim("\"")
           |> String.trim()
 
-        if trimmed_classes == "" || Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+        if trimmed_classes == "" or Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
           class_html_attr
         else
-          placeholders =
-            Regex.scan(Defaults.placeholder_class_regex(), trimmed_classes)
-            |> List.flatten()
-            |> Enum.sort()
-
           sorted_list =
-            Regex.replace(Defaults.placeholder_class_regex(), trimmed_classes, "")
+            trimmed_classes
             |> String.split()
             |> sort_variant_chains()
             |> sort()
-            |> then(fn list -> placeholders ++ list end)
             |> Enum.join(" ")
 
           delimiter = if String.contains?(class_html_attr, "class:"), do: ": ", else: "="
@@ -126,10 +120,26 @@ defmodule TailwindFormatter do
     String.contains?(class, ":")
   end
 
+  defp placeholder?(class) do
+    String.contains?(class, "$")
+  end
+
+  defp get_sort_position(class) do
+    if placeholder?(class) do
+      class
+      |> String.trim("$")
+      |> String.to_integer()
+      # offset to make sure fns are sorted to front
+      |> then(fn position -> position - 1_000_000 end)
+    else
+      Map.get(Defaults.class_order(), class, -1)
+    end
+  end
+
   defp sort_base_classes(base_classes) do
     base_classes
     |> Enum.map(fn class ->
-      sort_number = Map.get(Defaults.class_order(), class, -1)
+      sort_number = get_sort_position(class)
       {sort_number, class}
     end)
     |> Enum.sort_by(&elem(&1, 0))

@@ -1,10 +1,9 @@
 defmodule TailwindFormatter.Defaults do
   @moduledoc false
-  @class_pattern ~r/(?:class\s*(?:=|:)[\s{]*)('|")(.|\s)*?\1}*(?=[^"]*?(=|>))/i
+  @class_pattern ~r/(?:class\s*(?:=|:)[\s{]*)('|")(.|\s)*?\1}*/i
   @inline_func_pattern ~r/#\{([^}]+)\}*/i
   @dynamic_classes ~r/[[:alnum:]-]*#\{([^}]+)\}*/i
   @invalid_input ~r/[^_a-zA-Z0-9\$\s\-:\[\]\/\.\#]+/
-  @placeholders ~r/\$[0-9]+/i
 
   @variants "priv/variants.txt"
             |> File.read!()
@@ -36,10 +35,6 @@ defmodule TailwindFormatter.Defaults do
 
   def dynamic_class_regex() do
     @dynamic_classes
-  end
-
-  def placeholder_class_regex() do
-    @placeholders
   end
 
   def class_order() do

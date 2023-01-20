@@ -112,12 +112,40 @@ defmodule TailwindFormatterTest do
 
   test "regex allows multiple attributes" do
     input = ~S"""
-    <a id="testing" class={"#{if false, do: "bg-white"} grid-cols-#{@test} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+    <a id="testing" class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
       href="#"></a>
     """
 
     expected = ~S"""
-    <a id="testing" class={"#{if false, do: "bg-white"} grid-cols-#{@test} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+    <a id="testing" class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "dynamic classes" do
+    input = ~S"""
+    <a id="testing" class={"  text-sm potato sm:lowercase   grid-cols-#{@test} uppercase"}
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a id="testing" class={"grid-cols-#{@test} potato text-sm uppercase sm:lowercase"}
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "dynamic varient classes" do
+    input = ~S"""
+    <a id="testing" class={"  text-sm potato sm:lowercase   lg:grid-cols-#{@test} uppercase"}
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a id="testing" class={"potato text-sm uppercase sm:lowercase lg:grid-cols-#{@test}"}
       href="#"></a>
     """
 
@@ -238,6 +266,22 @@ defmodule TailwindFormatterTest do
     expected = ~S"""
     <a class="inline-block rounded-lg bg-green-400 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-green-500 hover:text-lg hover:shadow-md focus:bg-green-600 focus:shadow-sm focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
       id="testing"
+      href="#"></a>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "placeholding does not change anything outside of class attr" do
+    input = ~S"""
+    <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+      id="testing-#{@id}"
+      href="#"></a>
+    """
+
+    expected = ~S"""
+    <a class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      id="testing-#{@id}"
       href="#"></a>
     """
 
