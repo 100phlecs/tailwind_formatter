@@ -24,6 +24,7 @@ defmodule TailwindFormatter do
       Regex.replace(Defaults.class_regex(), placeholder_contents, fn class_html_attr ->
         [class_attr, class_val] = String.split(class_html_attr, ~r/[=:]/, parts: 2)
         needs_curlies = String.match?(class_val, ~r/{/)
+        maybe_concatenated = String.match?(class_val, ~r/<>/)
 
         trimmed_classes =
           class_val
@@ -32,6 +33,13 @@ defmodule TailwindFormatter do
           |> String.trim("}")
           |> String.trim("\"")
           |> String.trim()
+
+        [trimmed_classes, concatenation] =
+          if maybe_concatenated do
+            String.split(trimmed_classes, ~r/" <>/)
+          else
+            [trimmed_classes, ""]
+          end
 
         if trimmed_classes == "" or Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
           class_html_attr
@@ -42,6 +50,13 @@ defmodule TailwindFormatter do
             |> sort_variant_chains()
             |> sort()
             |> Enum.join(" ")
+            |> then(fn sorted ->
+              if maybe_concatenated do
+                sorted <> " \" <>" <> concatenation
+              else
+                sorted
+              end
+            end)
 
           delimiter = if String.contains?(class_html_attr, "class:"), do: ": ", else: "="
 
