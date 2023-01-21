@@ -166,6 +166,18 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "allows string concatenation" do
+    input = ~S"""
+        <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    """
+
+    expected = ~S"""
+        <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   test "handles empty classes" do
     input = ~S"""
       <a class=""></a>
