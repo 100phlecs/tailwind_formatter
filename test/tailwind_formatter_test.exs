@@ -300,6 +300,18 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "can handle multiple interpolated strings" do
+    input = ~S"""
+    <.img src={~p"/images/#{"card-#{@card.brand}.svg"}"} />
+    """
+
+    expected = ~S"""
+    <.img src={~p"/images/#{"card-#{@card.brand}.svg"}"} />
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   describe "aborts on bad input" do
     test "missing final quote" do
       input = ~S"""
@@ -336,6 +348,22 @@ defmodule TailwindFormatterTest do
     test "incomplete inline elixir" do
       input = ~S"""
       <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
+        id="testing
+        href="#"></a>
+      """
+
+      output = ~S"""
+      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
+        id="testing
+        href="#"></a>
+      """
+
+      assert_formatter_output(input, output)
+    end
+
+    test "invalid elixir fn" do
+      input = ~S"""
+      <a class={"#{if false, do: } text-sm potato sm:lowercase uppercase"
         id="testing
         href="#"></a>
       """
