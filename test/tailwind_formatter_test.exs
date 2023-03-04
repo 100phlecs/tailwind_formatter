@@ -316,13 +316,13 @@ defmodule TailwindFormatterTest do
     test "missing final quote" do
       input = ~S"""
       <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase
-        id="testing 
+        id="testing
         href="#"></a>
       """
 
       expected = ~S"""
       <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase
-        id="testing 
+        id="testing
         href="#"></a>
       """
 
@@ -374,17 +374,39 @@ defmodule TailwindFormatterTest do
     test "missing number tag inline elixir" do
       input = ~S"""
       <a class={"{if false, do: "bg-white"} text-sm potato sm:lowercase uppercase"}
-        id="testing 
+        id="testing
         href="#"></a>
       """
 
       expected = ~S"""
       <a class={"{if false, do: "bg-white"} text-sm potato sm:lowercase uppercase"}
-        id="testing 
+        id="testing
         href="#"></a>
       """
 
       assert_formatter_output(input, expected)
+    end
+
+    test "works with more than nine string interpolations" do
+      input = ~S"""
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+      <div text={"foo: #{@foo}"} />
+
+      <div text={"bar: #{@bar}"} />
+      <div text={"bar: #{@baz}"} />
+      <div text={"bar: #{@barr}"} />
+      """
+
+      assert_formatter_output(input, input)
     end
   end
 end
