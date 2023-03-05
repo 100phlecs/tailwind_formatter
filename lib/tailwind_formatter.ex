@@ -93,7 +93,7 @@ defmodule TailwindFormatter do
       dynamic_classes
       |> Enum.reduce(contents, fn
         {dynamic_class, index}, contents ->
-          String.replace(contents, dynamic_class, "$#{index}")
+          String.replace(contents, dynamic_class, "$#{index}$")
       end)
 
     {:ok, placeholder_contents, dynamic_classes}
@@ -103,7 +103,7 @@ defmodule TailwindFormatter do
     dynamic_classes
     |> Enum.reduce(sorted_html, fn
       {dynamic_class, index}, html ->
-        String.replace(html, "$#{index}", dynamic_class)
+        String.replace(html, "$#{index}$", dynamic_class)
     end)
   end
 
