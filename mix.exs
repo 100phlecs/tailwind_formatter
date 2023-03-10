@@ -1,7 +1,7 @@
 defmodule TailwindFormatter.MixProject do
   use Mix.Project
 
-  @version "0.3.2"
+  @version "0.3.3"
   @url "https://github.com/100phlecs/tailwind_formatter"
 
   def project do
