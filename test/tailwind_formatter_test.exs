@@ -312,6 +312,82 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "handles classes with placeholders" do
+    input = ~S"""
+    <tr>
+    <th>ETA/ETD</th>
+    <td>
+    <%= for {vessel, eta, etd} <- list do %>
+      <p class={"qa-thingy-etas-#{vessel.id} has-margin-bottom-sm"}>
+        <span class={"qa-thingy-etas-#{vessel.id}-vessel"}><%= vessel.name %></span>
+        (<span class={"qa-thingy-etas-#{vessel.id}-eta"}><%= convert_date?(
+            eta,
+            "Not Specified"
+          ) %></span> &ndash; <span class={"qa-thingy-etas-#{vessel.id}-etd"}><%= convert_date?(
+            etd,
+            "Not Specified"
+          ) %></span>)
+      </p>
+    <% end %>
+    </td>
+    </tr>
+    <tr>
+    <th>Deliverables</th>
+    <td>
+    <%= for {fuel, vessel_fuels} <- list,
+              vessel_fuel <- vessel_fuels do %>
+      <p class={"qa-thingy-deliverable-#{vessel_fuel.id} has-margin-bottom-sm"}>
+        <span class="qa-thingy-deliverable-quantity"><%= vessel_fuel.quantity %></span>
+        MT of <span class="qa-thingy-deliverable-fuel"><%= fuel.name %></span>
+        to
+        <span class="qa-thingy-deliverable-vessel">
+          <%= vessel_fuel.vessel.name %> (<%= vessel_fuel.vessel.imo %>)
+        </span>
+      </p>
+    <% end %>
+    </td>
+    </tr>
+    """
+
+    expected = ~S"""
+    <tr>
+    <th>ETA/ETD</th>
+    <td>
+    <%= for {vessel, eta, etd} <- list do %>
+      <p class={"qa-thingy-etas-#{vessel.id} has-margin-bottom-sm"}>
+        <span class={"qa-thingy-etas-#{vessel.id}-vessel"}><%= vessel.name %></span>
+        (<span class={"qa-thingy-etas-#{vessel.id}-eta"}><%= convert_date?(
+            eta,
+            "Not Specified"
+          ) %></span> &ndash; <span class={"qa-thingy-etas-#{vessel.id}-etd"}><%= convert_date?(
+            etd,
+            "Not Specified"
+          ) %></span>)
+      </p>
+    <% end %>
+    </td>
+    </tr>
+    <tr>
+    <th>Deliverables</th>
+    <td>
+    <%= for {fuel, vessel_fuels} <- list,
+              vessel_fuel <- vessel_fuels do %>
+      <p class={"qa-thingy-deliverable-#{vessel_fuel.id} has-margin-bottom-sm"}>
+        <span class="qa-thingy-deliverable-quantity"><%= vessel_fuel.quantity %></span>
+        MT of <span class="qa-thingy-deliverable-fuel"><%= fuel.name %></span>
+        to
+        <span class="qa-thingy-deliverable-vessel">
+          <%= vessel_fuel.vessel.name %> (<%= vessel_fuel.vessel.imo %>)
+        </span>
+      </p>
+    <% end %>
+    </td>
+    </tr>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   describe "aborts on bad input" do
     test "missing final quote" do
       input = ~S"""
