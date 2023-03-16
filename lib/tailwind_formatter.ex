@@ -42,7 +42,8 @@ defmodule TailwindFormatter do
             [trimmed_classes, ""]
           end
 
-        if variable_only or trimmed_classes == "" or Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+        if variable_only or trimmed_classes == "" or
+             Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
           class_html_attr
         else
           sorted_list =

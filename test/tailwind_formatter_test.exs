@@ -401,7 +401,7 @@ defmodule TailwindFormatterTest do
       </CP.tooltip>
     </div>
     """
-    
+
     expected = ~S"""
     <div class="flex flex-row items-center justify-center gap-3 text-lg">
       <CP.tooltip :for={{route, icon, text, _} <- @menu_items}>
