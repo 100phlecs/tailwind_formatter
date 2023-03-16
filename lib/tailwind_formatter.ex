@@ -25,6 +25,7 @@ defmodule TailwindFormatter do
         [class_attr, class_val] = String.split(class_html_attr, ~r/[=:]/, parts: 2)
         needs_curlies = String.match?(class_val, ~r/{/)
         maybe_concatenated = String.match?(class_val, ~r/<>/)
+        variable_only = not String.match?(class_val, ~r/"/)
 
         trimmed_classes =
           class_val
@@ -41,7 +42,7 @@ defmodule TailwindFormatter do
             [trimmed_classes, ""]
           end
 
-        if trimmed_classes == "" or Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+        if variable_only or trimmed_classes == "" or Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
           class_html_attr
         else
           sorted_list =

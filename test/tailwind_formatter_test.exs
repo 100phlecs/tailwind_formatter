@@ -388,6 +388,36 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "does not stringify variables" do
+    input = ~S"""
+    <div class="flex flex-row gap-3 justify-center items-center text-lg">
+      <CP.tooltip :for={{route, icon, text, _} <- @menu_items}>
+        <a class="text-gray-500" href={route}>
+          <i class={icon}></i>
+        </a>
+        <:hover_content>
+          <%= text %>
+        </:hover_content>
+      </CP.tooltip>
+    </div>
+    """
+    
+    expected = ~S"""
+    <div class="flex flex-row items-center justify-center gap-3 text-lg">
+      <CP.tooltip :for={{route, icon, text, _} <- @menu_items}>
+        <a class="text-gray-500" href={route}>
+          <i class={icon}></i>
+        </a>
+        <:hover_content>
+          <%= text %>
+        </:hover_content>
+      </CP.tooltip>
+    </div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   describe "aborts on bad input" do
     test "missing final quote" do
       input = ~S"""
