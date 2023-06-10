@@ -3195,6 +3195,7 @@ divide-slate-600
 divide-slate-700
 divide-slate-800
 divide-slate-900
+divide-slate-950
 divide-gray-50
 divide-gray-100
 divide-gray-200
@@ -3205,6 +3206,7 @@ divide-gray-600
 divide-gray-700
 divide-gray-800
 divide-gray-900
+divide-gray-950
 divide-zinc-50
 divide-zinc-100
 divide-zinc-200
@@ -3215,6 +3217,7 @@ divide-zinc-600
 divide-zinc-700
 divide-zinc-800
 divide-zinc-900
+divide-zinc-950
 divide-neutral-50
 divide-neutral-100
 divide-neutral-200
@@ -3225,6 +3228,7 @@ divide-neutral-600
 divide-neutral-700
 divide-neutral-800
 divide-neutral-900
+divide-neutral-950
 divide-stone-50
 divide-stone-100
 divide-stone-200
@@ -3235,6 +3239,7 @@ divide-stone-600
 divide-stone-700
 divide-stone-800
 divide-stone-900
+divide-stone-950
 divide-red-50
 divide-red-100
 divide-red-200
@@ -3245,6 +3250,7 @@ divide-red-600
 divide-red-700
 divide-red-800
 divide-red-900
+divide-red-950
 divide-orange-50
 divide-orange-100
 divide-orange-200
@@ -3255,6 +3261,7 @@ divide-orange-600
 divide-orange-700
 divide-orange-800
 divide-orange-900
+divide-orange-950
 divide-amber-50
 divide-amber-100
 divide-amber-200
@@ -3265,6 +3272,7 @@ divide-amber-600
 divide-amber-700
 divide-amber-800
 divide-amber-900
+divide-amber-950
 divide-yellow-50
 divide-yellow-100
 divide-yellow-200
@@ -3275,6 +3283,7 @@ divide-yellow-600
 divide-yellow-700
 divide-yellow-800
 divide-yellow-900
+divide-yellow-950
 divide-lime-50
 divide-lime-100
 divide-lime-200
@@ -3285,6 +3294,7 @@ divide-lime-600
 divide-lime-700
 divide-lime-800
 divide-lime-900
+divide-lime-950
 divide-green-50
 divide-green-100
 divide-green-200
@@ -3295,6 +3305,7 @@ divide-green-600
 divide-green-700
 divide-green-800
 divide-green-900
+divide-green-950
 divide-emerald-50
 divide-emerald-100
 divide-emerald-200
@@ -3305,6 +3316,7 @@ divide-emerald-600
 divide-emerald-700
 divide-emerald-800
 divide-emerald-900
+divide-emerald-950
 divide-teal-50
 divide-teal-100
 divide-teal-200
@@ -3315,6 +3327,7 @@ divide-teal-600
 divide-teal-700
 divide-teal-800
 divide-teal-900
+divide-teal-950
 divide-cyan-50
 divide-cyan-100
 divide-cyan-200
@@ -3325,6 +3338,7 @@ divide-cyan-600
 divide-cyan-700
 divide-cyan-800
 divide-cyan-900
+divide-cyan-950
 divide-sky-50
 divide-sky-100
 divide-sky-200
@@ -3335,6 +3349,7 @@ divide-sky-600
 divide-sky-700
 divide-sky-800
 divide-sky-900
+divide-sky-950
 divide-blue-50
 divide-blue-100
 divide-blue-200
@@ -3345,6 +3360,7 @@ divide-blue-600
 divide-blue-700
 divide-blue-800
 divide-blue-900
+divide-blue-950
 divide-indigo-50
 divide-indigo-100
 divide-indigo-200
@@ -3355,6 +3371,7 @@ divide-indigo-600
 divide-indigo-700
 divide-indigo-800
 divide-indigo-900
+divide-indigo-950
 divide-violet-50
 divide-violet-100
 divide-violet-200
@@ -3365,6 +3382,7 @@ divide-violet-600
 divide-violet-700
 divide-violet-800
 divide-violet-900
+divide-violet-950
 divide-purple-50
 divide-purple-100
 divide-purple-200
@@ -3375,6 +3393,7 @@ divide-purple-600
 divide-purple-700
 divide-purple-800
 divide-purple-900
+divide-purple-950
 divide-fuchsia-50
 divide-fuchsia-100
 divide-fuchsia-200
@@ -3385,6 +3404,7 @@ divide-fuchsia-600
 divide-fuchsia-700
 divide-fuchsia-800
 divide-fuchsia-900
+divide-fuchsia-950
 divide-pink-50
 divide-pink-100
 divide-pink-200
@@ -3395,6 +3415,7 @@ divide-pink-600
 divide-pink-700
 divide-pink-800
 divide-pink-900
+divide-pink-950
 divide-rose-50
 divide-rose-100
 divide-rose-200
@@ -3405,6 +3426,7 @@ divide-rose-600
 divide-rose-700
 divide-rose-800
 divide-rose-900
+divide-rose-950
 divide-opacity-0
 divide-opacity-5
 divide-opacity-10
@@ -3611,6 +3633,7 @@ border-slate-600
 border-slate-700
 border-slate-800
 border-slate-900
+border-slate-950
 border-gray-50
 border-gray-100
 border-gray-200
@@ -3621,6 +3644,7 @@ border-gray-600
 border-gray-700
 border-gray-800
 border-gray-900
+border-gray-950
 border-zinc-50
 border-zinc-100
 border-zinc-200
@@ -3631,6 +3655,7 @@ border-zinc-600
 border-zinc-700
 border-zinc-800
 border-zinc-900
+border-zinc-950
 border-neutral-50
 border-neutral-100
 border-neutral-200
@@ -3641,6 +3666,7 @@ border-neutral-600
 border-neutral-700
 border-neutral-800
 border-neutral-900
+border-neutral-950
 border-stone-50
 border-stone-100
 border-stone-200
@@ -3651,6 +3677,7 @@ border-stone-600
 border-stone-700
 border-stone-800
 border-stone-900
+border-stone-950
 border-red-50
 border-red-100
 border-red-200
@@ -3661,6 +3688,7 @@ border-red-600
 border-red-700
 border-red-800
 border-red-900
+border-red-950
 border-orange-50
 border-orange-100
 border-orange-200
@@ -3671,6 +3699,7 @@ border-orange-600
 border-orange-700
 border-orange-800
 border-orange-900
+border-orange-950
 border-amber-50
 border-amber-100
 border-amber-200
@@ -3681,6 +3710,7 @@ border-amber-600
 border-amber-700
 border-amber-800
 border-amber-900
+border-amber-950
 border-yellow-50
 border-yellow-100
 border-yellow-200
@@ -3691,6 +3721,7 @@ border-yellow-600
 border-yellow-700
 border-yellow-800
 border-yellow-900
+border-yellow-950
 border-lime-50
 border-lime-100
 border-lime-200
@@ -3701,6 +3732,7 @@ border-lime-600
 border-lime-700
 border-lime-800
 border-lime-900
+border-lime-950
 border-green-50
 border-green-100
 border-green-200
@@ -3711,6 +3743,7 @@ border-green-600
 border-green-700
 border-green-800
 border-green-900
+border-green-950
 border-emerald-50
 border-emerald-100
 border-emerald-200
@@ -3721,6 +3754,7 @@ border-emerald-600
 border-emerald-700
 border-emerald-800
 border-emerald-900
+border-emerald-950
 border-teal-50
 border-teal-100
 border-teal-200
@@ -3731,6 +3765,7 @@ border-teal-600
 border-teal-700
 border-teal-800
 border-teal-900
+border-teal-950
 border-cyan-50
 border-cyan-100
 border-cyan-200
@@ -3741,6 +3776,7 @@ border-cyan-600
 border-cyan-700
 border-cyan-800
 border-cyan-900
+border-cyan-950
 border-sky-50
 border-sky-100
 border-sky-200
@@ -3751,6 +3787,7 @@ border-sky-600
 border-sky-700
 border-sky-800
 border-sky-900
+border-sky-950
 border-blue-50
 border-blue-100
 border-blue-200
@@ -3761,6 +3798,7 @@ border-blue-600
 border-blue-700
 border-blue-800
 border-blue-900
+border-blue-950
 border-indigo-50
 border-indigo-100
 border-indigo-200
@@ -3771,6 +3809,7 @@ border-indigo-600
 border-indigo-700
 border-indigo-800
 border-indigo-900
+border-indigo-950
 border-violet-50
 border-violet-100
 border-violet-200
@@ -3781,6 +3820,7 @@ border-violet-600
 border-violet-700
 border-violet-800
 border-violet-900
+border-violet-950
 border-purple-50
 border-purple-100
 border-purple-200
@@ -3791,6 +3831,7 @@ border-purple-600
 border-purple-700
 border-purple-800
 border-purple-900
+border-purple-950
 border-fuchsia-50
 border-fuchsia-100
 border-fuchsia-200
@@ -3801,6 +3842,7 @@ border-fuchsia-600
 border-fuchsia-700
 border-fuchsia-800
 border-fuchsia-900
+border-fuchsia-950
 border-pink-50
 border-pink-100
 border-pink-200
@@ -3811,6 +3853,7 @@ border-pink-600
 border-pink-700
 border-pink-800
 border-pink-900
+border-pink-950
 border-rose-50
 border-rose-100
 border-rose-200
@@ -3821,6 +3864,7 @@ border-rose-600
 border-rose-700
 border-rose-800
 border-rose-900
+border-rose-950
 border-x-inherit
 border-x-current
 border-x-transparent
@@ -3836,6 +3880,7 @@ border-x-slate-600
 border-x-slate-700
 border-x-slate-800
 border-x-slate-900
+border-x-slate-950
 border-x-gray-50
 border-x-gray-100
 border-x-gray-200
@@ -3846,6 +3891,7 @@ border-x-gray-600
 border-x-gray-700
 border-x-gray-800
 border-x-gray-900
+border-x-gray-950
 border-x-zinc-50
 border-x-zinc-100
 border-x-zinc-200
@@ -3856,6 +3902,7 @@ border-x-zinc-600
 border-x-zinc-700
 border-x-zinc-800
 border-x-zinc-900
+border-x-zinc-950
 border-x-neutral-50
 border-x-neutral-100
 border-x-neutral-200
@@ -3866,6 +3913,7 @@ border-x-neutral-600
 border-x-neutral-700
 border-x-neutral-800
 border-x-neutral-900
+border-x-neutral-950
 border-x-stone-50
 border-x-stone-100
 border-x-stone-200
@@ -3876,6 +3924,7 @@ border-x-stone-600
 border-x-stone-700
 border-x-stone-800
 border-x-stone-900
+border-x-stone-950
 border-x-red-50
 border-x-red-100
 border-x-red-200
@@ -3886,6 +3935,7 @@ border-x-red-600
 border-x-red-700
 border-x-red-800
 border-x-red-900
+border-x-red-950
 border-x-orange-50
 border-x-orange-100
 border-x-orange-200
@@ -3896,6 +3946,7 @@ border-x-orange-600
 border-x-orange-700
 border-x-orange-800
 border-x-orange-900
+border-x-orange-950
 border-x-amber-50
 border-x-amber-100
 border-x-amber-200
@@ -3906,6 +3957,7 @@ border-x-amber-600
 border-x-amber-700
 border-x-amber-800
 border-x-amber-900
+border-x-amber-950
 border-x-yellow-50
 border-x-yellow-100
 border-x-yellow-200
@@ -3916,6 +3968,7 @@ border-x-yellow-600
 border-x-yellow-700
 border-x-yellow-800
 border-x-yellow-900
+border-x-yellow-950
 border-x-lime-50
 border-x-lime-100
 border-x-lime-200
@@ -3926,6 +3979,7 @@ border-x-lime-600
 border-x-lime-700
 border-x-lime-800
 border-x-lime-900
+border-x-lime-950
 border-x-green-50
 border-x-green-100
 border-x-green-200
@@ -3936,6 +3990,7 @@ border-x-green-600
 border-x-green-700
 border-x-green-800
 border-x-green-900
+border-x-green-950
 border-x-emerald-50
 border-x-emerald-100
 border-x-emerald-200
@@ -3946,6 +4001,7 @@ border-x-emerald-600
 border-x-emerald-700
 border-x-emerald-800
 border-x-emerald-900
+border-x-emerald-950
 border-x-teal-50
 border-x-teal-100
 border-x-teal-200
@@ -3956,6 +4012,7 @@ border-x-teal-600
 border-x-teal-700
 border-x-teal-800
 border-x-teal-900
+border-x-teal-950
 border-x-cyan-50
 border-x-cyan-100
 border-x-cyan-200
@@ -3966,6 +4023,7 @@ border-x-cyan-600
 border-x-cyan-700
 border-x-cyan-800
 border-x-cyan-900
+border-x-cyan-950
 border-x-sky-50
 border-x-sky-100
 border-x-sky-200
@@ -3976,6 +4034,7 @@ border-x-sky-600
 border-x-sky-700
 border-x-sky-800
 border-x-sky-900
+border-x-sky-950
 border-x-blue-50
 border-x-blue-100
 border-x-blue-200
@@ -3986,6 +4045,7 @@ border-x-blue-600
 border-x-blue-700
 border-x-blue-800
 border-x-blue-900
+border-x-blue-950
 border-x-indigo-50
 border-x-indigo-100
 border-x-indigo-200
@@ -3996,6 +4056,7 @@ border-x-indigo-600
 border-x-indigo-700
 border-x-indigo-800
 border-x-indigo-900
+border-x-indigo-950
 border-x-violet-50
 border-x-violet-100
 border-x-violet-200
@@ -4006,6 +4067,7 @@ border-x-violet-600
 border-x-violet-700
 border-x-violet-800
 border-x-violet-900
+border-x-violet-950
 border-x-purple-50
 border-x-purple-100
 border-x-purple-200
@@ -4016,6 +4078,7 @@ border-x-purple-600
 border-x-purple-700
 border-x-purple-800
 border-x-purple-900
+border-x-purple-950
 border-x-fuchsia-50
 border-x-fuchsia-100
 border-x-fuchsia-200
@@ -4026,6 +4089,7 @@ border-x-fuchsia-600
 border-x-fuchsia-700
 border-x-fuchsia-800
 border-x-fuchsia-900
+border-x-fuchsia-950
 border-x-pink-50
 border-x-pink-100
 border-x-pink-200
@@ -4036,6 +4100,7 @@ border-x-pink-600
 border-x-pink-700
 border-x-pink-800
 border-x-pink-900
+border-x-pink-950
 border-x-rose-50
 border-x-rose-100
 border-x-rose-200
@@ -4046,6 +4111,7 @@ border-x-rose-600
 border-x-rose-700
 border-x-rose-800
 border-x-rose-900
+border-x-rose-950
 border-y-inherit
 border-y-current
 border-y-transparent
@@ -4061,6 +4127,7 @@ border-y-slate-600
 border-y-slate-700
 border-y-slate-800
 border-y-slate-900
+border-y-slate-950
 border-y-gray-50
 border-y-gray-100
 border-y-gray-200
@@ -4071,6 +4138,7 @@ border-y-gray-600
 border-y-gray-700
 border-y-gray-800
 border-y-gray-900
+border-y-gray-950
 border-y-zinc-50
 border-y-zinc-100
 border-y-zinc-200
@@ -4081,6 +4149,7 @@ border-y-zinc-600
 border-y-zinc-700
 border-y-zinc-800
 border-y-zinc-900
+border-y-zinc-950
 border-y-neutral-50
 border-y-neutral-100
 border-y-neutral-200
@@ -4091,6 +4160,7 @@ border-y-neutral-600
 border-y-neutral-700
 border-y-neutral-800
 border-y-neutral-900
+border-y-neutral-950
 border-y-stone-50
 border-y-stone-100
 border-y-stone-200
@@ -4101,6 +4171,7 @@ border-y-stone-600
 border-y-stone-700
 border-y-stone-800
 border-y-stone-900
+border-y-stone-950
 border-y-red-50
 border-y-red-100
 border-y-red-200
@@ -4111,6 +4182,7 @@ border-y-red-600
 border-y-red-700
 border-y-red-800
 border-y-red-900
+border-y-red-950
 border-y-orange-50
 border-y-orange-100
 border-y-orange-200
@@ -4121,6 +4193,7 @@ border-y-orange-600
 border-y-orange-700
 border-y-orange-800
 border-y-orange-900
+border-y-orange-950
 border-y-amber-50
 border-y-amber-100
 border-y-amber-200
@@ -4131,6 +4204,7 @@ border-y-amber-600
 border-y-amber-700
 border-y-amber-800
 border-y-amber-900
+border-y-amber-950
 border-y-yellow-50
 border-y-yellow-100
 border-y-yellow-200
@@ -4141,6 +4215,7 @@ border-y-yellow-600
 border-y-yellow-700
 border-y-yellow-800
 border-y-yellow-900
+border-y-yellow-950
 border-y-lime-50
 border-y-lime-100
 border-y-lime-200
@@ -4151,6 +4226,7 @@ border-y-lime-600
 border-y-lime-700
 border-y-lime-800
 border-y-lime-900
+border-y-lime-950
 border-y-green-50
 border-y-green-100
 border-y-green-200
@@ -4161,6 +4237,7 @@ border-y-green-600
 border-y-green-700
 border-y-green-800
 border-y-green-900
+border-y-green-950
 border-y-emerald-50
 border-y-emerald-100
 border-y-emerald-200
@@ -4171,6 +4248,7 @@ border-y-emerald-600
 border-y-emerald-700
 border-y-emerald-800
 border-y-emerald-900
+border-y-emerald-950
 border-y-teal-50
 border-y-teal-100
 border-y-teal-200
@@ -4181,6 +4259,7 @@ border-y-teal-600
 border-y-teal-700
 border-y-teal-800
 border-y-teal-900
+border-y-teal-950
 border-y-cyan-50
 border-y-cyan-100
 border-y-cyan-200
@@ -4191,6 +4270,7 @@ border-y-cyan-600
 border-y-cyan-700
 border-y-cyan-800
 border-y-cyan-900
+border-y-cyan-950
 border-y-sky-50
 border-y-sky-100
 border-y-sky-200
@@ -4201,6 +4281,7 @@ border-y-sky-600
 border-y-sky-700
 border-y-sky-800
 border-y-sky-900
+border-y-sky-950
 border-y-blue-50
 border-y-blue-100
 border-y-blue-200
@@ -4211,6 +4292,7 @@ border-y-blue-600
 border-y-blue-700
 border-y-blue-800
 border-y-blue-900
+border-y-blue-950
 border-y-indigo-50
 border-y-indigo-100
 border-y-indigo-200
@@ -4221,6 +4303,7 @@ border-y-indigo-600
 border-y-indigo-700
 border-y-indigo-800
 border-y-indigo-900
+border-y-indigo-950
 border-y-violet-50
 border-y-violet-100
 border-y-violet-200
@@ -4231,6 +4314,7 @@ border-y-violet-600
 border-y-violet-700
 border-y-violet-800
 border-y-violet-900
+border-y-violet-950
 border-y-purple-50
 border-y-purple-100
 border-y-purple-200
@@ -4241,6 +4325,7 @@ border-y-purple-600
 border-y-purple-700
 border-y-purple-800
 border-y-purple-900
+border-y-purple-950
 border-y-fuchsia-50
 border-y-fuchsia-100
 border-y-fuchsia-200
@@ -4251,6 +4336,7 @@ border-y-fuchsia-600
 border-y-fuchsia-700
 border-y-fuchsia-800
 border-y-fuchsia-900
+border-y-fuchsia-950
 border-y-pink-50
 border-y-pink-100
 border-y-pink-200
@@ -4261,6 +4347,7 @@ border-y-pink-600
 border-y-pink-700
 border-y-pink-800
 border-y-pink-900
+border-y-pink-950
 border-y-rose-50
 border-y-rose-100
 border-y-rose-200
@@ -4271,6 +4358,7 @@ border-y-rose-600
 border-y-rose-700
 border-y-rose-800
 border-y-rose-900
+border-y-rose-950
 border-t-inherit
 border-t-current
 border-t-transparent
@@ -4286,6 +4374,7 @@ border-t-slate-600
 border-t-slate-700
 border-t-slate-800
 border-t-slate-900
+border-t-slate-950
 border-t-gray-50
 border-t-gray-100
 border-t-gray-200
@@ -4296,6 +4385,7 @@ border-t-gray-600
 border-t-gray-700
 border-t-gray-800
 border-t-gray-900
+border-t-gray-950
 border-t-zinc-50
 border-t-zinc-100
 border-t-zinc-200
@@ -4306,6 +4396,7 @@ border-t-zinc-600
 border-t-zinc-700
 border-t-zinc-800
 border-t-zinc-900
+border-t-zinc-950
 border-t-neutral-50
 border-t-neutral-100
 border-t-neutral-200
@@ -4316,6 +4407,7 @@ border-t-neutral-600
 border-t-neutral-700
 border-t-neutral-800
 border-t-neutral-900
+border-t-neutral-950
 border-t-stone-50
 border-t-stone-100
 border-t-stone-200
@@ -4326,6 +4418,7 @@ border-t-stone-600
 border-t-stone-700
 border-t-stone-800
 border-t-stone-900
+border-t-stone-950
 border-t-red-50
 border-t-red-100
 border-t-red-200
@@ -4336,6 +4429,7 @@ border-t-red-600
 border-t-red-700
 border-t-red-800
 border-t-red-900
+border-t-red-950
 border-t-orange-50
 border-t-orange-100
 border-t-orange-200
@@ -4346,6 +4440,7 @@ border-t-orange-600
 border-t-orange-700
 border-t-orange-800
 border-t-orange-900
+border-t-orange-950
 border-t-amber-50
 border-t-amber-100
 border-t-amber-200
@@ -4356,6 +4451,7 @@ border-t-amber-600
 border-t-amber-700
 border-t-amber-800
 border-t-amber-900
+border-t-amber-950
 border-t-yellow-50
 border-t-yellow-100
 border-t-yellow-200
@@ -4366,6 +4462,7 @@ border-t-yellow-600
 border-t-yellow-700
 border-t-yellow-800
 border-t-yellow-900
+border-t-yellow-950
 border-t-lime-50
 border-t-lime-100
 border-t-lime-200
@@ -4376,6 +4473,7 @@ border-t-lime-600
 border-t-lime-700
 border-t-lime-800
 border-t-lime-900
+border-t-lime-950
 border-t-green-50
 border-t-green-100
 border-t-green-200
@@ -4386,6 +4484,7 @@ border-t-green-600
 border-t-green-700
 border-t-green-800
 border-t-green-900
+border-t-green-950
 border-t-emerald-50
 border-t-emerald-100
 border-t-emerald-200
@@ -4396,6 +4495,7 @@ border-t-emerald-600
 border-t-emerald-700
 border-t-emerald-800
 border-t-emerald-900
+border-t-emerald-950
 border-t-teal-50
 border-t-teal-100
 border-t-teal-200
@@ -4406,6 +4506,7 @@ border-t-teal-600
 border-t-teal-700
 border-t-teal-800
 border-t-teal-900
+border-t-teal-950
 border-t-cyan-50
 border-t-cyan-100
 border-t-cyan-200
@@ -4416,6 +4517,7 @@ border-t-cyan-600
 border-t-cyan-700
 border-t-cyan-800
 border-t-cyan-900
+border-t-cyan-950
 border-t-sky-50
 border-t-sky-100
 border-t-sky-200
@@ -4426,6 +4528,7 @@ border-t-sky-600
 border-t-sky-700
 border-t-sky-800
 border-t-sky-900
+border-t-sky-950
 border-t-blue-50
 border-t-blue-100
 border-t-blue-200
@@ -4436,6 +4539,7 @@ border-t-blue-600
 border-t-blue-700
 border-t-blue-800
 border-t-blue-900
+border-t-blue-950
 border-t-indigo-50
 border-t-indigo-100
 border-t-indigo-200
@@ -4446,6 +4550,7 @@ border-t-indigo-600
 border-t-indigo-700
 border-t-indigo-800
 border-t-indigo-900
+border-t-indigo-950
 border-t-violet-50
 border-t-violet-100
 border-t-violet-200
@@ -4456,6 +4561,7 @@ border-t-violet-600
 border-t-violet-700
 border-t-violet-800
 border-t-violet-900
+border-t-violet-950
 border-t-purple-50
 border-t-purple-100
 border-t-purple-200
@@ -4466,6 +4572,7 @@ border-t-purple-600
 border-t-purple-700
 border-t-purple-800
 border-t-purple-900
+border-t-purple-950
 border-t-fuchsia-50
 border-t-fuchsia-100
 border-t-fuchsia-200
@@ -4476,6 +4583,7 @@ border-t-fuchsia-600
 border-t-fuchsia-700
 border-t-fuchsia-800
 border-t-fuchsia-900
+border-t-fuchsia-950
 border-t-pink-50
 border-t-pink-100
 border-t-pink-200
@@ -4486,6 +4594,7 @@ border-t-pink-600
 border-t-pink-700
 border-t-pink-800
 border-t-pink-900
+border-t-pink-950
 border-t-rose-50
 border-t-rose-100
 border-t-rose-200
@@ -4496,6 +4605,7 @@ border-t-rose-600
 border-t-rose-700
 border-t-rose-800
 border-t-rose-900
+border-t-rose-950
 border-r-inherit
 border-r-current
 border-r-transparent
@@ -4511,6 +4621,7 @@ border-r-slate-600
 border-r-slate-700
 border-r-slate-800
 border-r-slate-900
+border-r-slate-950
 border-r-gray-50
 border-r-gray-100
 border-r-gray-200
@@ -4521,6 +4632,7 @@ border-r-gray-600
 border-r-gray-700
 border-r-gray-800
 border-r-gray-900
+border-r-gray-950
 border-r-zinc-50
 border-r-zinc-100
 border-r-zinc-200
@@ -4531,6 +4643,7 @@ border-r-zinc-600
 border-r-zinc-700
 border-r-zinc-800
 border-r-zinc-900
+border-r-zinc-950
 border-r-neutral-50
 border-r-neutral-100
 border-r-neutral-200
@@ -4541,6 +4654,7 @@ border-r-neutral-600
 border-r-neutral-700
 border-r-neutral-800
 border-r-neutral-900
+border-r-neutral-950
 border-r-stone-50
 border-r-stone-100
 border-r-stone-200
@@ -4551,6 +4665,7 @@ border-r-stone-600
 border-r-stone-700
 border-r-stone-800
 border-r-stone-900
+border-r-stone-950
 border-r-red-50
 border-r-red-100
 border-r-red-200
@@ -4561,6 +4676,7 @@ border-r-red-600
 border-r-red-700
 border-r-red-800
 border-r-red-900
+border-r-red-950
 border-r-orange-50
 border-r-orange-100
 border-r-orange-200
@@ -4571,6 +4687,7 @@ border-r-orange-600
 border-r-orange-700
 border-r-orange-800
 border-r-orange-900
+border-r-orange-950
 border-r-amber-50
 border-r-amber-100
 border-r-amber-200
@@ -4581,6 +4698,7 @@ border-r-amber-600
 border-r-amber-700
 border-r-amber-800
 border-r-amber-900
+border-r-amber-950
 border-r-yellow-50
 border-r-yellow-100
 border-r-yellow-200
@@ -4591,6 +4709,7 @@ border-r-yellow-600
 border-r-yellow-700
 border-r-yellow-800
 border-r-yellow-900
+border-r-yellow-950
 border-r-lime-50
 border-r-lime-100
 border-r-lime-200
@@ -4601,6 +4720,7 @@ border-r-lime-600
 border-r-lime-700
 border-r-lime-800
 border-r-lime-900
+border-r-lime-950
 border-r-green-50
 border-r-green-100
 border-r-green-200
@@ -4611,6 +4731,7 @@ border-r-green-600
 border-r-green-700
 border-r-green-800
 border-r-green-900
+border-r-green-950
 border-r-emerald-50
 border-r-emerald-100
 border-r-emerald-200
@@ -4621,6 +4742,7 @@ border-r-emerald-600
 border-r-emerald-700
 border-r-emerald-800
 border-r-emerald-900
+border-r-emerald-950
 border-r-teal-50
 border-r-teal-100
 border-r-teal-200
@@ -4631,6 +4753,7 @@ border-r-teal-600
 border-r-teal-700
 border-r-teal-800
 border-r-teal-900
+border-r-teal-950
 border-r-cyan-50
 border-r-cyan-100
 border-r-cyan-200
@@ -4641,6 +4764,7 @@ border-r-cyan-600
 border-r-cyan-700
 border-r-cyan-800
 border-r-cyan-900
+border-r-cyan-950
 border-r-sky-50
 border-r-sky-100
 border-r-sky-200
@@ -4651,6 +4775,7 @@ border-r-sky-600
 border-r-sky-700
 border-r-sky-800
 border-r-sky-900
+border-r-sky-950
 border-r-blue-50
 border-r-blue-100
 border-r-blue-200
@@ -4661,6 +4786,7 @@ border-r-blue-600
 border-r-blue-700
 border-r-blue-800
 border-r-blue-900
+border-r-blue-950
 border-r-indigo-50
 border-r-indigo-100
 border-r-indigo-200
@@ -4671,6 +4797,7 @@ border-r-indigo-600
 border-r-indigo-700
 border-r-indigo-800
 border-r-indigo-900
+border-r-indigo-950
 border-r-violet-50
 border-r-violet-100
 border-r-violet-200
@@ -4681,6 +4808,7 @@ border-r-violet-600
 border-r-violet-700
 border-r-violet-800
 border-r-violet-900
+border-r-violet-950
 border-r-purple-50
 border-r-purple-100
 border-r-purple-200
@@ -4691,6 +4819,7 @@ border-r-purple-600
 border-r-purple-700
 border-r-purple-800
 border-r-purple-900
+border-r-purple-950
 border-r-fuchsia-50
 border-r-fuchsia-100
 border-r-fuchsia-200
@@ -4701,6 +4830,7 @@ border-r-fuchsia-600
 border-r-fuchsia-700
 border-r-fuchsia-800
 border-r-fuchsia-900
+border-r-fuchsia-950
 border-r-pink-50
 border-r-pink-100
 border-r-pink-200
@@ -4711,6 +4841,7 @@ border-r-pink-600
 border-r-pink-700
 border-r-pink-800
 border-r-pink-900
+border-r-pink-950
 border-r-rose-50
 border-r-rose-100
 border-r-rose-200
@@ -4721,6 +4852,7 @@ border-r-rose-600
 border-r-rose-700
 border-r-rose-800
 border-r-rose-900
+border-r-rose-950
 border-b-inherit
 border-b-current
 border-b-transparent
@@ -4736,6 +4868,7 @@ border-b-slate-600
 border-b-slate-700
 border-b-slate-800
 border-b-slate-900
+border-b-slate-950
 border-b-gray-50
 border-b-gray-100
 border-b-gray-200
@@ -4746,6 +4879,7 @@ border-b-gray-600
 border-b-gray-700
 border-b-gray-800
 border-b-gray-900
+border-b-gray-950
 border-b-zinc-50
 border-b-zinc-100
 border-b-zinc-200
@@ -4756,6 +4890,7 @@ border-b-zinc-600
 border-b-zinc-700
 border-b-zinc-800
 border-b-zinc-900
+border-b-zinc-950
 border-b-neutral-50
 border-b-neutral-100
 border-b-neutral-200
@@ -4766,6 +4901,7 @@ border-b-neutral-600
 border-b-neutral-700
 border-b-neutral-800
 border-b-neutral-900
+border-b-neutral-950
 border-b-stone-50
 border-b-stone-100
 border-b-stone-200
@@ -4776,6 +4912,7 @@ border-b-stone-600
 border-b-stone-700
 border-b-stone-800
 border-b-stone-900
+border-b-stone-950
 border-b-red-50
 border-b-red-100
 border-b-red-200
@@ -4786,6 +4923,7 @@ border-b-red-600
 border-b-red-700
 border-b-red-800
 border-b-red-900
+border-b-red-950
 border-b-orange-50
 border-b-orange-100
 border-b-orange-200
@@ -4796,6 +4934,7 @@ border-b-orange-600
 border-b-orange-700
 border-b-orange-800
 border-b-orange-900
+border-b-orange-950
 border-b-amber-50
 border-b-amber-100
 border-b-amber-200
@@ -4806,6 +4945,7 @@ border-b-amber-600
 border-b-amber-700
 border-b-amber-800
 border-b-amber-900
+border-b-amber-950
 border-b-yellow-50
 border-b-yellow-100
 border-b-yellow-200
@@ -4816,6 +4956,7 @@ border-b-yellow-600
 border-b-yellow-700
 border-b-yellow-800
 border-b-yellow-900
+border-b-yellow-950
 border-b-lime-50
 border-b-lime-100
 border-b-lime-200
@@ -4826,6 +4967,7 @@ border-b-lime-600
 border-b-lime-700
 border-b-lime-800
 border-b-lime-900
+border-b-lime-950
 border-b-green-50
 border-b-green-100
 border-b-green-200
@@ -4836,6 +4978,7 @@ border-b-green-600
 border-b-green-700
 border-b-green-800
 border-b-green-900
+border-b-green-950
 border-b-emerald-50
 border-b-emerald-100
 border-b-emerald-200
@@ -4846,6 +4989,7 @@ border-b-emerald-600
 border-b-emerald-700
 border-b-emerald-800
 border-b-emerald-900
+border-b-emerald-950
 border-b-teal-50
 border-b-teal-100
 border-b-teal-200
@@ -4856,6 +5000,7 @@ border-b-teal-600
 border-b-teal-700
 border-b-teal-800
 border-b-teal-900
+border-b-teal-950
 border-b-cyan-50
 border-b-cyan-100
 border-b-cyan-200
@@ -4866,6 +5011,7 @@ border-b-cyan-600
 border-b-cyan-700
 border-b-cyan-800
 border-b-cyan-900
+border-b-cyan-950
 border-b-sky-50
 border-b-sky-100
 border-b-sky-200
@@ -4876,6 +5022,7 @@ border-b-sky-600
 border-b-sky-700
 border-b-sky-800
 border-b-sky-900
+border-b-sky-950
 border-b-blue-50
 border-b-blue-100
 border-b-blue-200
@@ -4886,6 +5033,7 @@ border-b-blue-600
 border-b-blue-700
 border-b-blue-800
 border-b-blue-900
+border-b-blue-950
 border-b-indigo-50
 border-b-indigo-100
 border-b-indigo-200
@@ -4896,6 +5044,7 @@ border-b-indigo-600
 border-b-indigo-700
 border-b-indigo-800
 border-b-indigo-900
+border-b-indigo-950
 border-b-violet-50
 border-b-violet-100
 border-b-violet-200
@@ -4906,6 +5055,7 @@ border-b-violet-600
 border-b-violet-700
 border-b-violet-800
 border-b-violet-900
+border-b-violet-950
 border-b-purple-50
 border-b-purple-100
 border-b-purple-200
@@ -4916,6 +5066,7 @@ border-b-purple-600
 border-b-purple-700
 border-b-purple-800
 border-b-purple-900
+border-b-purple-950
 border-b-fuchsia-50
 border-b-fuchsia-100
 border-b-fuchsia-200
@@ -4926,6 +5077,7 @@ border-b-fuchsia-600
 border-b-fuchsia-700
 border-b-fuchsia-800
 border-b-fuchsia-900
+border-b-fuchsia-950
 border-b-pink-50
 border-b-pink-100
 border-b-pink-200
@@ -4936,6 +5088,7 @@ border-b-pink-600
 border-b-pink-700
 border-b-pink-800
 border-b-pink-900
+border-b-pink-950
 border-b-rose-50
 border-b-rose-100
 border-b-rose-200
@@ -4946,6 +5099,7 @@ border-b-rose-600
 border-b-rose-700
 border-b-rose-800
 border-b-rose-900
+border-b-rose-950
 border-l-inherit
 border-l-current
 border-l-transparent
@@ -4961,6 +5115,7 @@ border-l-slate-600
 border-l-slate-700
 border-l-slate-800
 border-l-slate-900
+border-l-slate-950
 border-l-gray-50
 border-l-gray-100
 border-l-gray-200
@@ -4971,6 +5126,7 @@ border-l-gray-600
 border-l-gray-700
 border-l-gray-800
 border-l-gray-900
+border-l-gray-950
 border-l-zinc-50
 border-l-zinc-100
 border-l-zinc-200
@@ -4981,6 +5137,7 @@ border-l-zinc-600
 border-l-zinc-700
 border-l-zinc-800
 border-l-zinc-900
+border-l-zinc-950
 border-l-neutral-50
 border-l-neutral-100
 border-l-neutral-200
@@ -4991,6 +5148,7 @@ border-l-neutral-600
 border-l-neutral-700
 border-l-neutral-800
 border-l-neutral-900
+border-l-neutral-950
 border-l-stone-50
 border-l-stone-100
 border-l-stone-200
@@ -5001,6 +5159,7 @@ border-l-stone-600
 border-l-stone-700
 border-l-stone-800
 border-l-stone-900
+border-l-stone-950
 border-l-red-50
 border-l-red-100
 border-l-red-200
@@ -5011,6 +5170,7 @@ border-l-red-600
 border-l-red-700
 border-l-red-800
 border-l-red-900
+border-l-red-950
 border-l-orange-50
 border-l-orange-100
 border-l-orange-200
@@ -5021,6 +5181,7 @@ border-l-orange-600
 border-l-orange-700
 border-l-orange-800
 border-l-orange-900
+border-l-orange-950
 border-l-amber-50
 border-l-amber-100
 border-l-amber-200
@@ -5031,6 +5192,7 @@ border-l-amber-600
 border-l-amber-700
 border-l-amber-800
 border-l-amber-900
+border-l-amber-950
 border-l-yellow-50
 border-l-yellow-100
 border-l-yellow-200
@@ -5041,6 +5203,7 @@ border-l-yellow-600
 border-l-yellow-700
 border-l-yellow-800
 border-l-yellow-900
+border-l-yellow-950
 border-l-lime-50
 border-l-lime-100
 border-l-lime-200
@@ -5051,6 +5214,7 @@ border-l-lime-600
 border-l-lime-700
 border-l-lime-800
 border-l-lime-900
+border-l-lime-950
 border-l-green-50
 border-l-green-100
 border-l-green-200
@@ -5061,6 +5225,7 @@ border-l-green-600
 border-l-green-700
 border-l-green-800
 border-l-green-900
+border-l-green-950
 border-l-emerald-50
 border-l-emerald-100
 border-l-emerald-200
@@ -5071,6 +5236,7 @@ border-l-emerald-600
 border-l-emerald-700
 border-l-emerald-800
 border-l-emerald-900
+border-l-emerald-950
 border-l-teal-50
 border-l-teal-100
 border-l-teal-200
@@ -5081,6 +5247,7 @@ border-l-teal-600
 border-l-teal-700
 border-l-teal-800
 border-l-teal-900
+border-l-teal-950
 border-l-cyan-50
 border-l-cyan-100
 border-l-cyan-200
@@ -5091,6 +5258,7 @@ border-l-cyan-600
 border-l-cyan-700
 border-l-cyan-800
 border-l-cyan-900
+border-l-cyan-950
 border-l-sky-50
 border-l-sky-100
 border-l-sky-200
@@ -5101,6 +5269,7 @@ border-l-sky-600
 border-l-sky-700
 border-l-sky-800
 border-l-sky-900
+border-l-sky-950
 border-l-blue-50
 border-l-blue-100
 border-l-blue-200
@@ -5111,6 +5280,7 @@ border-l-blue-600
 border-l-blue-700
 border-l-blue-800
 border-l-blue-900
+border-l-blue-950
 border-l-indigo-50
 border-l-indigo-100
 border-l-indigo-200
@@ -5121,6 +5291,7 @@ border-l-indigo-600
 border-l-indigo-700
 border-l-indigo-800
 border-l-indigo-900
+border-l-indigo-950
 border-l-violet-50
 border-l-violet-100
 border-l-violet-200
@@ -5131,6 +5302,7 @@ border-l-violet-600
 border-l-violet-700
 border-l-violet-800
 border-l-violet-900
+border-l-violet-950
 border-l-purple-50
 border-l-purple-100
 border-l-purple-200
@@ -5141,6 +5313,7 @@ border-l-purple-600
 border-l-purple-700
 border-l-purple-800
 border-l-purple-900
+border-l-purple-950
 border-l-fuchsia-50
 border-l-fuchsia-100
 border-l-fuchsia-200
@@ -5151,6 +5324,7 @@ border-l-fuchsia-600
 border-l-fuchsia-700
 border-l-fuchsia-800
 border-l-fuchsia-900
+border-l-fuchsia-950
 border-l-pink-50
 border-l-pink-100
 border-l-pink-200
@@ -5161,6 +5335,7 @@ border-l-pink-600
 border-l-pink-700
 border-l-pink-800
 border-l-pink-900
+border-l-pink-950
 border-l-rose-50
 border-l-rose-100
 border-l-rose-200
@@ -5171,6 +5346,7 @@ border-l-rose-600
 border-l-rose-700
 border-l-rose-800
 border-l-rose-900
+border-l-rose-950
 border-opacity-0
 border-opacity-5
 border-opacity-10
@@ -5201,6 +5377,7 @@ bg-slate-600
 bg-slate-700
 bg-slate-800
 bg-slate-900
+bg-slate-950
 bg-gray-50
 bg-gray-100
 bg-gray-200
@@ -5211,6 +5388,7 @@ bg-gray-600
 bg-gray-700
 bg-gray-800
 bg-gray-900
+bg-gray-950
 bg-zinc-50
 bg-zinc-100
 bg-zinc-200
@@ -5221,6 +5399,7 @@ bg-zinc-600
 bg-zinc-700
 bg-zinc-800
 bg-zinc-900
+bg-zinc-950
 bg-neutral-50
 bg-neutral-100
 bg-neutral-200
@@ -5231,6 +5410,7 @@ bg-neutral-600
 bg-neutral-700
 bg-neutral-800
 bg-neutral-900
+bg-neutral-950
 bg-stone-50
 bg-stone-100
 bg-stone-200
@@ -5241,6 +5421,7 @@ bg-stone-600
 bg-stone-700
 bg-stone-800
 bg-stone-900
+bg-stone-950
 bg-red-50
 bg-red-100
 bg-red-200
@@ -5251,6 +5432,7 @@ bg-red-600
 bg-red-700
 bg-red-800
 bg-red-900
+bg-red-950
 bg-orange-50
 bg-orange-100
 bg-orange-200
@@ -5261,6 +5443,7 @@ bg-orange-600
 bg-orange-700
 bg-orange-800
 bg-orange-900
+bg-orange-950
 bg-amber-50
 bg-amber-100
 bg-amber-200
@@ -5271,6 +5454,7 @@ bg-amber-600
 bg-amber-700
 bg-amber-800
 bg-amber-900
+bg-amber-950
 bg-yellow-50
 bg-yellow-100
 bg-yellow-200
@@ -5281,6 +5465,7 @@ bg-yellow-600
 bg-yellow-700
 bg-yellow-800
 bg-yellow-900
+bg-yellow-950
 bg-lime-50
 bg-lime-100
 bg-lime-200
@@ -5291,6 +5476,7 @@ bg-lime-600
 bg-lime-700
 bg-lime-800
 bg-lime-900
+bg-lime-950
 bg-green-50
 bg-green-100
 bg-green-200
@@ -5301,6 +5487,7 @@ bg-green-600
 bg-green-700
 bg-green-800
 bg-green-900
+bg-green-950
 bg-emerald-50
 bg-emerald-100
 bg-emerald-200
@@ -5311,6 +5498,7 @@ bg-emerald-600
 bg-emerald-700
 bg-emerald-800
 bg-emerald-900
+bg-emerald-950
 bg-teal-50
 bg-teal-100
 bg-teal-200
@@ -5321,6 +5509,7 @@ bg-teal-600
 bg-teal-700
 bg-teal-800
 bg-teal-900
+bg-teal-950
 bg-cyan-50
 bg-cyan-100
 bg-cyan-200
@@ -5331,6 +5520,7 @@ bg-cyan-600
 bg-cyan-700
 bg-cyan-800
 bg-cyan-900
+bg-cyan-950
 bg-sky-50
 bg-sky-100
 bg-sky-200
@@ -5341,6 +5531,7 @@ bg-sky-600
 bg-sky-700
 bg-sky-800
 bg-sky-900
+bg-sky-950
 bg-blue-50
 bg-blue-100
 bg-blue-200
@@ -5351,6 +5542,7 @@ bg-blue-600
 bg-blue-700
 bg-blue-800
 bg-blue-900
+bg-blue-950
 bg-indigo-50
 bg-indigo-100
 bg-indigo-200
@@ -5361,6 +5553,7 @@ bg-indigo-600
 bg-indigo-700
 bg-indigo-800
 bg-indigo-900
+bg-indigo-950
 bg-violet-50
 bg-violet-100
 bg-violet-200
@@ -5371,6 +5564,7 @@ bg-violet-600
 bg-violet-700
 bg-violet-800
 bg-violet-900
+bg-violet-950
 bg-purple-50
 bg-purple-100
 bg-purple-200
@@ -5381,6 +5575,7 @@ bg-purple-600
 bg-purple-700
 bg-purple-800
 bg-purple-900
+bg-purple-950
 bg-fuchsia-50
 bg-fuchsia-100
 bg-fuchsia-200
@@ -5391,6 +5586,7 @@ bg-fuchsia-600
 bg-fuchsia-700
 bg-fuchsia-800
 bg-fuchsia-900
+bg-fuchsia-950
 bg-pink-50
 bg-pink-100
 bg-pink-200
@@ -5401,6 +5597,7 @@ bg-pink-600
 bg-pink-700
 bg-pink-800
 bg-pink-900
+bg-pink-950
 bg-rose-50
 bg-rose-100
 bg-rose-200
@@ -5411,6 +5608,7 @@ bg-rose-600
 bg-rose-700
 bg-rose-800
 bg-rose-900
+bg-rose-950
 bg-opacity-0
 bg-opacity-5
 bg-opacity-10
@@ -5450,6 +5648,7 @@ from-slate-600
 from-slate-700
 from-slate-800
 from-slate-900
+from-slate-950
 from-gray-50
 from-gray-100
 from-gray-200
@@ -5460,6 +5659,7 @@ from-gray-600
 from-gray-700
 from-gray-800
 from-gray-900
+from-gray-950
 from-zinc-50
 from-zinc-100
 from-zinc-200
@@ -5470,6 +5670,7 @@ from-zinc-600
 from-zinc-700
 from-zinc-800
 from-zinc-900
+from-zinc-950
 from-neutral-50
 from-neutral-100
 from-neutral-200
@@ -5480,6 +5681,7 @@ from-neutral-600
 from-neutral-700
 from-neutral-800
 from-neutral-900
+from-neutral-950
 from-stone-50
 from-stone-100
 from-stone-200
@@ -5490,6 +5692,7 @@ from-stone-600
 from-stone-700
 from-stone-800
 from-stone-900
+from-stone-950
 from-red-50
 from-red-100
 from-red-200
@@ -5500,6 +5703,7 @@ from-red-600
 from-red-700
 from-red-800
 from-red-900
+from-red-950
 from-orange-50
 from-orange-100
 from-orange-200
@@ -5510,6 +5714,7 @@ from-orange-600
 from-orange-700
 from-orange-800
 from-orange-900
+from-orange-950
 from-amber-50
 from-amber-100
 from-amber-200
@@ -5520,6 +5725,7 @@ from-amber-600
 from-amber-700
 from-amber-800
 from-amber-900
+from-amber-950
 from-yellow-50
 from-yellow-100
 from-yellow-200
@@ -5530,6 +5736,7 @@ from-yellow-600
 from-yellow-700
 from-yellow-800
 from-yellow-900
+from-yellow-950
 from-lime-50
 from-lime-100
 from-lime-200
@@ -5540,6 +5747,7 @@ from-lime-600
 from-lime-700
 from-lime-800
 from-lime-900
+from-lime-950
 from-green-50
 from-green-100
 from-green-200
@@ -5550,6 +5758,7 @@ from-green-600
 from-green-700
 from-green-800
 from-green-900
+from-green-950
 from-emerald-50
 from-emerald-100
 from-emerald-200
@@ -5560,6 +5769,7 @@ from-emerald-600
 from-emerald-700
 from-emerald-800
 from-emerald-900
+from-emerald-950
 from-teal-50
 from-teal-100
 from-teal-200
@@ -5570,6 +5780,7 @@ from-teal-600
 from-teal-700
 from-teal-800
 from-teal-900
+from-teal-950
 from-cyan-50
 from-cyan-100
 from-cyan-200
@@ -5580,6 +5791,7 @@ from-cyan-600
 from-cyan-700
 from-cyan-800
 from-cyan-900
+from-cyan-950
 from-sky-50
 from-sky-100
 from-sky-200
@@ -5590,6 +5802,7 @@ from-sky-600
 from-sky-700
 from-sky-800
 from-sky-900
+from-sky-950
 from-blue-50
 from-blue-100
 from-blue-200
@@ -5600,6 +5813,7 @@ from-blue-600
 from-blue-700
 from-blue-800
 from-blue-900
+from-blue-950
 from-indigo-50
 from-indigo-100
 from-indigo-200
@@ -5610,6 +5824,7 @@ from-indigo-600
 from-indigo-700
 from-indigo-800
 from-indigo-900
+from-indigo-950
 from-violet-50
 from-violet-100
 from-violet-200
@@ -5620,6 +5835,7 @@ from-violet-600
 from-violet-700
 from-violet-800
 from-violet-900
+from-violet-950
 from-purple-50
 from-purple-100
 from-purple-200
@@ -5630,6 +5846,7 @@ from-purple-600
 from-purple-700
 from-purple-800
 from-purple-900
+from-purple-950
 from-fuchsia-50
 from-fuchsia-100
 from-fuchsia-200
@@ -5640,6 +5857,7 @@ from-fuchsia-600
 from-fuchsia-700
 from-fuchsia-800
 from-fuchsia-900
+from-fuchsia-950
 from-pink-50
 from-pink-100
 from-pink-200
@@ -5650,6 +5868,7 @@ from-pink-600
 from-pink-700
 from-pink-800
 from-pink-900
+from-pink-950
 from-rose-50
 from-rose-100
 from-rose-200
@@ -5660,6 +5879,7 @@ from-rose-600
 from-rose-700
 from-rose-800
 from-rose-900
+from-rose-950
 via-inherit
 via-current
 via-transparent
@@ -5675,6 +5895,7 @@ via-slate-600
 via-slate-700
 via-slate-800
 via-slate-900
+via-slate-950
 via-gray-50
 via-gray-100
 via-gray-200
@@ -5685,6 +5906,7 @@ via-gray-600
 via-gray-700
 via-gray-800
 via-gray-900
+via-gray-950
 via-zinc-50
 via-zinc-100
 via-zinc-200
@@ -5695,6 +5917,7 @@ via-zinc-600
 via-zinc-700
 via-zinc-800
 via-zinc-900
+via-zinc-950
 via-neutral-50
 via-neutral-100
 via-neutral-200
@@ -5705,6 +5928,7 @@ via-neutral-600
 via-neutral-700
 via-neutral-800
 via-neutral-900
+via-neutral-950
 via-stone-50
 via-stone-100
 via-stone-200
@@ -5715,6 +5939,7 @@ via-stone-600
 via-stone-700
 via-stone-800
 via-stone-900
+via-stone-950
 via-red-50
 via-red-100
 via-red-200
@@ -5725,6 +5950,7 @@ via-red-600
 via-red-700
 via-red-800
 via-red-900
+via-red-950
 via-orange-50
 via-orange-100
 via-orange-200
@@ -5735,6 +5961,7 @@ via-orange-600
 via-orange-700
 via-orange-800
 via-orange-900
+via-orange-950
 via-amber-50
 via-amber-100
 via-amber-200
@@ -5745,6 +5972,7 @@ via-amber-600
 via-amber-700
 via-amber-800
 via-amber-900
+via-amber-950
 via-yellow-50
 via-yellow-100
 via-yellow-200
@@ -5755,6 +5983,7 @@ via-yellow-600
 via-yellow-700
 via-yellow-800
 via-yellow-900
+via-yellow-950
 via-lime-50
 via-lime-100
 via-lime-200
@@ -5765,6 +5994,7 @@ via-lime-600
 via-lime-700
 via-lime-800
 via-lime-900
+via-lime-950
 via-green-50
 via-green-100
 via-green-200
@@ -5775,6 +6005,7 @@ via-green-600
 via-green-700
 via-green-800
 via-green-900
+via-green-950
 via-emerald-50
 via-emerald-100
 via-emerald-200
@@ -5785,6 +6016,7 @@ via-emerald-600
 via-emerald-700
 via-emerald-800
 via-emerald-900
+via-emerald-950
 via-teal-50
 via-teal-100
 via-teal-200
@@ -5795,6 +6027,7 @@ via-teal-600
 via-teal-700
 via-teal-800
 via-teal-900
+via-teal-950
 via-cyan-50
 via-cyan-100
 via-cyan-200
@@ -5805,6 +6038,7 @@ via-cyan-600
 via-cyan-700
 via-cyan-800
 via-cyan-900
+via-cyan-950
 via-sky-50
 via-sky-100
 via-sky-200
@@ -5815,6 +6049,7 @@ via-sky-600
 via-sky-700
 via-sky-800
 via-sky-900
+via-sky-950
 via-blue-50
 via-blue-100
 via-blue-200
@@ -5825,6 +6060,7 @@ via-blue-600
 via-blue-700
 via-blue-800
 via-blue-900
+via-blue-950
 via-indigo-50
 via-indigo-100
 via-indigo-200
@@ -5835,6 +6071,7 @@ via-indigo-600
 via-indigo-700
 via-indigo-800
 via-indigo-900
+via-indigo-950
 via-violet-50
 via-violet-100
 via-violet-200
@@ -5845,6 +6082,7 @@ via-violet-600
 via-violet-700
 via-violet-800
 via-violet-900
+via-violet-950
 via-purple-50
 via-purple-100
 via-purple-200
@@ -5855,6 +6093,7 @@ via-purple-600
 via-purple-700
 via-purple-800
 via-purple-900
+via-purple-950
 via-fuchsia-50
 via-fuchsia-100
 via-fuchsia-200
@@ -5865,6 +6104,7 @@ via-fuchsia-600
 via-fuchsia-700
 via-fuchsia-800
 via-fuchsia-900
+via-fuchsia-950
 via-pink-50
 via-pink-100
 via-pink-200
@@ -5875,6 +6115,7 @@ via-pink-600
 via-pink-700
 via-pink-800
 via-pink-900
+via-pink-950
 via-rose-50
 via-rose-100
 via-rose-200
@@ -5885,6 +6126,7 @@ via-rose-600
 via-rose-700
 via-rose-800
 via-rose-900
+via-rose-950
 to-inherit
 to-current
 to-transparent
@@ -5900,6 +6142,7 @@ to-slate-600
 to-slate-700
 to-slate-800
 to-slate-900
+to-slate-950
 to-gray-50
 to-gray-100
 to-gray-200
@@ -5910,6 +6153,7 @@ to-gray-600
 to-gray-700
 to-gray-800
 to-gray-900
+to-gray-950
 to-zinc-50
 to-zinc-100
 to-zinc-200
@@ -5920,6 +6164,7 @@ to-zinc-600
 to-zinc-700
 to-zinc-800
 to-zinc-900
+to-zinc-950
 to-neutral-50
 to-neutral-100
 to-neutral-200
@@ -5930,6 +6175,7 @@ to-neutral-600
 to-neutral-700
 to-neutral-800
 to-neutral-900
+to-neutral-950
 to-stone-50
 to-stone-100
 to-stone-200
@@ -5940,6 +6186,7 @@ to-stone-600
 to-stone-700
 to-stone-800
 to-stone-900
+to-stone-950
 to-red-50
 to-red-100
 to-red-200
@@ -5950,6 +6197,7 @@ to-red-600
 to-red-700
 to-red-800
 to-red-900
+to-red-950
 to-orange-50
 to-orange-100
 to-orange-200
@@ -5960,6 +6208,7 @@ to-orange-600
 to-orange-700
 to-orange-800
 to-orange-900
+to-orange-950
 to-amber-50
 to-amber-100
 to-amber-200
@@ -5970,6 +6219,7 @@ to-amber-600
 to-amber-700
 to-amber-800
 to-amber-900
+to-amber-950
 to-yellow-50
 to-yellow-100
 to-yellow-200
@@ -5980,6 +6230,7 @@ to-yellow-600
 to-yellow-700
 to-yellow-800
 to-yellow-900
+to-yellow-950
 to-lime-50
 to-lime-100
 to-lime-200
@@ -5990,6 +6241,7 @@ to-lime-600
 to-lime-700
 to-lime-800
 to-lime-900
+to-lime-950
 to-green-50
 to-green-100
 to-green-200
@@ -6000,6 +6252,7 @@ to-green-600
 to-green-700
 to-green-800
 to-green-900
+to-green-950
 to-emerald-50
 to-emerald-100
 to-emerald-200
@@ -6010,6 +6263,7 @@ to-emerald-600
 to-emerald-700
 to-emerald-800
 to-emerald-900
+to-emerald-950
 to-teal-50
 to-teal-100
 to-teal-200
@@ -6020,6 +6274,7 @@ to-teal-600
 to-teal-700
 to-teal-800
 to-teal-900
+to-teal-950
 to-cyan-50
 to-cyan-100
 to-cyan-200
@@ -6030,6 +6285,7 @@ to-cyan-600
 to-cyan-700
 to-cyan-800
 to-cyan-900
+to-cyan-950
 to-sky-50
 to-sky-100
 to-sky-200
@@ -6040,6 +6296,7 @@ to-sky-600
 to-sky-700
 to-sky-800
 to-sky-900
+to-sky-950
 to-blue-50
 to-blue-100
 to-blue-200
@@ -6050,6 +6307,7 @@ to-blue-600
 to-blue-700
 to-blue-800
 to-blue-900
+to-blue-950
 to-indigo-50
 to-indigo-100
 to-indigo-200
@@ -6060,6 +6318,7 @@ to-indigo-600
 to-indigo-700
 to-indigo-800
 to-indigo-900
+to-indigo-950
 to-violet-50
 to-violet-100
 to-violet-200
@@ -6070,6 +6329,7 @@ to-violet-600
 to-violet-700
 to-violet-800
 to-violet-900
+to-violet-950
 to-purple-50
 to-purple-100
 to-purple-200
@@ -6080,6 +6340,7 @@ to-purple-600
 to-purple-700
 to-purple-800
 to-purple-900
+to-purple-950
 to-fuchsia-50
 to-fuchsia-100
 to-fuchsia-200
@@ -6090,6 +6351,7 @@ to-fuchsia-600
 to-fuchsia-700
 to-fuchsia-800
 to-fuchsia-900
+to-fuchsia-950
 to-pink-50
 to-pink-100
 to-pink-200
@@ -6100,6 +6362,7 @@ to-pink-600
 to-pink-700
 to-pink-800
 to-pink-900
+to-pink-950
 to-rose-50
 to-rose-100
 to-rose-200
@@ -6110,6 +6373,7 @@ to-rose-600
 to-rose-700
 to-rose-800
 to-rose-900
+to-rose-950
 decoration-slice
 decoration-clone
 box-decoration-slice
@@ -6157,6 +6421,7 @@ fill-slate-600
 fill-slate-700
 fill-slate-800
 fill-slate-900
+fill-slate-950
 fill-gray-50
 fill-gray-100
 fill-gray-200
@@ -6167,6 +6432,7 @@ fill-gray-600
 fill-gray-700
 fill-gray-800
 fill-gray-900
+fill-gray-950
 fill-zinc-50
 fill-zinc-100
 fill-zinc-200
@@ -6177,6 +6443,7 @@ fill-zinc-600
 fill-zinc-700
 fill-zinc-800
 fill-zinc-900
+fill-zinc-950
 fill-neutral-50
 fill-neutral-100
 fill-neutral-200
@@ -6187,6 +6454,7 @@ fill-neutral-600
 fill-neutral-700
 fill-neutral-800
 fill-neutral-900
+fill-neutral-950
 fill-stone-50
 fill-stone-100
 fill-stone-200
@@ -6197,6 +6465,7 @@ fill-stone-600
 fill-stone-700
 fill-stone-800
 fill-stone-900
+fill-stone-950
 fill-red-50
 fill-red-100
 fill-red-200
@@ -6207,6 +6476,7 @@ fill-red-600
 fill-red-700
 fill-red-800
 fill-red-900
+fill-red-950
 fill-orange-50
 fill-orange-100
 fill-orange-200
@@ -6217,6 +6487,7 @@ fill-orange-600
 fill-orange-700
 fill-orange-800
 fill-orange-900
+fill-orange-950
 fill-amber-50
 fill-amber-100
 fill-amber-200
@@ -6227,6 +6498,7 @@ fill-amber-600
 fill-amber-700
 fill-amber-800
 fill-amber-900
+fill-amber-950
 fill-yellow-50
 fill-yellow-100
 fill-yellow-200
@@ -6237,6 +6509,7 @@ fill-yellow-600
 fill-yellow-700
 fill-yellow-800
 fill-yellow-900
+fill-yellow-950
 fill-lime-50
 fill-lime-100
 fill-lime-200
@@ -6247,6 +6520,7 @@ fill-lime-600
 fill-lime-700
 fill-lime-800
 fill-lime-900
+fill-lime-950
 fill-green-50
 fill-green-100
 fill-green-200
@@ -6257,6 +6531,7 @@ fill-green-600
 fill-green-700
 fill-green-800
 fill-green-900
+fill-green-950
 fill-emerald-50
 fill-emerald-100
 fill-emerald-200
@@ -6267,6 +6542,7 @@ fill-emerald-600
 fill-emerald-700
 fill-emerald-800
 fill-emerald-900
+fill-emerald-950
 fill-teal-50
 fill-teal-100
 fill-teal-200
@@ -6277,6 +6553,7 @@ fill-teal-600
 fill-teal-700
 fill-teal-800
 fill-teal-900
+fill-teal-950
 fill-cyan-50
 fill-cyan-100
 fill-cyan-200
@@ -6287,6 +6564,7 @@ fill-cyan-600
 fill-cyan-700
 fill-cyan-800
 fill-cyan-900
+fill-cyan-950
 fill-sky-50
 fill-sky-100
 fill-sky-200
@@ -6297,6 +6575,7 @@ fill-sky-600
 fill-sky-700
 fill-sky-800
 fill-sky-900
+fill-sky-950
 fill-blue-50
 fill-blue-100
 fill-blue-200
@@ -6307,6 +6586,7 @@ fill-blue-600
 fill-blue-700
 fill-blue-800
 fill-blue-900
+fill-blue-950
 fill-indigo-50
 fill-indigo-100
 fill-indigo-200
@@ -6317,6 +6597,7 @@ fill-indigo-600
 fill-indigo-700
 fill-indigo-800
 fill-indigo-900
+fill-indigo-950
 fill-violet-50
 fill-violet-100
 fill-violet-200
@@ -6327,6 +6608,7 @@ fill-violet-600
 fill-violet-700
 fill-violet-800
 fill-violet-900
+fill-violet-950
 fill-purple-50
 fill-purple-100
 fill-purple-200
@@ -6337,6 +6619,7 @@ fill-purple-600
 fill-purple-700
 fill-purple-800
 fill-purple-900
+fill-purple-950
 fill-fuchsia-50
 fill-fuchsia-100
 fill-fuchsia-200
@@ -6347,6 +6630,7 @@ fill-fuchsia-600
 fill-fuchsia-700
 fill-fuchsia-800
 fill-fuchsia-900
+fill-fuchsia-950
 fill-pink-50
 fill-pink-100
 fill-pink-200
@@ -6357,6 +6641,7 @@ fill-pink-600
 fill-pink-700
 fill-pink-800
 fill-pink-900
+fill-pink-950
 fill-rose-50
 fill-rose-100
 fill-rose-200
@@ -6367,6 +6652,7 @@ fill-rose-600
 fill-rose-700
 fill-rose-800
 fill-rose-900
+fill-rose-950
 stroke-inherit
 stroke-current
 stroke-transparent
@@ -6382,6 +6668,7 @@ stroke-slate-600
 stroke-slate-700
 stroke-slate-800
 stroke-slate-900
+stroke-slate-950
 stroke-gray-50
 stroke-gray-100
 stroke-gray-200
@@ -6392,6 +6679,7 @@ stroke-gray-600
 stroke-gray-700
 stroke-gray-800
 stroke-gray-900
+stroke-gray-950
 stroke-zinc-50
 stroke-zinc-100
 stroke-zinc-200
@@ -6402,6 +6690,7 @@ stroke-zinc-600
 stroke-zinc-700
 stroke-zinc-800
 stroke-zinc-900
+stroke-zinc-950
 stroke-neutral-50
 stroke-neutral-100
 stroke-neutral-200
@@ -6412,6 +6701,7 @@ stroke-neutral-600
 stroke-neutral-700
 stroke-neutral-800
 stroke-neutral-900
+stroke-neutral-950
 stroke-stone-50
 stroke-stone-100
 stroke-stone-200
@@ -6422,6 +6712,7 @@ stroke-stone-600
 stroke-stone-700
 stroke-stone-800
 stroke-stone-900
+stroke-stone-950
 stroke-red-50
 stroke-red-100
 stroke-red-200
@@ -6432,6 +6723,7 @@ stroke-red-600
 stroke-red-700
 stroke-red-800
 stroke-red-900
+stroke-red-950
 stroke-orange-50
 stroke-orange-100
 stroke-orange-200
@@ -6442,6 +6734,7 @@ stroke-orange-600
 stroke-orange-700
 stroke-orange-800
 stroke-orange-900
+stroke-orange-950
 stroke-amber-50
 stroke-amber-100
 stroke-amber-200
@@ -6452,6 +6745,7 @@ stroke-amber-600
 stroke-amber-700
 stroke-amber-800
 stroke-amber-900
+stroke-amber-950
 stroke-yellow-50
 stroke-yellow-100
 stroke-yellow-200
@@ -6462,6 +6756,7 @@ stroke-yellow-600
 stroke-yellow-700
 stroke-yellow-800
 stroke-yellow-900
+stroke-yellow-950
 stroke-lime-50
 stroke-lime-100
 stroke-lime-200
@@ -6472,6 +6767,7 @@ stroke-lime-600
 stroke-lime-700
 stroke-lime-800
 stroke-lime-900
+stroke-lime-950
 stroke-green-50
 stroke-green-100
 stroke-green-200
@@ -6482,6 +6778,7 @@ stroke-green-600
 stroke-green-700
 stroke-green-800
 stroke-green-900
+stroke-green-950
 stroke-emerald-50
 stroke-emerald-100
 stroke-emerald-200
@@ -6492,6 +6789,7 @@ stroke-emerald-600
 stroke-emerald-700
 stroke-emerald-800
 stroke-emerald-900
+stroke-emerald-950
 stroke-teal-50
 stroke-teal-100
 stroke-teal-200
@@ -6502,6 +6800,7 @@ stroke-teal-600
 stroke-teal-700
 stroke-teal-800
 stroke-teal-900
+stroke-teal-950
 stroke-cyan-50
 stroke-cyan-100
 stroke-cyan-200
@@ -6512,6 +6811,7 @@ stroke-cyan-600
 stroke-cyan-700
 stroke-cyan-800
 stroke-cyan-900
+stroke-cyan-950
 stroke-sky-50
 stroke-sky-100
 stroke-sky-200
@@ -6522,6 +6822,7 @@ stroke-sky-600
 stroke-sky-700
 stroke-sky-800
 stroke-sky-900
+stroke-sky-950
 stroke-blue-50
 stroke-blue-100
 stroke-blue-200
@@ -6532,6 +6833,7 @@ stroke-blue-600
 stroke-blue-700
 stroke-blue-800
 stroke-blue-900
+stroke-blue-950
 stroke-indigo-50
 stroke-indigo-100
 stroke-indigo-200
@@ -6542,6 +6844,7 @@ stroke-indigo-600
 stroke-indigo-700
 stroke-indigo-800
 stroke-indigo-900
+stroke-indigo-950
 stroke-violet-50
 stroke-violet-100
 stroke-violet-200
@@ -6552,6 +6855,7 @@ stroke-violet-600
 stroke-violet-700
 stroke-violet-800
 stroke-violet-900
+stroke-violet-950
 stroke-purple-50
 stroke-purple-100
 stroke-purple-200
@@ -6562,6 +6866,7 @@ stroke-purple-600
 stroke-purple-700
 stroke-purple-800
 stroke-purple-900
+stroke-purple-950
 stroke-fuchsia-50
 stroke-fuchsia-100
 stroke-fuchsia-200
@@ -6572,6 +6877,7 @@ stroke-fuchsia-600
 stroke-fuchsia-700
 stroke-fuchsia-800
 stroke-fuchsia-900
+stroke-fuchsia-950
 stroke-pink-50
 stroke-pink-100
 stroke-pink-200
@@ -6582,6 +6888,7 @@ stroke-pink-600
 stroke-pink-700
 stroke-pink-800
 stroke-pink-900
+stroke-pink-950
 stroke-rose-50
 stroke-rose-100
 stroke-rose-200
@@ -6592,6 +6899,7 @@ stroke-rose-600
 stroke-rose-700
 stroke-rose-800
 stroke-rose-900
+stroke-rose-950
 stroke-0
 stroke-1
 stroke-2
@@ -7019,6 +7327,7 @@ text-slate-600
 text-slate-700
 text-slate-800
 text-slate-900
+text-slate-950
 text-gray-50
 text-gray-100
 text-gray-200
@@ -7029,6 +7338,7 @@ text-gray-600
 text-gray-700
 text-gray-800
 text-gray-900
+text-gray-950
 text-zinc-50
 text-zinc-100
 text-zinc-200
@@ -7039,6 +7349,7 @@ text-zinc-600
 text-zinc-700
 text-zinc-800
 text-zinc-900
+text-zinc-950
 text-neutral-50
 text-neutral-100
 text-neutral-200
@@ -7049,6 +7360,7 @@ text-neutral-600
 text-neutral-700
 text-neutral-800
 text-neutral-900
+text-neutral-950
 text-stone-50
 text-stone-100
 text-stone-200
@@ -7059,6 +7371,7 @@ text-stone-600
 text-stone-700
 text-stone-800
 text-stone-900
+text-stone-950
 text-red-50
 text-red-100
 text-red-200
@@ -7069,6 +7382,7 @@ text-red-600
 text-red-700
 text-red-800
 text-red-900
+text-red-950
 text-orange-50
 text-orange-100
 text-orange-200
@@ -7079,6 +7393,7 @@ text-orange-600
 text-orange-700
 text-orange-800
 text-orange-900
+text-orange-950
 text-amber-50
 text-amber-100
 text-amber-200
@@ -7089,6 +7404,7 @@ text-amber-600
 text-amber-700
 text-amber-800
 text-amber-900
+text-amber-950
 text-yellow-50
 text-yellow-100
 text-yellow-200
@@ -7099,6 +7415,7 @@ text-yellow-600
 text-yellow-700
 text-yellow-800
 text-yellow-900
+text-yellow-950
 text-lime-50
 text-lime-100
 text-lime-200
@@ -7109,6 +7426,7 @@ text-lime-600
 text-lime-700
 text-lime-800
 text-lime-900
+text-lime-950
 text-green-50
 text-green-100
 text-green-200
@@ -7119,6 +7437,7 @@ text-green-600
 text-green-700
 text-green-800
 text-green-900
+text-green-950
 text-emerald-50
 text-emerald-100
 text-emerald-200
@@ -7129,6 +7448,7 @@ text-emerald-600
 text-emerald-700
 text-emerald-800
 text-emerald-900
+text-emerald-950
 text-teal-50
 text-teal-100
 text-teal-200
@@ -7139,6 +7459,7 @@ text-teal-600
 text-teal-700
 text-teal-800
 text-teal-900
+text-teal-950
 text-cyan-50
 text-cyan-100
 text-cyan-200
@@ -7149,6 +7470,7 @@ text-cyan-600
 text-cyan-700
 text-cyan-800
 text-cyan-900
+text-cyan-950
 text-sky-50
 text-sky-100
 text-sky-200
@@ -7159,6 +7481,7 @@ text-sky-600
 text-sky-700
 text-sky-800
 text-sky-900
+text-sky-950
 text-blue-50
 text-blue-100
 text-blue-200
@@ -7169,6 +7492,7 @@ text-blue-600
 text-blue-700
 text-blue-800
 text-blue-900
+text-blue-950
 text-indigo-50
 text-indigo-100
 text-indigo-200
@@ -7179,6 +7503,7 @@ text-indigo-600
 text-indigo-700
 text-indigo-800
 text-indigo-900
+text-indigo-950
 text-violet-50
 text-violet-100
 text-violet-200
@@ -7189,6 +7514,7 @@ text-violet-600
 text-violet-700
 text-violet-800
 text-violet-900
+text-violet-950
 text-purple-50
 text-purple-100
 text-purple-200
@@ -7199,6 +7525,7 @@ text-purple-600
 text-purple-700
 text-purple-800
 text-purple-900
+text-purple-950
 text-fuchsia-50
 text-fuchsia-100
 text-fuchsia-200
@@ -7209,6 +7536,7 @@ text-fuchsia-600
 text-fuchsia-700
 text-fuchsia-800
 text-fuchsia-900
+text-fuchsia-950
 text-pink-50
 text-pink-100
 text-pink-200
@@ -7219,6 +7547,7 @@ text-pink-600
 text-pink-700
 text-pink-800
 text-pink-900
+text-pink-950
 text-rose-50
 text-rose-100
 text-rose-200
@@ -7229,6 +7558,7 @@ text-rose-600
 text-rose-700
 text-rose-800
 text-rose-900
+text-rose-950
 text-opacity-0
 text-opacity-5
 text-opacity-10
@@ -7263,6 +7593,7 @@ decoration-slate-600
 decoration-slate-700
 decoration-slate-800
 decoration-slate-900
+decoration-slate-950
 decoration-gray-50
 decoration-gray-100
 decoration-gray-200
@@ -7273,6 +7604,7 @@ decoration-gray-600
 decoration-gray-700
 decoration-gray-800
 decoration-gray-900
+decoration-gray-950
 decoration-zinc-50
 decoration-zinc-100
 decoration-zinc-200
@@ -7283,6 +7615,7 @@ decoration-zinc-600
 decoration-zinc-700
 decoration-zinc-800
 decoration-zinc-900
+decoration-zinc-950
 decoration-neutral-50
 decoration-neutral-100
 decoration-neutral-200
@@ -7293,6 +7626,7 @@ decoration-neutral-600
 decoration-neutral-700
 decoration-neutral-800
 decoration-neutral-900
+decoration-neutral-950
 decoration-stone-50
 decoration-stone-100
 decoration-stone-200
@@ -7303,6 +7637,7 @@ decoration-stone-600
 decoration-stone-700
 decoration-stone-800
 decoration-stone-900
+decoration-stone-950
 decoration-red-50
 decoration-red-100
 decoration-red-200
@@ -7313,6 +7648,7 @@ decoration-red-600
 decoration-red-700
 decoration-red-800
 decoration-red-900
+decoration-red-950
 decoration-orange-50
 decoration-orange-100
 decoration-orange-200
@@ -7323,6 +7659,7 @@ decoration-orange-600
 decoration-orange-700
 decoration-orange-800
 decoration-orange-900
+decoration-orange-950
 decoration-amber-50
 decoration-amber-100
 decoration-amber-200
@@ -7333,6 +7670,7 @@ decoration-amber-600
 decoration-amber-700
 decoration-amber-800
 decoration-amber-900
+decoration-amber-950
 decoration-yellow-50
 decoration-yellow-100
 decoration-yellow-200
@@ -7343,6 +7681,7 @@ decoration-yellow-600
 decoration-yellow-700
 decoration-yellow-800
 decoration-yellow-900
+decoration-yellow-950
 decoration-lime-50
 decoration-lime-100
 decoration-lime-200
@@ -7353,6 +7692,7 @@ decoration-lime-600
 decoration-lime-700
 decoration-lime-800
 decoration-lime-900
+decoration-lime-950
 decoration-green-50
 decoration-green-100
 decoration-green-200
@@ -7363,6 +7703,7 @@ decoration-green-600
 decoration-green-700
 decoration-green-800
 decoration-green-900
+decoration-green-950
 decoration-emerald-50
 decoration-emerald-100
 decoration-emerald-200
@@ -7373,6 +7714,7 @@ decoration-emerald-600
 decoration-emerald-700
 decoration-emerald-800
 decoration-emerald-900
+decoration-emerald-950
 decoration-teal-50
 decoration-teal-100
 decoration-teal-200
@@ -7383,6 +7725,7 @@ decoration-teal-600
 decoration-teal-700
 decoration-teal-800
 decoration-teal-900
+decoration-teal-950
 decoration-cyan-50
 decoration-cyan-100
 decoration-cyan-200
@@ -7393,6 +7736,7 @@ decoration-cyan-600
 decoration-cyan-700
 decoration-cyan-800
 decoration-cyan-900
+decoration-cyan-950
 decoration-sky-50
 decoration-sky-100
 decoration-sky-200
@@ -7403,6 +7747,7 @@ decoration-sky-600
 decoration-sky-700
 decoration-sky-800
 decoration-sky-900
+decoration-sky-950
 decoration-blue-50
 decoration-blue-100
 decoration-blue-200
@@ -7413,6 +7758,7 @@ decoration-blue-600
 decoration-blue-700
 decoration-blue-800
 decoration-blue-900
+decoration-blue-950
 decoration-indigo-50
 decoration-indigo-100
 decoration-indigo-200
@@ -7423,6 +7769,7 @@ decoration-indigo-600
 decoration-indigo-700
 decoration-indigo-800
 decoration-indigo-900
+decoration-indigo-950
 decoration-violet-50
 decoration-violet-100
 decoration-violet-200
@@ -7433,6 +7780,7 @@ decoration-violet-600
 decoration-violet-700
 decoration-violet-800
 decoration-violet-900
+decoration-violet-950
 decoration-purple-50
 decoration-purple-100
 decoration-purple-200
@@ -7443,6 +7791,7 @@ decoration-purple-600
 decoration-purple-700
 decoration-purple-800
 decoration-purple-900
+decoration-purple-950
 decoration-fuchsia-50
 decoration-fuchsia-100
 decoration-fuchsia-200
@@ -7453,6 +7802,7 @@ decoration-fuchsia-600
 decoration-fuchsia-700
 decoration-fuchsia-800
 decoration-fuchsia-900
+decoration-fuchsia-950
 decoration-pink-50
 decoration-pink-100
 decoration-pink-200
@@ -7463,6 +7813,7 @@ decoration-pink-600
 decoration-pink-700
 decoration-pink-800
 decoration-pink-900
+decoration-pink-950
 decoration-rose-50
 decoration-rose-100
 decoration-rose-200
@@ -7473,6 +7824,7 @@ decoration-rose-600
 decoration-rose-700
 decoration-rose-800
 decoration-rose-900
+decoration-rose-950
 decoration-solid
 decoration-double
 decoration-dotted
@@ -7508,6 +7860,7 @@ placeholder-slate-600
 placeholder-slate-700
 placeholder-slate-800
 placeholder-slate-900
+placeholder-slate-950
 placeholder-gray-50
 placeholder-gray-100
 placeholder-gray-200
@@ -7518,6 +7871,7 @@ placeholder-gray-600
 placeholder-gray-700
 placeholder-gray-800
 placeholder-gray-900
+placeholder-gray-950
 placeholder-zinc-50
 placeholder-zinc-100
 placeholder-zinc-200
@@ -7528,6 +7882,7 @@ placeholder-zinc-600
 placeholder-zinc-700
 placeholder-zinc-800
 placeholder-zinc-900
+placeholder-zinc-950
 placeholder-neutral-50
 placeholder-neutral-100
 placeholder-neutral-200
@@ -7538,6 +7893,7 @@ placeholder-neutral-600
 placeholder-neutral-700
 placeholder-neutral-800
 placeholder-neutral-900
+placeholder-neutral-950
 placeholder-stone-50
 placeholder-stone-100
 placeholder-stone-200
@@ -7548,6 +7904,7 @@ placeholder-stone-600
 placeholder-stone-700
 placeholder-stone-800
 placeholder-stone-900
+placeholder-stone-950
 placeholder-red-50
 placeholder-red-100
 placeholder-red-200
@@ -7558,6 +7915,7 @@ placeholder-red-600
 placeholder-red-700
 placeholder-red-800
 placeholder-red-900
+placeholder-red-950
 placeholder-orange-50
 placeholder-orange-100
 placeholder-orange-200
@@ -7568,6 +7926,7 @@ placeholder-orange-600
 placeholder-orange-700
 placeholder-orange-800
 placeholder-orange-900
+placeholder-orange-950
 placeholder-amber-50
 placeholder-amber-100
 placeholder-amber-200
@@ -7578,6 +7937,7 @@ placeholder-amber-600
 placeholder-amber-700
 placeholder-amber-800
 placeholder-amber-900
+placeholder-amber-950
 placeholder-yellow-50
 placeholder-yellow-100
 placeholder-yellow-200
@@ -7588,6 +7948,7 @@ placeholder-yellow-600
 placeholder-yellow-700
 placeholder-yellow-800
 placeholder-yellow-900
+placeholder-yellow-950
 placeholder-lime-50
 placeholder-lime-100
 placeholder-lime-200
@@ -7598,6 +7959,7 @@ placeholder-lime-600
 placeholder-lime-700
 placeholder-lime-800
 placeholder-lime-900
+placeholder-lime-950
 placeholder-green-50
 placeholder-green-100
 placeholder-green-200
@@ -7608,6 +7970,7 @@ placeholder-green-600
 placeholder-green-700
 placeholder-green-800
 placeholder-green-900
+placeholder-green-950
 placeholder-emerald-50
 placeholder-emerald-100
 placeholder-emerald-200
@@ -7618,6 +7981,7 @@ placeholder-emerald-600
 placeholder-emerald-700
 placeholder-emerald-800
 placeholder-emerald-900
+placeholder-emerald-950
 placeholder-teal-50
 placeholder-teal-100
 placeholder-teal-200
@@ -7628,6 +7992,7 @@ placeholder-teal-600
 placeholder-teal-700
 placeholder-teal-800
 placeholder-teal-900
+placeholder-teal-950
 placeholder-cyan-50
 placeholder-cyan-100
 placeholder-cyan-200
@@ -7638,6 +8003,7 @@ placeholder-cyan-600
 placeholder-cyan-700
 placeholder-cyan-800
 placeholder-cyan-900
+placeholder-cyan-950
 placeholder-sky-50
 placeholder-sky-100
 placeholder-sky-200
@@ -7648,6 +8014,7 @@ placeholder-sky-600
 placeholder-sky-700
 placeholder-sky-800
 placeholder-sky-900
+placeholder-sky-950
 placeholder-blue-50
 placeholder-blue-100
 placeholder-blue-200
@@ -7658,6 +8025,7 @@ placeholder-blue-600
 placeholder-blue-700
 placeholder-blue-800
 placeholder-blue-900
+placeholder-blue-950
 placeholder-indigo-50
 placeholder-indigo-100
 placeholder-indigo-200
@@ -7668,6 +8036,7 @@ placeholder-indigo-600
 placeholder-indigo-700
 placeholder-indigo-800
 placeholder-indigo-900
+placeholder-indigo-950
 placeholder-violet-50
 placeholder-violet-100
 placeholder-violet-200
@@ -7678,6 +8047,7 @@ placeholder-violet-600
 placeholder-violet-700
 placeholder-violet-800
 placeholder-violet-900
+placeholder-violet-950
 placeholder-purple-50
 placeholder-purple-100
 placeholder-purple-200
@@ -7688,6 +8058,7 @@ placeholder-purple-600
 placeholder-purple-700
 placeholder-purple-800
 placeholder-purple-900
+placeholder-purple-950
 placeholder-fuchsia-50
 placeholder-fuchsia-100
 placeholder-fuchsia-200
@@ -7698,6 +8069,7 @@ placeholder-fuchsia-600
 placeholder-fuchsia-700
 placeholder-fuchsia-800
 placeholder-fuchsia-900
+placeholder-fuchsia-950
 placeholder-pink-50
 placeholder-pink-100
 placeholder-pink-200
@@ -7708,6 +8080,7 @@ placeholder-pink-600
 placeholder-pink-700
 placeholder-pink-800
 placeholder-pink-900
+placeholder-pink-950
 placeholder-rose-50
 placeholder-rose-100
 placeholder-rose-200
@@ -7718,6 +8091,7 @@ placeholder-rose-600
 placeholder-rose-700
 placeholder-rose-800
 placeholder-rose-900
+placeholder-rose-950
 placeholder-opacity-0
 placeholder-opacity-5
 placeholder-opacity-10
@@ -7748,6 +8122,7 @@ caret-slate-600
 caret-slate-700
 caret-slate-800
 caret-slate-900
+caret-slate-950
 caret-gray-50
 caret-gray-100
 caret-gray-200
@@ -7758,6 +8133,7 @@ caret-gray-600
 caret-gray-700
 caret-gray-800
 caret-gray-900
+caret-gray-950
 caret-zinc-50
 caret-zinc-100
 caret-zinc-200
@@ -7768,6 +8144,7 @@ caret-zinc-600
 caret-zinc-700
 caret-zinc-800
 caret-zinc-900
+caret-zinc-950
 caret-neutral-50
 caret-neutral-100
 caret-neutral-200
@@ -7778,6 +8155,7 @@ caret-neutral-600
 caret-neutral-700
 caret-neutral-800
 caret-neutral-900
+caret-neutral-950
 caret-stone-50
 caret-stone-100
 caret-stone-200
@@ -7788,6 +8166,7 @@ caret-stone-600
 caret-stone-700
 caret-stone-800
 caret-stone-900
+caret-stone-950
 caret-red-50
 caret-red-100
 caret-red-200
@@ -7798,6 +8177,7 @@ caret-red-600
 caret-red-700
 caret-red-800
 caret-red-900
+caret-red-950
 caret-orange-50
 caret-orange-100
 caret-orange-200
@@ -7808,6 +8188,7 @@ caret-orange-600
 caret-orange-700
 caret-orange-800
 caret-orange-900
+caret-orange-950
 caret-amber-50
 caret-amber-100
 caret-amber-200
@@ -7818,6 +8199,7 @@ caret-amber-600
 caret-amber-700
 caret-amber-800
 caret-amber-900
+caret-amber-950
 caret-yellow-50
 caret-yellow-100
 caret-yellow-200
@@ -7828,6 +8210,7 @@ caret-yellow-600
 caret-yellow-700
 caret-yellow-800
 caret-yellow-900
+caret-yellow-950
 caret-lime-50
 caret-lime-100
 caret-lime-200
@@ -7838,6 +8221,7 @@ caret-lime-600
 caret-lime-700
 caret-lime-800
 caret-lime-900
+caret-lime-950
 caret-green-50
 caret-green-100
 caret-green-200
@@ -7848,6 +8232,7 @@ caret-green-600
 caret-green-700
 caret-green-800
 caret-green-900
+caret-green-950
 caret-emerald-50
 caret-emerald-100
 caret-emerald-200
@@ -7858,6 +8243,7 @@ caret-emerald-600
 caret-emerald-700
 caret-emerald-800
 caret-emerald-900
+caret-emerald-950
 caret-teal-50
 caret-teal-100
 caret-teal-200
@@ -7868,6 +8254,7 @@ caret-teal-600
 caret-teal-700
 caret-teal-800
 caret-teal-900
+caret-teal-950
 caret-cyan-50
 caret-cyan-100
 caret-cyan-200
@@ -7878,6 +8265,7 @@ caret-cyan-600
 caret-cyan-700
 caret-cyan-800
 caret-cyan-900
+caret-cyan-950
 caret-sky-50
 caret-sky-100
 caret-sky-200
@@ -7888,6 +8276,7 @@ caret-sky-600
 caret-sky-700
 caret-sky-800
 caret-sky-900
+caret-sky-950
 caret-blue-50
 caret-blue-100
 caret-blue-200
@@ -7898,6 +8287,7 @@ caret-blue-600
 caret-blue-700
 caret-blue-800
 caret-blue-900
+caret-blue-950
 caret-indigo-50
 caret-indigo-100
 caret-indigo-200
@@ -7908,6 +8298,7 @@ caret-indigo-600
 caret-indigo-700
 caret-indigo-800
 caret-indigo-900
+caret-indigo-950
 caret-violet-50
 caret-violet-100
 caret-violet-200
@@ -7918,6 +8309,7 @@ caret-violet-600
 caret-violet-700
 caret-violet-800
 caret-violet-900
+caret-violet-950
 caret-purple-50
 caret-purple-100
 caret-purple-200
@@ -7928,6 +8320,7 @@ caret-purple-600
 caret-purple-700
 caret-purple-800
 caret-purple-900
+caret-purple-950
 caret-fuchsia-50
 caret-fuchsia-100
 caret-fuchsia-200
@@ -7938,6 +8331,7 @@ caret-fuchsia-600
 caret-fuchsia-700
 caret-fuchsia-800
 caret-fuchsia-900
+caret-fuchsia-950
 caret-pink-50
 caret-pink-100
 caret-pink-200
@@ -7948,6 +8342,7 @@ caret-pink-600
 caret-pink-700
 caret-pink-800
 caret-pink-900
+caret-pink-950
 caret-rose-50
 caret-rose-100
 caret-rose-200
@@ -7958,6 +8353,7 @@ caret-rose-600
 caret-rose-700
 caret-rose-800
 caret-rose-900
+caret-rose-950
 accent-inherit
 accent-current
 accent-transparent
@@ -7973,6 +8369,7 @@ accent-slate-600
 accent-slate-700
 accent-slate-800
 accent-slate-900
+accent-slate-950
 accent-gray-50
 accent-gray-100
 accent-gray-200
@@ -7983,6 +8380,7 @@ accent-gray-600
 accent-gray-700
 accent-gray-800
 accent-gray-900
+accent-gray-950
 accent-zinc-50
 accent-zinc-100
 accent-zinc-200
@@ -7993,6 +8391,7 @@ accent-zinc-600
 accent-zinc-700
 accent-zinc-800
 accent-zinc-900
+accent-zinc-950
 accent-neutral-50
 accent-neutral-100
 accent-neutral-200
@@ -8003,6 +8402,7 @@ accent-neutral-600
 accent-neutral-700
 accent-neutral-800
 accent-neutral-900
+accent-neutral-950
 accent-stone-50
 accent-stone-100
 accent-stone-200
@@ -8013,6 +8413,7 @@ accent-stone-600
 accent-stone-700
 accent-stone-800
 accent-stone-900
+accent-stone-950
 accent-red-50
 accent-red-100
 accent-red-200
@@ -8023,6 +8424,7 @@ accent-red-600
 accent-red-700
 accent-red-800
 accent-red-900
+accent-red-950
 accent-orange-50
 accent-orange-100
 accent-orange-200
@@ -8033,6 +8435,7 @@ accent-orange-600
 accent-orange-700
 accent-orange-800
 accent-orange-900
+accent-orange-950
 accent-amber-50
 accent-amber-100
 accent-amber-200
@@ -8043,6 +8446,7 @@ accent-amber-600
 accent-amber-700
 accent-amber-800
 accent-amber-900
+accent-amber-950
 accent-yellow-50
 accent-yellow-100
 accent-yellow-200
@@ -8053,6 +8457,7 @@ accent-yellow-600
 accent-yellow-700
 accent-yellow-800
 accent-yellow-900
+accent-yellow-950
 accent-lime-50
 accent-lime-100
 accent-lime-200
@@ -8063,6 +8468,7 @@ accent-lime-600
 accent-lime-700
 accent-lime-800
 accent-lime-900
+accent-lime-950
 accent-green-50
 accent-green-100
 accent-green-200
@@ -8073,6 +8479,7 @@ accent-green-600
 accent-green-700
 accent-green-800
 accent-green-900
+accent-green-950
 accent-emerald-50
 accent-emerald-100
 accent-emerald-200
@@ -8083,6 +8490,7 @@ accent-emerald-600
 accent-emerald-700
 accent-emerald-800
 accent-emerald-900
+accent-emerald-950
 accent-teal-50
 accent-teal-100
 accent-teal-200
@@ -8093,6 +8501,7 @@ accent-teal-600
 accent-teal-700
 accent-teal-800
 accent-teal-900
+accent-teal-950
 accent-cyan-50
 accent-cyan-100
 accent-cyan-200
@@ -8103,6 +8512,7 @@ accent-cyan-600
 accent-cyan-700
 accent-cyan-800
 accent-cyan-900
+accent-cyan-950
 accent-sky-50
 accent-sky-100
 accent-sky-200
@@ -8113,6 +8523,7 @@ accent-sky-600
 accent-sky-700
 accent-sky-800
 accent-sky-900
+accent-sky-950
 accent-blue-50
 accent-blue-100
 accent-blue-200
@@ -8123,6 +8534,7 @@ accent-blue-600
 accent-blue-700
 accent-blue-800
 accent-blue-900
+accent-blue-950
 accent-indigo-50
 accent-indigo-100
 accent-indigo-200
@@ -8133,6 +8545,7 @@ accent-indigo-600
 accent-indigo-700
 accent-indigo-800
 accent-indigo-900
+accent-indigo-950
 accent-violet-50
 accent-violet-100
 accent-violet-200
@@ -8143,6 +8556,7 @@ accent-violet-600
 accent-violet-700
 accent-violet-800
 accent-violet-900
+accent-violet-950
 accent-purple-50
 accent-purple-100
 accent-purple-200
@@ -8153,6 +8567,7 @@ accent-purple-600
 accent-purple-700
 accent-purple-800
 accent-purple-900
+accent-purple-950
 accent-fuchsia-50
 accent-fuchsia-100
 accent-fuchsia-200
@@ -8163,6 +8578,7 @@ accent-fuchsia-600
 accent-fuchsia-700
 accent-fuchsia-800
 accent-fuchsia-900
+accent-fuchsia-950
 accent-pink-50
 accent-pink-100
 accent-pink-200
@@ -8173,6 +8589,7 @@ accent-pink-600
 accent-pink-700
 accent-pink-800
 accent-pink-900
+accent-pink-950
 accent-rose-50
 accent-rose-100
 accent-rose-200
@@ -8183,6 +8600,7 @@ accent-rose-600
 accent-rose-700
 accent-rose-800
 accent-rose-900
+accent-rose-950
 accent-auto
 opacity-0
 opacity-5
@@ -8255,6 +8673,7 @@ shadow-slate-600
 shadow-slate-700
 shadow-slate-800
 shadow-slate-900
+shadow-slate-950
 shadow-gray-50
 shadow-gray-100
 shadow-gray-200
@@ -8265,6 +8684,7 @@ shadow-gray-600
 shadow-gray-700
 shadow-gray-800
 shadow-gray-900
+shadow-gray-950
 shadow-zinc-50
 shadow-zinc-100
 shadow-zinc-200
@@ -8275,6 +8695,7 @@ shadow-zinc-600
 shadow-zinc-700
 shadow-zinc-800
 shadow-zinc-900
+shadow-zinc-950
 shadow-neutral-50
 shadow-neutral-100
 shadow-neutral-200
@@ -8285,6 +8706,7 @@ shadow-neutral-600
 shadow-neutral-700
 shadow-neutral-800
 shadow-neutral-900
+shadow-neutral-950
 shadow-stone-50
 shadow-stone-100
 shadow-stone-200
@@ -8295,6 +8717,7 @@ shadow-stone-600
 shadow-stone-700
 shadow-stone-800
 shadow-stone-900
+shadow-stone-950
 shadow-red-50
 shadow-red-100
 shadow-red-200
@@ -8305,6 +8728,7 @@ shadow-red-600
 shadow-red-700
 shadow-red-800
 shadow-red-900
+shadow-red-950
 shadow-orange-50
 shadow-orange-100
 shadow-orange-200
@@ -8315,6 +8739,7 @@ shadow-orange-600
 shadow-orange-700
 shadow-orange-800
 shadow-orange-900
+shadow-orange-950
 shadow-amber-50
 shadow-amber-100
 shadow-amber-200
@@ -8325,6 +8750,7 @@ shadow-amber-600
 shadow-amber-700
 shadow-amber-800
 shadow-amber-900
+shadow-amber-950
 shadow-yellow-50
 shadow-yellow-100
 shadow-yellow-200
@@ -8335,6 +8761,7 @@ shadow-yellow-600
 shadow-yellow-700
 shadow-yellow-800
 shadow-yellow-900
+shadow-yellow-950
 shadow-lime-50
 shadow-lime-100
 shadow-lime-200
@@ -8345,6 +8772,7 @@ shadow-lime-600
 shadow-lime-700
 shadow-lime-800
 shadow-lime-900
+shadow-lime-950
 shadow-green-50
 shadow-green-100
 shadow-green-200
@@ -8355,6 +8783,7 @@ shadow-green-600
 shadow-green-700
 shadow-green-800
 shadow-green-900
+shadow-green-950
 shadow-emerald-50
 shadow-emerald-100
 shadow-emerald-200
@@ -8365,6 +8794,7 @@ shadow-emerald-600
 shadow-emerald-700
 shadow-emerald-800
 shadow-emerald-900
+shadow-emerald-950
 shadow-teal-50
 shadow-teal-100
 shadow-teal-200
@@ -8375,6 +8805,7 @@ shadow-teal-600
 shadow-teal-700
 shadow-teal-800
 shadow-teal-900
+shadow-teal-950
 shadow-cyan-50
 shadow-cyan-100
 shadow-cyan-200
@@ -8385,6 +8816,7 @@ shadow-cyan-600
 shadow-cyan-700
 shadow-cyan-800
 shadow-cyan-900
+shadow-cyan-950
 shadow-sky-50
 shadow-sky-100
 shadow-sky-200
@@ -8395,6 +8827,7 @@ shadow-sky-600
 shadow-sky-700
 shadow-sky-800
 shadow-sky-900
+shadow-sky-950
 shadow-blue-50
 shadow-blue-100
 shadow-blue-200
@@ -8405,6 +8838,7 @@ shadow-blue-600
 shadow-blue-700
 shadow-blue-800
 shadow-blue-900
+shadow-blue-950
 shadow-indigo-50
 shadow-indigo-100
 shadow-indigo-200
@@ -8415,6 +8849,7 @@ shadow-indigo-600
 shadow-indigo-700
 shadow-indigo-800
 shadow-indigo-900
+shadow-indigo-950
 shadow-violet-50
 shadow-violet-100
 shadow-violet-200
@@ -8425,6 +8860,7 @@ shadow-violet-600
 shadow-violet-700
 shadow-violet-800
 shadow-violet-900
+shadow-violet-950
 shadow-purple-50
 shadow-purple-100
 shadow-purple-200
@@ -8435,6 +8871,7 @@ shadow-purple-600
 shadow-purple-700
 shadow-purple-800
 shadow-purple-900
+shadow-purple-950
 shadow-fuchsia-50
 shadow-fuchsia-100
 shadow-fuchsia-200
@@ -8445,6 +8882,7 @@ shadow-fuchsia-600
 shadow-fuchsia-700
 shadow-fuchsia-800
 shadow-fuchsia-900
+shadow-fuchsia-950
 shadow-pink-50
 shadow-pink-100
 shadow-pink-200
@@ -8455,6 +8893,7 @@ shadow-pink-600
 shadow-pink-700
 shadow-pink-800
 shadow-pink-900
+shadow-pink-950
 shadow-rose-50
 shadow-rose-100
 shadow-rose-200
@@ -8465,6 +8904,7 @@ shadow-rose-600
 shadow-rose-700
 shadow-rose-800
 shadow-rose-900
+shadow-rose-950
 outline-none
 outline
 outline-dashed
@@ -8496,6 +8936,7 @@ outline-slate-600
 outline-slate-700
 outline-slate-800
 outline-slate-900
+outline-slate-950
 outline-gray-50
 outline-gray-100
 outline-gray-200
@@ -8506,6 +8947,7 @@ outline-gray-600
 outline-gray-700
 outline-gray-800
 outline-gray-900
+outline-gray-950
 outline-zinc-50
 outline-zinc-100
 outline-zinc-200
@@ -8516,6 +8958,7 @@ outline-zinc-600
 outline-zinc-700
 outline-zinc-800
 outline-zinc-900
+outline-zinc-950
 outline-neutral-50
 outline-neutral-100
 outline-neutral-200
@@ -8526,6 +8969,7 @@ outline-neutral-600
 outline-neutral-700
 outline-neutral-800
 outline-neutral-900
+outline-neutral-950
 outline-stone-50
 outline-stone-100
 outline-stone-200
@@ -8536,6 +8980,7 @@ outline-stone-600
 outline-stone-700
 outline-stone-800
 outline-stone-900
+outline-stone-950
 outline-red-50
 outline-red-100
 outline-red-200
@@ -8546,6 +8991,7 @@ outline-red-600
 outline-red-700
 outline-red-800
 outline-red-900
+outline-red-950
 outline-orange-50
 outline-orange-100
 outline-orange-200
@@ -8556,6 +9002,7 @@ outline-orange-600
 outline-orange-700
 outline-orange-800
 outline-orange-900
+outline-orange-950
 outline-amber-50
 outline-amber-100
 outline-amber-200
@@ -8566,6 +9013,7 @@ outline-amber-600
 outline-amber-700
 outline-amber-800
 outline-amber-900
+outline-amber-950
 outline-yellow-50
 outline-yellow-100
 outline-yellow-200
@@ -8576,6 +9024,7 @@ outline-yellow-600
 outline-yellow-700
 outline-yellow-800
 outline-yellow-900
+outline-yellow-950
 outline-lime-50
 outline-lime-100
 outline-lime-200
@@ -8586,6 +9035,7 @@ outline-lime-600
 outline-lime-700
 outline-lime-800
 outline-lime-900
+outline-lime-950
 outline-green-50
 outline-green-100
 outline-green-200
@@ -8596,6 +9046,7 @@ outline-green-600
 outline-green-700
 outline-green-800
 outline-green-900
+outline-green-950
 outline-emerald-50
 outline-emerald-100
 outline-emerald-200
@@ -8606,6 +9057,7 @@ outline-emerald-600
 outline-emerald-700
 outline-emerald-800
 outline-emerald-900
+outline-emerald-950
 outline-teal-50
 outline-teal-100
 outline-teal-200
@@ -8616,6 +9068,7 @@ outline-teal-600
 outline-teal-700
 outline-teal-800
 outline-teal-900
+outline-teal-950
 outline-cyan-50
 outline-cyan-100
 outline-cyan-200
@@ -8626,6 +9079,7 @@ outline-cyan-600
 outline-cyan-700
 outline-cyan-800
 outline-cyan-900
+outline-cyan-950
 outline-sky-50
 outline-sky-100
 outline-sky-200
@@ -8636,6 +9090,7 @@ outline-sky-600
 outline-sky-700
 outline-sky-800
 outline-sky-900
+outline-sky-950
 outline-blue-50
 outline-blue-100
 outline-blue-200
@@ -8646,6 +9101,7 @@ outline-blue-600
 outline-blue-700
 outline-blue-800
 outline-blue-900
+outline-blue-950
 outline-indigo-50
 outline-indigo-100
 outline-indigo-200
@@ -8656,6 +9112,7 @@ outline-indigo-600
 outline-indigo-700
 outline-indigo-800
 outline-indigo-900
+outline-indigo-950
 outline-violet-50
 outline-violet-100
 outline-violet-200
@@ -8666,6 +9123,7 @@ outline-violet-600
 outline-violet-700
 outline-violet-800
 outline-violet-900
+outline-violet-950
 outline-purple-50
 outline-purple-100
 outline-purple-200
@@ -8676,6 +9134,7 @@ outline-purple-600
 outline-purple-700
 outline-purple-800
 outline-purple-900
+outline-purple-950
 outline-fuchsia-50
 outline-fuchsia-100
 outline-fuchsia-200
@@ -8686,6 +9145,7 @@ outline-fuchsia-600
 outline-fuchsia-700
 outline-fuchsia-800
 outline-fuchsia-900
+outline-fuchsia-950
 outline-pink-50
 outline-pink-100
 outline-pink-200
@@ -8696,6 +9156,7 @@ outline-pink-600
 outline-pink-700
 outline-pink-800
 outline-pink-900
+outline-pink-950
 outline-rose-50
 outline-rose-100
 outline-rose-200
@@ -8706,6 +9167,7 @@ outline-rose-600
 outline-rose-700
 outline-rose-800
 outline-rose-900
+outline-rose-950
 ring-0
 ring-1
 ring-2
@@ -8728,6 +9190,7 @@ ring-slate-600
 ring-slate-700
 ring-slate-800
 ring-slate-900
+ring-slate-950
 ring-gray-50
 ring-gray-100
 ring-gray-200
@@ -8738,6 +9201,7 @@ ring-gray-600
 ring-gray-700
 ring-gray-800
 ring-gray-900
+ring-gray-950
 ring-zinc-50
 ring-zinc-100
 ring-zinc-200
@@ -8748,6 +9212,7 @@ ring-zinc-600
 ring-zinc-700
 ring-zinc-800
 ring-zinc-900
+ring-zinc-950
 ring-neutral-50
 ring-neutral-100
 ring-neutral-200
@@ -8758,6 +9223,7 @@ ring-neutral-600
 ring-neutral-700
 ring-neutral-800
 ring-neutral-900
+ring-neutral-950
 ring-stone-50
 ring-stone-100
 ring-stone-200
@@ -8768,6 +9234,7 @@ ring-stone-600
 ring-stone-700
 ring-stone-800
 ring-stone-900
+ring-stone-950
 ring-red-50
 ring-red-100
 ring-red-200
@@ -8778,6 +9245,7 @@ ring-red-600
 ring-red-700
 ring-red-800
 ring-red-900
+ring-red-950
 ring-orange-50
 ring-orange-100
 ring-orange-200
@@ -8788,6 +9256,7 @@ ring-orange-600
 ring-orange-700
 ring-orange-800
 ring-orange-900
+ring-orange-950
 ring-amber-50
 ring-amber-100
 ring-amber-200
@@ -8798,6 +9267,7 @@ ring-amber-600
 ring-amber-700
 ring-amber-800
 ring-amber-900
+ring-amber-950
 ring-yellow-50
 ring-yellow-100
 ring-yellow-200
@@ -8808,6 +9278,7 @@ ring-yellow-600
 ring-yellow-700
 ring-yellow-800
 ring-yellow-900
+ring-yellow-950
 ring-lime-50
 ring-lime-100
 ring-lime-200
@@ -8818,6 +9289,7 @@ ring-lime-600
 ring-lime-700
 ring-lime-800
 ring-lime-900
+ring-lime-950
 ring-green-50
 ring-green-100
 ring-green-200
@@ -8828,6 +9300,7 @@ ring-green-600
 ring-green-700
 ring-green-800
 ring-green-900
+ring-green-950
 ring-emerald-50
 ring-emerald-100
 ring-emerald-200
@@ -8838,6 +9311,7 @@ ring-emerald-600
 ring-emerald-700
 ring-emerald-800
 ring-emerald-900
+ring-emerald-950
 ring-teal-50
 ring-teal-100
 ring-teal-200
@@ -8848,6 +9322,7 @@ ring-teal-600
 ring-teal-700
 ring-teal-800
 ring-teal-900
+ring-teal-950
 ring-cyan-50
 ring-cyan-100
 ring-cyan-200
@@ -8858,6 +9333,7 @@ ring-cyan-600
 ring-cyan-700
 ring-cyan-800
 ring-cyan-900
+ring-cyan-950
 ring-sky-50
 ring-sky-100
 ring-sky-200
@@ -8868,6 +9344,7 @@ ring-sky-600
 ring-sky-700
 ring-sky-800
 ring-sky-900
+ring-sky-950
 ring-blue-50
 ring-blue-100
 ring-blue-200
@@ -8878,6 +9355,7 @@ ring-blue-600
 ring-blue-700
 ring-blue-800
 ring-blue-900
+ring-blue-950
 ring-indigo-50
 ring-indigo-100
 ring-indigo-200
@@ -8888,6 +9366,7 @@ ring-indigo-600
 ring-indigo-700
 ring-indigo-800
 ring-indigo-900
+ring-indigo-950
 ring-violet-50
 ring-violet-100
 ring-violet-200
@@ -8898,6 +9377,7 @@ ring-violet-600
 ring-violet-700
 ring-violet-800
 ring-violet-900
+ring-violet-950
 ring-purple-50
 ring-purple-100
 ring-purple-200
@@ -8908,6 +9388,7 @@ ring-purple-600
 ring-purple-700
 ring-purple-800
 ring-purple-900
+ring-purple-950
 ring-fuchsia-50
 ring-fuchsia-100
 ring-fuchsia-200
@@ -8918,6 +9399,7 @@ ring-fuchsia-600
 ring-fuchsia-700
 ring-fuchsia-800
 ring-fuchsia-900
+ring-fuchsia-950
 ring-pink-50
 ring-pink-100
 ring-pink-200
@@ -8928,6 +9410,7 @@ ring-pink-600
 ring-pink-700
 ring-pink-800
 ring-pink-900
+ring-pink-950
 ring-rose-50
 ring-rose-100
 ring-rose-200
@@ -8938,6 +9421,7 @@ ring-rose-600
 ring-rose-700
 ring-rose-800
 ring-rose-900
+ring-rose-950
 ring-opacity-0
 ring-opacity-5
 ring-opacity-10
@@ -8973,6 +9457,7 @@ ring-offset-slate-600
 ring-offset-slate-700
 ring-offset-slate-800
 ring-offset-slate-900
+ring-offset-slate-950
 ring-offset-gray-50
 ring-offset-gray-100
 ring-offset-gray-200
@@ -8983,6 +9468,7 @@ ring-offset-gray-600
 ring-offset-gray-700
 ring-offset-gray-800
 ring-offset-gray-900
+ring-offset-gray-950
 ring-offset-zinc-50
 ring-offset-zinc-100
 ring-offset-zinc-200
@@ -8993,6 +9479,7 @@ ring-offset-zinc-600
 ring-offset-zinc-700
 ring-offset-zinc-800
 ring-offset-zinc-900
+ring-offset-zinc-950
 ring-offset-neutral-50
 ring-offset-neutral-100
 ring-offset-neutral-200
@@ -9003,6 +9490,7 @@ ring-offset-neutral-600
 ring-offset-neutral-700
 ring-offset-neutral-800
 ring-offset-neutral-900
+ring-offset-neutral-950
 ring-offset-stone-50
 ring-offset-stone-100
 ring-offset-stone-200
@@ -9013,6 +9501,7 @@ ring-offset-stone-600
 ring-offset-stone-700
 ring-offset-stone-800
 ring-offset-stone-900
+ring-offset-stone-950
 ring-offset-red-50
 ring-offset-red-100
 ring-offset-red-200
@@ -9023,6 +9512,7 @@ ring-offset-red-600
 ring-offset-red-700
 ring-offset-red-800
 ring-offset-red-900
+ring-offset-red-950
 ring-offset-orange-50
 ring-offset-orange-100
 ring-offset-orange-200
@@ -9033,6 +9523,7 @@ ring-offset-orange-600
 ring-offset-orange-700
 ring-offset-orange-800
 ring-offset-orange-900
+ring-offset-orange-950
 ring-offset-amber-50
 ring-offset-amber-100
 ring-offset-amber-200
@@ -9043,6 +9534,7 @@ ring-offset-amber-600
 ring-offset-amber-700
 ring-offset-amber-800
 ring-offset-amber-900
+ring-offset-amber-950
 ring-offset-yellow-50
 ring-offset-yellow-100
 ring-offset-yellow-200
@@ -9053,6 +9545,7 @@ ring-offset-yellow-600
 ring-offset-yellow-700
 ring-offset-yellow-800
 ring-offset-yellow-900
+ring-offset-yellow-950
 ring-offset-lime-50
 ring-offset-lime-100
 ring-offset-lime-200
@@ -9063,6 +9556,7 @@ ring-offset-lime-600
 ring-offset-lime-700
 ring-offset-lime-800
 ring-offset-lime-900
+ring-offset-lime-950
 ring-offset-green-50
 ring-offset-green-100
 ring-offset-green-200
@@ -9073,6 +9567,7 @@ ring-offset-green-600
 ring-offset-green-700
 ring-offset-green-800
 ring-offset-green-900
+ring-offset-green-950
 ring-offset-emerald-50
 ring-offset-emerald-100
 ring-offset-emerald-200
@@ -9083,6 +9578,7 @@ ring-offset-emerald-600
 ring-offset-emerald-700
 ring-offset-emerald-800
 ring-offset-emerald-900
+ring-offset-emerald-950
 ring-offset-teal-50
 ring-offset-teal-100
 ring-offset-teal-200
@@ -9093,6 +9589,7 @@ ring-offset-teal-600
 ring-offset-teal-700
 ring-offset-teal-800
 ring-offset-teal-900
+ring-offset-teal-950
 ring-offset-cyan-50
 ring-offset-cyan-100
 ring-offset-cyan-200
@@ -9103,6 +9600,7 @@ ring-offset-cyan-600
 ring-offset-cyan-700
 ring-offset-cyan-800
 ring-offset-cyan-900
+ring-offset-cyan-950
 ring-offset-sky-50
 ring-offset-sky-100
 ring-offset-sky-200
@@ -9113,6 +9611,7 @@ ring-offset-sky-600
 ring-offset-sky-700
 ring-offset-sky-800
 ring-offset-sky-900
+ring-offset-sky-950
 ring-offset-blue-50
 ring-offset-blue-100
 ring-offset-blue-200
@@ -9123,6 +9622,7 @@ ring-offset-blue-600
 ring-offset-blue-700
 ring-offset-blue-800
 ring-offset-blue-900
+ring-offset-blue-950
 ring-offset-indigo-50
 ring-offset-indigo-100
 ring-offset-indigo-200
@@ -9133,6 +9633,7 @@ ring-offset-indigo-600
 ring-offset-indigo-700
 ring-offset-indigo-800
 ring-offset-indigo-900
+ring-offset-indigo-950
 ring-offset-violet-50
 ring-offset-violet-100
 ring-offset-violet-200
@@ -9143,6 +9644,7 @@ ring-offset-violet-600
 ring-offset-violet-700
 ring-offset-violet-800
 ring-offset-violet-900
+ring-offset-violet-950
 ring-offset-purple-50
 ring-offset-purple-100
 ring-offset-purple-200
@@ -9153,6 +9655,7 @@ ring-offset-purple-600
 ring-offset-purple-700
 ring-offset-purple-800
 ring-offset-purple-900
+ring-offset-purple-950
 ring-offset-fuchsia-50
 ring-offset-fuchsia-100
 ring-offset-fuchsia-200
@@ -9163,6 +9666,7 @@ ring-offset-fuchsia-600
 ring-offset-fuchsia-700
 ring-offset-fuchsia-800
 ring-offset-fuchsia-900
+ring-offset-fuchsia-950
 ring-offset-pink-50
 ring-offset-pink-100
 ring-offset-pink-200
@@ -9173,6 +9677,7 @@ ring-offset-pink-600
 ring-offset-pink-700
 ring-offset-pink-800
 ring-offset-pink-900
+ring-offset-pink-950
 ring-offset-rose-50
 ring-offset-rose-100
 ring-offset-rose-200
@@ -9183,6 +9688,7 @@ ring-offset-rose-600
 ring-offset-rose-700
 ring-offset-rose-800
 ring-offset-rose-900
+ring-offset-rose-950
 blur-0
 blur-none
 blur-sm
