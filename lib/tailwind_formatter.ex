@@ -24,7 +24,7 @@ defmodule TailwindFormatter do
       Regex.replace(Defaults.class_regex(), placeholder_contents, fn class_html_attr ->
         [class_attr, class_val] = String.split(class_html_attr, ~r/[=:]/, parts: 2)
         needs_curlies = String.match?(class_val, ~r/{/)
-        maybe_concatenated = String.match?(class_val, ~r/<>/)
+        is_concatenated = String.match?(class_val, ~r/<>/)
         variable_only = not String.match?(class_val, ~r/"/)
 
         trimmed_classes =
@@ -35,39 +35,81 @@ defmodule TailwindFormatter do
           |> String.trim("\"")
           |> String.trim()
 
-        [trimmed_classes, concatenation] =
-          if maybe_concatenated do
+        [trimmed_classes | concatenations] =
+          if is_concatenated do
             String.split(trimmed_classes, ~r/" <>/)
           else
             [trimmed_classes, ""]
           end
 
-        if variable_only or trimmed_classes == "" or
-             Regex.match?(Defaults.invalid_input_regex(), trimmed_classes) do
+        if variable_only or trimmed_classes == "" or invalid_input(trimmed_classes) do
           class_html_attr
         else
-          sorted_list =
-            trimmed_classes
-            |> String.split()
-            |> sort_variant_chains()
-            |> sort()
-            |> Enum.join(" ")
-            |> then(fn sorted ->
-              if maybe_concatenated do
-                sorted <> " \" <>" <> concatenation
-              else
-                sorted
-              end
-            end)
-
           delimiter = if String.contains?(class_html_attr, "class:"), do: ": ", else: "="
 
-          class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
+          sorting(
+            trimmed_classes,
+            concatenations,
+            class_attr,
+            delimiter,
+            is_concatenated,
+            needs_curlies
+          )
         end
       end)
 
     undo_placeholders(sorted_html, dynamic_classes)
   end
+
+  defp invalid_input(trimmed_classes),
+    do: Regex.match?(Defaults.invalid_input_regex(), trimmed_classes)
+
+  defp sorting(
+         trimmed_classes,
+         [concatenation] = _concatenations,
+         class_attr,
+         delimiter,
+         is_concatenated,
+         needs_curlies
+       ) do
+    sorted_list =
+      trimmed_classes
+      |> sort_classes_string()
+      |> then(fn sorted ->
+        if is_concatenated do
+          sorted <> " \" <>" <> concatenation
+        else
+          sorted
+        end
+      end)
+
+    class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
+  end
+
+  defp sorting(
+         trimmed_classes,
+         concatenations,
+         class_attr,
+         delimiter,
+         true,
+         needs_curlies
+       ) do
+    concatenations
+    |> Enum.map(&(" \" <> " <> sort_classes_string(&1)))
+    |> List.insert_at(0, sort_classes_string(trimmed_classes))
+    |> Enum.join("")
+    # trimmed_classes comes once without and once with space somehow
+    |> String.replace("  ", " ")
+    |> then(fn sorted ->
+      class_attr <> delimiter <> wrap_classes(sorted, needs_curlies)
+    end)
+  end
+
+  # when we want to sort but on a concatenations is a slash appended
+  defp sort_classes_string(" \"" <> str = _reg), do: " \"" <> sort_classes_string(str)
+
+  defp sort_classes_string(str),
+    do: str |> String.split() |> sort_variant_chains() |> sort() |> Enum.join(" ")
 
   defp validate_inline_fns(contents) do
     Regex.scan(Defaults.func_regex(), contents, capture: :all_but_first)
