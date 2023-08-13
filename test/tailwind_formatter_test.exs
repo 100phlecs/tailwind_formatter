@@ -514,5 +514,29 @@ defmodule TailwindFormatterTest do
 
       assert_formatter_output(input, input)
     end
+
+    test "works with multiple concatenations in one line" do
+      input = """
+      <div class={"odd:decoration-slate-50 uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl" <> "px-3  py-3 rounded-lg   " <> "px-3     py-5 rounded-lg " <> "text-sm" <> "tomato"}></div>
+      """
+
+      expected = """
+      <div class={"tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500 " <> "rounded-lg px-3 py-3 " <> "rounded-lg px-3 py-5 " <> "text-sm " <> "tomato"}></div>
+      """
+
+      assert_formatter_output(input, expected)
+    end
+
+    test "issue#16" do
+      input = """
+      <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+      """
+
+      expected = """
+      <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+      """
+
+      assert_formatter_output(input, expected)
+    end
   end
 end
