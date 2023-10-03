@@ -11,7 +11,7 @@ classes used in HEEx templates and `~H` sigils.
 that sorts TailwindCSS classes found in your templates. It takes
 inspiration from Tailwind's official [Prettier plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
 
-> Note: This formatter requires Elixir v1.13.4 or later.
+> Note: This formatter requires Elixir v1.15 or later.
 
 ## Installation
 
@@ -50,32 +50,13 @@ plugin can be added after the HTML formatter in your `.formatter.exs`:
 ]
 ```
 
-### Setup for Elixir v1.13.4 and v1.14
+### Setup 
 
-Current stable versions of Elixir do not support applying multiple
-formatter plugins to the same extension type. To overcome this, a
-`MultiFormatter` is provided that is equivalent to running the
-`Phoenix.LiveView.HTMLFormatter` first, followed by
-`TailwindFormatter`.
+Update your `.formatter.exs` to include `TailwindFormatter`.
 
 ```elixir
   [
-    plugins: [TailwindFormatter.MultiFormatter],
-    inputs: [
-      "*.{heex,ex,exs}",
-      "priv/*/seeds.exs",
-      "{config,lib,test}/**/*.{heex,ex,exs}"
-    ],
-    # ...
-  ]
-```
-
-If you only want Tailwind class organization and not HTML formatting,
-you can simply specify only the `TailwindFormatter`:
-
-```elixir
-  [
-    plugins: [TailwindFormatter],
+    plugins: [Phoenix.LiveView.HTMLFormatter, TailwindFormatter],
     inputs: [
       "*.{heex,ex,exs}",
       "priv/*/seeds.exs",

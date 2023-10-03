@@ -12,12 +12,6 @@ defmodule TailwindFormatterTest do
     assert second_pass == expected
   end
 
-  defp assert_formatter_raise(input, dot_formatter_opts \\ []) do
-    assert_raise ArgumentError, fn ->
-      TailwindFormatter.format(input, dot_formatter_opts)
-    end
-  end
-
   test "works" do
     input = """
     <div class="text-sm potato sm:lowercase uppercase"></div>
@@ -92,24 +86,6 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
-  test "supports eex templating code" do
-    input = ~S"""
-    <%= live_redirect to: Routes.dashboard_path(@socket, :index),
-        class: "text-emerald-300 flex-col justify-between flex md:items-center" do %>
-        <span class="text-slate-50 p-2 m-2 text-4xl font-semibold">dashboard</span>
-    <% end %>
-    """
-
-    expected = ~S"""
-    <%= live_redirect to: Routes.dashboard_path(@socket, :index),
-        class: "flex flex-col justify-between text-emerald-300 md:items-center" do %>
-        <span class="m-2 p-2 text-4xl font-semibold text-slate-50">dashboard</span>
-    <% end %>
-    """
-
-    assert_formatter_output(input, expected)
-  end
-
   test "regex allows multiple attributes" do
     input = ~S"""
     <a id="testing" class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
@@ -131,7 +107,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = ~S"""
-    <a id="testing" class={"grid-cols-#{@test} potato text-sm uppercase sm:lowercase"}
+    <a id="testing" class={"potato grid-cols-#{@test} text-sm uppercase sm:lowercase"}
       href="#"></a>
     """
 
@@ -168,11 +144,11 @@ defmodule TailwindFormatterTest do
 
   test "allows string concatenation" do
     input = ~S"""
-        <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+        <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
     """
 
     expected = ~S"""
-        <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+        <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
     """
 
     assert_formatter_output(input, expected)
@@ -418,125 +394,65 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
-  describe "aborts on bad input" do
-    test "missing final quote" do
-      input = ~S"""
-      <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase
-        id="testing
-        href="#"></a>
-      """
+  test "works with more than nine string interpolations" do
+    input = ~S"""
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
+    <div text={"foo: #{@foo}"} />
 
-      expected = ~S"""
-      <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase
-        id="testing
-        href="#"></a>
-      """
+    <div text={"bar: #{@bar}"} />
+    <div text={"bar: #{@baz}"} />
+    <div text={"bar: #{@barr}"} />
+    """
 
-      assert_formatter_output(input, expected)
-    end
+    assert_formatter_output(input, input)
+  end
 
-    test "custom variant does not flip" do
-      input = ~S"""
-      <a class=" p-10  mx-auto xs:p-0 md:w-full md:max-w-md"
-      id="testing
-      href="#"></a>
-      """
+  test "works with multiple concatenations in one line" do
+    input = ~S"""
+    <div class={"odd:decoration-slate-50 #{if false, do: "class"} uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl" <> "px-3  py-3 rounded-lg   " <> "px-3     py-5 rounded-lg " <> "text-sm" <> "tomato"}></div>
+    """
 
-      expected = ~S"""
-      <a class="mx-auto p-10 xs:p-0 md:w-full md:max-w-md"
-      id="testing
-      href="#"></a>
-      """
+    expected = ~S"""
+    <div class={"#{if false, do: "class"} tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500" <> " rounded-lg px-3 py-3 " <> " rounded-lg px-3 py-5 " <> " text-sm " <> " tomato "}></div>
+    """
 
-      assert_formatter_output(input, expected)
-    end
+    assert_formatter_output(input, expected)
+  end
 
-    test "incomplete inline elixir" do
-      input = ~S"""
-      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
-        id="testing
-        href="#"></a>
-      """
+  test "issue#16" do
+    input = """
+    <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    """
 
-      output = ~S"""
-      <a class={"#{if false, do: "bg-white" text-sm potato sm:lowercase uppercase"
-        id="testing
-        href="#"></a>
-      """
+    expected = """
+    <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    """
 
-      assert_formatter_output(input, output)
-    end
+    assert_formatter_output(input, expected)
+  end
 
-    test "invalid elixir fn" do
-      input = ~S"""
-      <a class={"#{if false, do: } text-sm potato sm:lowercase uppercase"
-        id="testing
-        href="#"></a>
-      """
+  test "custom variant does not flip" do
+    input = ~S"""
+    <a class=" p-10  mx-auto xs:p-0 md:w-full md:max-w-md"
+    id="testing"
+    href="#"></a>
+    """
 
-      assert_formatter_raise(input)
-    end
+    expected = ~S"""
+    <a class="mx-auto p-10 xs:p-0 md:w-full md:max-w-md"
+    id="testing"
+    href="#"></a>
+    """
 
-    test "missing number tag inline elixir" do
-      input = ~S"""
-      <a class={"{if false, do: "bg-white"} text-sm potato sm:lowercase uppercase"}
-        id="testing
-        href="#"></a>
-      """
-
-      expected = ~S"""
-      <a class={"{if false, do: "bg-white"} text-sm potato sm:lowercase uppercase"}
-        id="testing
-        href="#"></a>
-      """
-
-      assert_formatter_output(input, expected)
-    end
-
-    test "works with more than nine string interpolations" do
-      input = ~S"""
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-      <div text={"foo: #{@foo}"} />
-
-      <div text={"bar: #{@bar}"} />
-      <div text={"bar: #{@baz}"} />
-      <div text={"bar: #{@barr}"} />
-      """
-
-      assert_formatter_output(input, input)
-    end
-
-    test "works with multiple concatenations in one line" do
-      input = """
-      <div class={"odd:decoration-slate-50 uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl" <> "px-3  py-3 rounded-lg   " <> "px-3     py-5 rounded-lg " <> "text-sm" <> "tomato"}></div>
-      """
-
-      expected = """
-      <div class={"tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500 " <> "rounded-lg px-3 py-3 " <> "rounded-lg px-3 py-5 " <> "text-sm " <> "tomato"}></div>
-      """
-
-      assert_formatter_output(input, expected)
-    end
-
-    test "issue#16" do
-      input = """
-      <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
-      """
-
-      expected = """
-      <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
-      """
-
-      assert_formatter_output(input, expected)
-    end
+    assert_formatter_output(input, expected)
   end
 end

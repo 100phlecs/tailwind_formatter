@@ -1,14 +1,14 @@
 defmodule TailwindFormatter.MixProject do
   use Mix.Project
 
-  @version "0.3.7"
+  @version "0.4.0"
   @url "https://github.com/100phlecs/tailwind_formatter"
 
   def project do
     [
       app: :tailwind_formatter,
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.15",
       name: "TailwindFormatter",
       description: "A Mix formatter that sorts your Tailwind classes",
       deps: deps(),
@@ -45,7 +45,7 @@ defmodule TailwindFormatter.MixProject do
     [
       # docs
       {:ex_doc, "~> 0.28", only: :dev, runtime: false},
-      {:phoenix_live_view, ">= 0.17.6", optional: true}
+      {:phoenix_live_view, ">= 0.17.6"}
     ]
   end
 end
