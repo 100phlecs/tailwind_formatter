@@ -5,7 +5,7 @@ defmodule TailwindFormatter do
              |> String.split("<!-- MDOC !-->")
              |> Enum.fetch!(1)
 
-  alias TailwindFormatter.{Defaults, HEExTokenizer}
+  alias TailwindFormatter.{Order, HEExTokenizer}
 
   @behaviour Mix.Tasks.Format
 
@@ -80,18 +80,17 @@ defmodule TailwindFormatter do
       |> sort()
       |> String.split(@placeholder)
       |> weave_in_prefixed_code(prefix_map)
-      |> List.flatten()
 
     pad_interpolations(no_prefix) ++ sorted_classes
   end
 
   defp weave_in_prefixed_code(class_groups, prefix_map) do
-    Enum.map(class_groups, fn class_group ->
+    Enum.flat_map(class_groups, fn class_group ->
       if String.ends_with?(class_group, "-") do
         {rest, dynamic_prefix} = extract_dynamic_prefix(class_group)
         [rest, " #{dynamic_prefix}", Map.fetch!(prefix_map, dynamic_prefix)]
       else
-        class_group
+        [class_group]
       end
     end)
   end
@@ -147,8 +146,8 @@ defmodule TailwindFormatter do
   end
 
   defp variant?(class), do: String.contains?(class, ":")
-  defp class_position(class), do: Map.get(Defaults.class_order(), class, -1)
-  defp variant_position(variant), do: Map.get(Defaults.variant_order(), variant, -1)
+  defp class_position(class), do: Map.get(Order.classes(), class, -1)
+  defp variant_position(variant), do: Map.get(Order.variants(), variant, -1)
 
   defp sort_variant_classes(variants) do
     variants
