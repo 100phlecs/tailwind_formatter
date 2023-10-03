@@ -64,21 +64,13 @@ defmodule TailwindFormatter do
   end
 
   defp handle_interpolation(children) do
-    case dynamic_classes(children) do
-      [] ->
-        sort_basic_interpolation(children)
+    dynamic_groups = dynamic_classes(children)
 
-      classes ->
-        sort_dynamic_interpolation(children, classes)
-    end
-  end
-
-  def sort_dynamic_interpolation(children, class_groups) do
     {classes, interpolations} =
       children
       |> Enum.map_reduce("", fn
         node, _acc when is_binary(node) ->
-          if node in class_groups, do: extract_dynamic_prefix(node), else: {node, ""}
+          if node in dynamic_groups, do: extract_dynamic_prefix(node), else: {node, ""}
 
         node, acc when is_tuple(node) ->
           {{acc, node}, ""}
@@ -86,34 +78,30 @@ defmodule TailwindFormatter do
       |> then(&elem(&1, 0))
       |> Enum.split_with(&is_binary/1)
 
-    prefix_map = Map.new(interpolations)
+    {no_prefix, prefixes} = Enum.split_with(interpolations, &(elem(&1, 0) == ""))
+    prefix_map = Map.new(prefixes)
     placeholders = prefix_map |> Map.keys() |> Enum.map(&"#{&1}#{@placeholder}")
 
-    (classes ++ placeholders)
-    |> Enum.join(" ")
-    |> sort()
-    |> String.split(@placeholder)
-    |> Enum.map(fn class_group ->
-      if String.ends_with?(class_group, "-") do
-        {rest, dynamic_prefix} = extract_dynamic_prefix(class_group)
-        [rest, " #{dynamic_prefix}", Map.fetch!(prefix_map, dynamic_prefix)]
-      else
-        class_group
-      end
-    end)
-    |> List.flatten()
-  end
-
-  defp sort_basic_interpolation(children) do
-    {classes, interpolations} = Enum.split_with(children, &is_binary/1)
-
     sorted_classes =
-      classes
+      (classes ++ placeholders)
       |> Enum.join(" ")
       |> sort()
-      |> String.replace_prefix("", " ")
+      |> String.split(@placeholder)
+      |> Enum.map(fn class_group ->
+        if String.ends_with?(class_group, "-") do
+          {rest, dynamic_prefix} = extract_dynamic_prefix(class_group)
+          [rest, " #{dynamic_prefix}", Map.fetch!(prefix_map, dynamic_prefix)]
+        else
+          class_group
+        end
+      end)
+      |> List.flatten()
 
-    Enum.intersperse(interpolations, " ") ++ [sorted_classes]
+    case no_prefix do
+      [] -> []
+      list -> list |> Enum.map(&elem(&1, 1)) |> Enum.intersperse(" ") |> Enum.concat([" "])
+    end ++
+      sorted_classes
   end
 
   defp extract_dynamic_prefix(text) do
