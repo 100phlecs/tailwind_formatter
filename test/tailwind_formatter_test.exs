@@ -107,7 +107,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = ~S"""
-    <a id="testing" class={"potato grid-cols-#{@test} text-sm uppercase sm:lowercase"}
+    <a id="testing" class={"grid-cols-#{@test} potato text-sm uppercase sm:lowercase"}
       href="#"></a>
     """
 
@@ -148,7 +148,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = ~S"""
-        <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+        <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
     """
 
     assert_formatter_output(input, expected)
@@ -422,7 +422,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = ~S"""
-    <div class={"#{if false, do: "class"} tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500" <> " rounded-lg px-3 py-3 " <> " rounded-lg px-3 py-5 " <> " text-sm " <> " tomato "}></div>
+    <div class={"#{if false, do: "class"} tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500 " <> " rounded-lg px-3 py-3 " <> " rounded-lg px-3 py-5 " <> " text-sm " <> " tomato"}></div>
     """
 
     assert_formatter_output(input, expected)
@@ -434,7 +434,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = """
-    <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    <div class={"h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
     """
 
     assert_formatter_output(input, expected)

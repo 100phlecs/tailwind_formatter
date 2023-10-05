@@ -43,12 +43,24 @@ defmodule TailwindFormatter do
       |> Inspect.Algebra.format(:infinity)
       |> IO.iodata_to_binary()
 
+    sorted_classes =
+      if String.contains?(sorted_classes, "\""),
+        do: trim_classes(sorted_classes),
+        else: sorted_classes
+
     String.replace(contents, expr_class, sorted_classes)
+  end
+
+  defp trim_classes(classes) do
+    classes
+    |> String.trim("\"")
+    |> String.trim(" ")
+    |> then(fn str -> "\"#{str}\"" end)
   end
 
   defp sort_expr({:<>, meta, children}), do: {:<>, meta, handle_concatenation(children)}
   defp sort_expr({:<<>>, meta, children}), do: {:<<>>, meta, handle_interpolation(children)}
-  defp sort_expr({:__block__, meta, [text]}), do: {:__block__, meta, [sort_expr(text)]}
+  defp sort_expr({:__block__, meta, [children]}), do: {:__block__, meta, [sort_expr(children)]}
   defp sort_expr(text) when is_binary(text), do: sort(text)
   defp sort_expr(node), do: node
 
@@ -65,63 +77,38 @@ defmodule TailwindFormatter do
   end
 
   defp handle_interpolation(children) do
-    {classes, code} =
-      children
-      |> group_dynamic_prefixes()
-      |> Enum.split_with(&is_binary/1)
+    {classes_with_placeholders, {placeholder_map, _index}} =
+      Enum.map_reduce(children, {%{}, 0}, fn
+        str, acc when is_binary(str) ->
+          {str, acc}
 
-    {no_prefix, prefixed_code} = Enum.split_with(code, fn {prefix, _node} -> prefix == "" end)
+        node, {placeholder_map, index} ->
+          {"#{@placeholder}#{index}#{@placeholder}",
+           {Map.put(placeholder_map, "#{index}", node), index + 1}}
+      end)
 
-    prefix_map = Map.new(prefixed_code)
-    placeholders = Enum.map(Map.keys(prefix_map), &"#{&1}#{@placeholder}")
-
-    sorted_classes =
-      (classes ++ placeholders)
-      |> Enum.join(" ")
-      |> sort()
-      |> String.split(@placeholder)
-      |> weave_in_prefixed_code(prefix_map)
-
-    pad_interpolations(no_prefix) ++ sorted_classes
+    classes_with_placeholders
+    |> Enum.reduce("", fn class, acc ->
+      cond do
+        placeholder?(class) or String.starts_with?(class, "-") -> acc <> class
+        true -> "#{acc} #{class}"
+      end
+    end)
+    |> sort()
+    |> String.split()
+    |> weave_in_code(placeholder_map)
   end
 
-  defp weave_in_prefixed_code(class_groups, prefix_map) do
-    Enum.flat_map(class_groups, fn class_group ->
-      if String.ends_with?(class_group, "-") do
-        {rest, dynamic_prefix} = extract_dynamic_prefix(class_group)
-        [rest, " #{dynamic_prefix}", Map.fetch!(prefix_map, dynamic_prefix)]
+  defp weave_in_code(classes, placeholder_map) do
+    Enum.flat_map(classes, fn class ->
+      if placeholder?(class) do
+        [prefix, index, suffix] = String.split(class, @placeholder)
+        [prefix, Map.fetch!(placeholder_map, index), suffix, " "]
       else
-        [class_group]
+        [class, " "]
       end
     end)
   end
-
-  defp group_dynamic_prefixes(children) do
-    dynamic_groups = dynamic_classes(children)
-
-    children
-    |> Enum.map_reduce("", fn
-      node, _acc when is_binary(node) ->
-        if node in dynamic_groups, do: extract_dynamic_prefix(node), else: {node, ""}
-
-      node, acc when is_tuple(node) ->
-        {{acc, node}, ""}
-    end)
-    |> then(&elem(&1, 0))
-  end
-
-  defp pad_interpolations([]), do: []
-
-  defp pad_interpolations(list),
-    do: list |> Enum.map(&elem(&1, 1)) |> Enum.intersperse(" ") |> Enum.concat([" "])
-
-  defp extract_dynamic_prefix(text) do
-    [dynamic_prefix | rest] = text |> String.split() |> Enum.reverse()
-    {Enum.join(Enum.reverse(rest), " "), dynamic_prefix}
-  end
-
-  defp dynamic_classes(children),
-    do: Enum.filter(children, fn node -> is_binary(node) and String.ends_with?(node, "-") end)
 
   defp sort_variant_chains(classes) do
     classes
@@ -146,8 +133,12 @@ defmodule TailwindFormatter do
     Enum.sort_by(base_classes, &class_position/1) ++ sort_variant_classes(variants)
   end
 
+  defp placeholder?(class), do: String.contains?(class, @placeholder)
   defp variant?(class), do: String.contains?(class, ":")
-  defp class_position(class), do: Map.get(Order.classes(), class, -1)
+
+  defp class_position(class),
+    do: if(placeholder?(class), do: -1_000_000, else: Map.get(Order.classes(), class, -1))
+
   defp variant_position(variant), do: Map.get(Order.variants(), variant, -1)
 
   defp sort_variant_classes(variants) do

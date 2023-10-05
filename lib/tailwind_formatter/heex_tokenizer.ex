@@ -7,8 +7,8 @@ defmodule TailwindFormatter.HEExTokenizer do
   def tokenize(source) do
     {:ok, eex_nodes} = EEx.tokenize(source)
 
-    {tokens, cont, _has_tags} =
-      Enum.reduce(eex_nodes, {[], :text, nil}, &do_tokenize(&1, &2, source))
+    {tokens, cont} =
+      Enum.reduce(eex_nodes, {[], :text}, &do_tokenize(&1, &2, source))
 
     Tokenizer.finalize(tokens, "nofile", cont, source)
   end
@@ -17,7 +17,8 @@ defmodule TailwindFormatter.HEExTokenizer do
     text = List.to_string(text)
     meta = [line: meta.line, column: meta.column]
     state = Tokenizer.init(0, "nofile", source, Phoenix.LiveView.HTMLEngine)
-    Tokenizer.tokenize(text, meta, tokens, cont, state)
+    {tokens, cont, _has_tags} = Tokenizer.tokenize(text, meta, tokens, cont, state)
+    {tokens, cont}
   end
 
   defp do_tokenize({:comment, text, meta}, {tokens, cont}, _contents) do
