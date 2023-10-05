@@ -140,7 +140,7 @@ defmodule TailwindFormatter do
 
   defp sort([]), do: []
 
-  defp sort(class_list) do
+  defp sort(class_list) when is_list(class_list) do
     {variants, base_classes} = Enum.split_with(class_list, &variant?/1)
 
     Enum.sort_by(base_classes, &class_position/1) ++ sort_variant_classes(variants)
