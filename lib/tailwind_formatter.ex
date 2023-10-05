@@ -89,10 +89,9 @@ defmodule TailwindFormatter do
 
     classes_with_placeholders
     |> Enum.reduce("", fn class, acc ->
-      cond do
-        placeholder?(class) or String.starts_with?(class, "-") -> acc <> class
-        true -> "#{acc} #{class}"
-      end
+      if placeholder?(class) or String.starts_with?(class, "-"),
+        do: acc <> class,
+        else: "#{acc} #{class}"
     end)
     |> sort()
     |> String.split()
