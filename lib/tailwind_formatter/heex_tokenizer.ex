@@ -6,7 +6,10 @@ defmodule TailwindFormatter.HEExTokenizer do
   @eex_expr [:start_expr, :expr, :end_expr, :middle_expr]
   def tokenize(source) do
     {:ok, eex_nodes} = EEx.tokenize(source)
-    {tokens, cont, _has_tags} = Enum.reduce(eex_nodes, {[], :text, nil}, &do_tokenize(&1, &2, source))
+
+    {tokens, cont, _has_tags} =
+      Enum.reduce(eex_nodes, {[], :text, nil}, &do_tokenize(&1, &2, source))
+
     Tokenizer.finalize(tokens, "nofile", cont, source)
   end
 
