@@ -48,7 +48,8 @@ defmodule TailwindFormatter do
 
   defp sort_expr({:<>, meta, children}), do: {:<>, meta, handle_concatenation(children)}
   defp sort_expr({:<<>>, meta, children}), do: {:<<>>, meta, handle_interpolation(children)}
-  defp sort_expr({:__block__, meta, [text]}), do: {:__block__, meta, [sort(text)]}
+  defp sort_expr({:__block__, meta, [text]}), do: {:__block__, meta, [sort_expr(text)]}
+  defp sort_expr(text) when is_binary(text), do: sort(text)
   defp sort_expr(node), do: node
 
   defp handle_concatenation(children) do
