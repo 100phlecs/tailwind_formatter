@@ -5,265 +5,152 @@ defmodule TailwindFormatter do
              |> String.split("<!-- MDOC !-->")
              |> Enum.fetch!(1)
 
-  alias TailwindFormatter.Defaults
+  alias TailwindFormatter.{Order, HEExTokenizer}
 
-  if Version.match?(System.version(), ">= 1.13.0") do
-    @behaviour Mix.Tasks.Format
-  end
+  @behaviour Mix.Tasks.Format
+
+  @placeholder "💧"
 
   def features(_opts) do
     [sigils: [:H], extensions: [".heex"]]
   end
 
   def format(contents, _opts) do
-    {:ok, contents} = validate_inline_fns(contents)
-
-    {:ok, placeholder_contents, dynamic_classes} = placehold_dynamic_classes(contents)
-
-    sorted_html =
-      Regex.replace(Defaults.class_regex(), placeholder_contents, fn class_html_attr ->
-        [class_attr, class_val] = String.split(class_html_attr, ~r/[=:]/, parts: 2)
-        needs_curlies = String.match?(class_val, ~r/{/)
-        is_concatenated = String.match?(class_val, ~r/<>/)
-        variable_only = not String.match?(class_val, ~r/"/)
-
-        trimmed_classes =
-          class_val
-          |> String.trim()
-          |> String.trim("{")
-          |> String.trim("}")
-          |> String.trim("\"")
-          |> String.trim()
-
-        [trimmed_classes | concatenations] =
-          if is_concatenated do
-            String.split(trimmed_classes, ~r/" <>/)
-          else
-            [trimmed_classes, ""]
-          end
-
-        if variable_only or trimmed_classes == "" or invalid_input(trimmed_classes) do
-          class_html_attr
-        else
-          delimiter = if String.contains?(class_html_attr, "class:"), do: ": ", else: "="
-
-          sorting(
-            trimmed_classes,
-            concatenations,
-            class_attr,
-            delimiter,
-            is_concatenated,
-            needs_curlies
-          )
-        end
-      end)
-
-    undo_placeholders(sorted_html, dynamic_classes)
+    contents
+    |> HEExTokenizer.tokenize()
+    |> Enum.reduce([], &collect_classes/2)
+    |> Enum.reduce(contents, &sort_classes/2)
   end
 
-  defp invalid_input(trimmed_classes),
-    do: Regex.match?(Defaults.invalid_input_regex(), trimmed_classes)
-
-  defp sorting(
-         trimmed_classes,
-         [concatenation] = _concatenations,
-         class_attr,
-         delimiter,
-         is_concatenated,
-         needs_curlies
-       ) do
-    sorted_list =
-      trimmed_classes
-      |> sort_classes_string()
-      |> then(fn sorted ->
-        if is_concatenated do
-          sorted <> " \" <>" <> concatenation
-        else
-          sorted
-        end
-      end)
-
-    class_attr <> delimiter <> wrap_classes(sorted_list, needs_curlies)
+  defp collect_classes({:tag, _name, attrs, _meta}, acc) do
+    case Enum.find(attrs, &(elem(&1, 0) == "class")) do
+      {"class", class, _meta} -> [class | acc]
+      nil -> acc
+    end
   end
 
-  defp sorting(
-         trimmed_classes,
-         concatenations,
-         class_attr,
-         delimiter,
-         true,
-         needs_curlies
-       ) do
-    concatenations
-    |> Enum.map(&(" \" <> " <> sort_classes_string(&1)))
-    |> List.insert_at(0, sort_classes_string(trimmed_classes))
-    |> Enum.join("")
-    # trimmed_classes comes once without and once with space somehow
-    |> String.replace("  ", " ")
-    |> then(fn sorted ->
-      class_attr <> delimiter <> wrap_classes(sorted, needs_curlies)
+  defp collect_classes(_token, acc), do: acc
+
+  defp sort_classes({:string, classes, _meta}, contents),
+    do: String.replace(contents, classes, sort(classes))
+
+  defp sort_classes({:expr, expr_class, _meta}, contents) do
+    sorted_classes =
+      expr_class
+      |> Code.string_to_quoted!(literal_encoder: &{:ok, {:__block__, &2, [&1]}})
+      |> sort_expr()
+      |> Code.quoted_to_algebra()
+      |> Inspect.Algebra.format(:infinity)
+      |> IO.iodata_to_binary()
+
+    sorted_classes =
+      if String.contains?(sorted_classes, "\""),
+        do: trim_classes(sorted_classes),
+        else: sorted_classes
+
+    String.replace(contents, expr_class, sorted_classes)
+  end
+
+  defp trim_classes(classes) do
+    classes
+    |> String.trim("\"")
+    |> String.trim(" ")
+    |> then(fn str -> "\"#{str}\"" end)
+  end
+
+  defp sort_expr({:<>, meta, children}), do: {:<>, meta, handle_concatenation(children)}
+  defp sort_expr({:<<>>, meta, children}), do: {:<<>>, meta, handle_interpolation(children)}
+  defp sort_expr({:__block__, meta, [children]}), do: {:__block__, meta, [sort_expr(children)]}
+  defp sort_expr(text) when is_binary(text), do: sort(text)
+  defp sort_expr(node), do: node
+
+  defp handle_concatenation(children) do
+    children
+    |> Enum.map(&sort_expr/1)
+    |> Enum.map(fn
+      {:__block__, meta, [text]} when is_binary(text) ->
+        {:__block__, meta, [" #{text} "]}
+
+      node ->
+        node
     end)
   end
 
-  # when we want to sort but on a concatenations is a slash appended
-  defp sort_classes_string(" \"" <> str = _reg), do: " \"" <> sort_classes_string(str)
+  defp handle_interpolation(children) do
+    {classes_with_placeholders, {placeholder_map, _index}} =
+      Enum.map_reduce(children, {%{}, 0}, fn
+        str, acc when is_binary(str) ->
+          {str, acc}
 
-  defp sort_classes_string(str),
-    do: str |> String.split() |> sort_variant_chains() |> sort() |> Enum.join(" ")
+        node, {placeholder_map, index} ->
+          {"#{@placeholder}#{index}#{@placeholder}",
+           {Map.put(placeholder_map, "#{index}", node), index + 1}}
+      end)
 
-  defp validate_inline_fns(contents) do
-    Regex.scan(Defaults.func_regex(), contents, capture: :all_but_first)
-    |> Enum.map(&List.first/1)
-    |> Enum.each(fn elixir_fn ->
-      case Code.string_to_quoted(elixir_fn) do
-        {:error, {_meta, msg, tok}} ->
-          raise ArgumentError, "Invalid inlined elixir function:\n #{elixir_fn} -- #{msg}#{tok}"
+    classes_with_placeholders
+    |> Enum.reduce("", fn class, acc ->
+      if placeholder?(class) or String.starts_with?(class, "-"),
+        do: acc <> class,
+        else: "#{acc} #{class}"
+    end)
+    |> sort()
+    |> String.split()
+    |> weave_in_code(placeholder_map)
+  end
 
-        {:ok, _quoted} ->
-          :ok
+  defp weave_in_code(classes, placeholder_map) do
+    Enum.flat_map(classes, fn class ->
+      if placeholder?(class) do
+        [prefix, index, suffix] = String.split(class, @placeholder)
+        [prefix, Map.fetch!(placeholder_map, index), suffix, " "]
+      else
+        [class, " "]
       end
     end)
-
-    {:ok, contents}
   end
 
-  defp placehold_dynamic_classes(contents) do
-    dynamic_classes =
-      Regex.scan(Defaults.dynamic_class_regex(), contents, capture: :first)
-      |> List.flatten()
-      |> Enum.with_index()
-
-    placeholder_contents =
-      dynamic_classes
-      |> Enum.reduce(contents, fn
-        {dynamic_class, index}, contents ->
-          String.replace(contents, dynamic_class, "$#{index}$")
-      end)
-
-    {:ok, placeholder_contents, dynamic_classes}
+  defp sort_variant_chains(classes) do
+    classes
+    |> String.split()
+    |> Enum.map(&String.split(&1, ":"))
+    |> Enum.map(fn chains -> Enum.sort_by(chains, &variant_position/1, :desc) end)
+    |> Enum.map(&Enum.join(&1, ":"))
   end
 
-  defp undo_placeholders(sorted_html, dynamic_classes) do
-    dynamic_classes
-    |> Enum.reduce(sorted_html, fn
-      {dynamic_class, index}, html ->
-        String.replace(html, "$#{index}$", dynamic_class)
-    end)
+  defp sort(classes) when is_binary(classes) do
+    classes
+    |> sort_variant_chains()
+    |> sort()
+    |> Enum.join(" ")
   end
 
-  defp wrap_classes(class_list, with_curlies) do
-    if with_curlies do
-      "{\"" <> class_list <> "\"}"
-    else
-      "\"" <> class_list <> "\""
-    end
+  defp sort([]), do: []
+
+  defp sort(class_list) when is_list(class_list) do
+    {variants, base_classes} = Enum.split_with(class_list, &variant?/1)
+
+    Enum.sort_by(base_classes, &class_position/1) ++ sort_variant_classes(variants)
   end
 
-  defp sort([]) do
-    []
-  end
+  defp placeholder?(class), do: String.contains?(class, @placeholder)
+  defp variant?(class), do: String.contains?(class, ":")
 
-  defp sort(class_list) do
-    {variants, base_classes} = separate(class_list)
-    base_sorted = sort_base_classes(base_classes)
-    variant_sorted = sort_variant_classes(variants)
+  defp class_position(class),
+    do: if(placeholder?(class), do: -1_000_000, else: Map.get(Order.classes(), class, -1))
 
-    base_sorted ++ variant_sorted
-  end
-
-  defp separate(class_list) do
-    Enum.split_with(class_list, &variant?/1)
-  end
-
-  defp variant?(class) do
-    String.contains?(class, ":")
-  end
-
-  defp placeholder?(class) do
-    String.contains?(class, "$")
-  end
-
-  defp get_sort_position(class) do
-    if placeholder?(class) do
-      class
-      |> String.trim("$")
-      |> String.split("$", parts: 2)
-      |> List.first()
-      |> String.to_integer()
-      # offset to make sure fns are sorted to front
-      |> then(fn position -> position - 1_000_000 end)
-    else
-      Map.get(Defaults.class_order(), class, -1)
-    end
-  end
-
-  defp sort_base_classes(base_classes) do
-    base_classes
-    |> Enum.map(fn class ->
-      sort_number = get_sort_position(class)
-      {sort_number, class}
-    end)
-    |> Enum.sort_by(&elem(&1, 0))
-    |> Enum.map(&elem(&1, 1))
-  end
+  defp variant_position(variant), do: Map.get(Order.variants(), variant, -1)
 
   defp sort_variant_classes(variants) do
     variants
     |> group_by_first_variant()
-    |> sort_variant_groups()
-    |> sort_classes_per_variant()
-    |> grouped_variants_to_list()
+    |> Enum.sort_by(fn {variant, _rest} -> variant_position(variant) end)
+    |> Enum.map(fn {variant, rest} -> {variant, sort(rest)} end)
+    |> Enum.flat_map(fn {variant, rest} -> Enum.map(rest, &"#{variant}:#{&1}") end)
   end
 
   defp group_by_first_variant(variants) do
     variants
     |> Enum.map(&String.split(&1, ":", parts: 2))
     |> Enum.group_by(&List.first/1, &List.last/1)
-  end
-
-  defp sort_variant_groups(variant_groups) do
-    variant_groups
-    |> Enum.map(fn variant_group ->
-      variant = elem(variant_group, 0)
-      sort_number = Map.get(Defaults.variant_order(), variant, -1)
-
-      {sort_number, variant_group}
-    end)
-    |> Enum.sort_by(&elem(&1, 0))
-    |> Enum.map(&elem(&1, 1))
-  end
-
-  defp sort_classes_per_variant(grouped_variants) do
-    Enum.map(grouped_variants, fn variant_group ->
-      {variant, classes_and_variants} = variant_group
-      {variant, sort(classes_and_variants)}
-    end)
-  end
-
-  defp grouped_variants_to_list(grouped_variants) do
-    Enum.flat_map(grouped_variants, fn variant_group ->
-      {variant, base_classes} = variant_group
-
-      Enum.map(base_classes, fn class ->
-        "#{variant}:#{class}"
-      end)
-    end)
-  end
-
-  defp sort_variant_chains(variants) do
-    variants
-    |> Enum.map(&String.split(&1, ":"))
-    |> Enum.map(&sort_inverse_variant_order/1)
-    |> Enum.map(&Enum.join(&1, ":"))
-  end
-
-  defp sort_inverse_variant_order(variants) do
-    variants
-    |> Enum.map(fn variant ->
-      sort_number = Map.get(Defaults.variant_order(), variant, -1)
-      {sort_number, variant}
-    end)
-    |> Enum.sort_by(&elem(&1, 0), :desc)
-    |> Enum.map(&elem(&1, 1))
   end
 end
