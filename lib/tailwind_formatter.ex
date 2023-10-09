@@ -43,19 +43,7 @@ defmodule TailwindFormatter do
       |> Inspect.Algebra.format(:infinity)
       |> IO.iodata_to_binary()
 
-    sorted_classes =
-      if String.contains?(sorted_classes, "\""),
-        do: trim_classes(sorted_classes),
-        else: sorted_classes
-
     String.replace(contents, expr_class, sorted_classes)
-  end
-
-  defp trim_classes(classes) do
-    classes
-    |> String.trim("\"")
-    |> String.trim(" ")
-    |> then(fn str -> "\"#{str}\"" end)
   end
 
   defp sort_expr({:<>, meta, children}), do: {:<>, meta, handle_concatenation(children)}
@@ -65,15 +53,7 @@ defmodule TailwindFormatter do
   defp sort_expr(node), do: node
 
   defp handle_concatenation(children) do
-    children
-    |> Enum.map(&sort_expr/1)
-    |> Enum.map(fn
-      {:__block__, meta, [text]} when is_binary(text) ->
-        {:__block__, meta, [" #{text} "]}
-
-      node ->
-        node
-    end)
+    Enum.map(children, &sort_expr/1)
   end
 
   defp handle_interpolation(children) do
@@ -99,14 +79,17 @@ defmodule TailwindFormatter do
   end
 
   defp weave_in_code(classes, placeholder_map) do
-    Enum.flat_map(classes, fn class ->
+    classes
+    |> Enum.map(fn class ->
       if placeholder?(class) do
         [prefix, index, suffix] = String.split(class, @placeholder)
-        [prefix, Map.fetch!(placeholder_map, index), suffix, " "]
+        [prefix, Map.fetch!(placeholder_map, index), suffix]
       else
-        [class, " "]
+        class
       end
     end)
+    |> Enum.intersperse(" ")
+    |> List.flatten()
   end
 
   defp sort_variant_chains(classes) do
@@ -118,10 +101,16 @@ defmodule TailwindFormatter do
   end
 
   defp sort(classes) when is_binary(classes) do
-    classes
-    |> sort_variant_chains()
-    |> sort()
-    |> Enum.join(" ")
+    leading_space = if String.starts_with?(classes, " "), do: " "
+    trailing_space = if String.ends_with?(classes, " "), do: " "
+
+    classes =
+      classes
+      |> sort_variant_chains()
+      |> sort()
+      |> Enum.join(" ")
+
+    Enum.join([leading_space, classes, trailing_space])
   end
 
   defp sort([]), do: []
