@@ -456,13 +456,33 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
-  test "issue#32" do
+  test "handles class lists" do
     input = """
     <div class={["text-sm potato sm:lowercase uppercase"]}></div>
     """
 
     expected = """
-    <div class={["text-sm potato sm:lowercase uppercase"]}></div>
+    <div class={["potato text-sm uppercase sm:lowercase"]}></div>
+    """
+
+    assert_formatter_output(input, expected)
+
+    input = """
+    <div class={["text-sm potato sm:lowercase uppercase", "text-red-500 tomato rounded-lg"]}></div>
+    """
+
+    expected = """
+    <div class={["potato text-sm uppercase sm:lowercase", "tomato rounded-lg text-red-500"]}></div>
+    """
+
+    assert_formatter_output(input, expected)
+
+    input = """
+    <div class={["text-sm potato sm:lowercase uppercase", if(false, do: "text-red-500 tomato rounded-lg")]}></div>
+    """
+
+    expected = """
+    <div class={["potato text-sm uppercase sm:lowercase", if(false, do: "tomato rounded-lg text-red-500")]}></div>
     """
 
     assert_formatter_output(input, expected)
