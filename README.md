@@ -29,18 +29,18 @@ end
 
 `TailwindFormatter` is most likely to be used alongside `Phoenix.LiveView.HTMLFormatter`,
 so it should be installed in a way that allows the HTML formatter to
-run first, followed by the Tailwind formatter. How this is done
+run after the Tailwind formatter. How this is done
 depends on your version of Elixir.
 
 ### Setup for Elixir v1.15.0-dev
 
 Elixir v1.15 [will support](https://github.com/elixir-lang/elixir/pull/12032)
 applying multiple plugins to the same file extension type, so the
-plugin can be added after the HTML formatter in your `.formatter.exs`:
+plugin can be added before the HTML formatter in your `.formatter.exs`:
 
 ```elixir
 [
-  plugins: [Phoenix.LiveView.HTMLFormatter, TailwindFormatter],
+  plugins: [TailwindFormatter, Phoenix.LiveView.HTMLFormatter],
   inputs: [
     "*.{heex,ex,exs}",
     "priv/*/seeds.exs",
@@ -50,13 +50,13 @@ plugin can be added after the HTML formatter in your `.formatter.exs`:
 ]
 ```
 
-### Setup 
+### Setup
 
 Update your `.formatter.exs` to include `TailwindFormatter`.
 
 ```elixir
   [
-    plugins: [Phoenix.LiveView.HTMLFormatter, TailwindFormatter],
+    plugins: [TailwindFormatter, Phoenix.LiveView.HTMLFormatter],
     inputs: [
       "*.{heex,ex,exs}",
       "priv/*/seeds.exs",
@@ -114,11 +114,10 @@ So for example, `dark:sm:hover:text-gray-600` will be placed before any `sm:` an
 Thus in order to achieve more consistency, the variant chain is ordered.
 So, `dark:sm:hover:text-gray-600` transforms to `sm:dark:hover:text-gray-600`.
 
-
 ### Dynamically rendered classes
 
 Sometimes you may want to dynamically render a class depending on a variable,
-i.e. `lg:grid-cols-#{@cols}` or `alert alert-#{@type}`.  The formatter supports
+i.e. `lg:grid-cols-#{@cols}` or `alert alert-#{@type}`. The formatter supports
 this, and also sorts these toward the front of the variant group it is within.
 
 Note: you will need to define the full class either within the Tailwind
@@ -142,4 +141,3 @@ As this is quite new there may be some Tailwind classes missing.
 
 This project builds heavily off of [rustywind](https://github.com/avencera/rustywind)
 and [HTMLFormatter](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.HTMLFormatter.html).
-
