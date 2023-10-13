@@ -44,8 +44,7 @@ defmodule TailwindFormatter.MixProject do
   defp deps do
     [
       # docs
-      {:ex_doc, "~> 0.28", only: :dev, runtime: false},
-      {:phoenix_live_view, ">= 0.17.6"}
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
 end
