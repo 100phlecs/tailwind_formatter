@@ -92,9 +92,12 @@ defmodule TailwindFormatter do
   defp sort_variant_chains(classes) do
     classes
     |> String.split()
-    |> Enum.map(&String.split(&1, ":"))
-    |> Enum.map(fn chains -> Enum.sort_by(chains, &variant_position/1, :desc) end)
-    |> Enum.map(&Enum.join(&1, ":"))
+    |> Enum.map(fn class ->
+      class
+      |> String.split(":")
+      |> Enum.sort_by(&variant_position/1, :desc)
+      |> Enum.join(":")
+    end)
   end
 
   defp sort(classes) when is_binary(classes) do
