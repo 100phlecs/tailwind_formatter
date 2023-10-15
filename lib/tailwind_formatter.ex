@@ -18,18 +18,20 @@ defmodule TailwindFormatter do
   def format(contents, _opts) do
     contents
     |> HEExTokenizer.tokenize()
-    |> Enum.reduce([], &collect_classes/2)
-    |> Enum.reduce(contents, &sort_classes/2)
-  end
+    |> Enum.reduce(contents, fn
+      {:tag, _name, attrs, _meta}, contents ->
+        Enum.reduce(attrs, contents, fn
+          {"class", class, _meta}, contents ->
+            sort_classes(class, contents)
 
-  defp collect_classes({:tag, _name, attrs, _meta}, acc) do
-    case Enum.find(attrs, &(elem(&1, 0) == "class")) do
-      {"class", class, _meta} -> [class | acc]
-      nil -> acc
-    end
-  end
+          _, contents ->
+            contents
+        end)
 
-  defp collect_classes(_token, acc), do: acc
+      _, contents ->
+        contents
+    end)
+  end
 
   defp sort_classes({:string, classes, _meta}, contents),
     do: String.replace(contents, classes, sort(classes))
