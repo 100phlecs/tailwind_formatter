@@ -1,6 +1,7 @@
 # Taken directly from Phoenix.LiveView.HTMLEngine
 # https://github.com/phoenixframework/phoenix_live_view/blob/v0.20.1/lib/phoenix_live_view/html_engine.ex#L41-L57
 defmodule TailwindFormatter.PhoenixLiveViewHTMLEngine do
+  @moduledoc false
   def classify_type(":" <> name), do: {:slot, name}
   def classify_type(":inner_block"), do: {:error, "the slot name :inner_block is reserved"}
 
