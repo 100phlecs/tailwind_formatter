@@ -13,7 +13,8 @@ defmodule TailwindFormatter.MixProject do
       description: "A Mix formatter that sorts your Tailwind classes",
       deps: deps(),
       docs: docs(),
-      package: package()
+      package: package(),
+      elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
 
@@ -43,9 +44,14 @@ defmodule TailwindFormatter.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:benchee, "~> 1.0", only: [:dev, :test]},
+      {:benchee, "~> 1.0", only: [:dev], optional: true},
       # docs
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "src", "test"]
+  defp elixirc_paths(:dev), do: ["lib", "src", "bench"]
+  defp elixirc_paths(:release), do: ["lib", "src"]
+  defp elixirc_paths(_), do: ["lib", "src"]
 end
