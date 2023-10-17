@@ -18,11 +18,12 @@ defmodule TailwindFormatter do
   def format(contents, _opts) do
     contents
     |> HEExTokenizer.tokenize()
-    |> Enum.reduce(contents, fn
+    |> Enum.reduce([contents], fn
       {:tag, _name, attrs, _meta}, contents ->
         Enum.reduce(attrs, contents, fn
-          {"class", class, _meta}, contents ->
-            sort_classes(class, contents)
+          {"class", class_attr, _meta}, [remainder | acc] ->
+            [attr, remainder] = String.split(remainder, old_classes(class_attr), parts: 2)
+            [remainder, sort_classes(class_attr), attr | acc]
 
           _, contents ->
             contents
@@ -31,21 +32,20 @@ defmodule TailwindFormatter do
       _, contents ->
         contents
     end)
+    |> Enum.reverse()
+    |> Enum.join()
   end
 
-  defp sort_classes({:string, classes, _meta}, contents),
-    do: String.replace(contents, classes, sort(classes))
+  defp old_classes({_type, classes, _meta}), do: classes
+  defp sort_classes({:string, classes, _meta}), do: sort(classes)
 
-  defp sort_classes({:expr, expr_class, _meta}, contents) do
-    sorted_classes =
-      expr_class
-      |> Code.string_to_quoted!(literal_encoder: &{:ok, {:__block__, &2, [&1]}})
-      |> sort_expr()
-      |> Code.quoted_to_algebra()
-      |> Inspect.Algebra.format(:infinity)
-      |> IO.iodata_to_binary()
-
-    String.replace(contents, expr_class, sorted_classes)
+  defp sort_classes({:expr, expr_class, _meta}) do
+    expr_class
+    |> Code.string_to_quoted!(literal_encoder: &{:ok, {:__block__, &2, [&1]}})
+    |> sort_expr()
+    |> Code.quoted_to_algebra()
+    |> Inspect.Algebra.format(:infinity)
+    |> IO.iodata_to_binary()
   end
 
   defp sort_expr({:<<>>, meta, children}), do: {:<<>>, meta, handle_interpolation(children)}
