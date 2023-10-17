@@ -31,10 +31,10 @@ defmodule TailwindFormatter do
 
   defp collect_classes(_token, acc), do: acc
 
-  def sort_classes({:string, classes, _meta}, contents),
+  defp sort_classes({:string, classes, _meta}, contents),
     do: String.replace(contents, classes, sort(classes))
 
-  def sort_classes({:expr, expr_class, _meta}, contents) do
+  defp sort_classes({:expr, expr_class, _meta}, contents) do
     sorted_classes =
       expr_class
       |> Code.string_to_quoted!(literal_encoder: &{:ok, {:__block__, &2, [&1]}})
