@@ -44,6 +44,7 @@ defmodule TailwindFormatter.MixProject do
   defp deps do
     [
       # docs
+      {:benchee, "~> 1.0", only: :dev},
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
