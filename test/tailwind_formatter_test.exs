@@ -44,7 +44,7 @@ defmodule TailwindFormatterTest do
     """
 
     expected = """
-    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg"></div>
+    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg "></div>
     """
 
     assert_formatter_output(input, expected)
