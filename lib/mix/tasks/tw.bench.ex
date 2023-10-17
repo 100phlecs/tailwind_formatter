@@ -25,8 +25,12 @@ defmodule Mix.Tasks.Tw.Bench do
 
     Benchmarking current ...
 
-    Name              ips        average  deviation         median         99th %
-    current        0.0610        16.40 s     ±0.00%        16.40 s        16.40 s
+    Name                    ips        average  deviation         median         99th %
+    current              0.0610        16.40 s     ±0.00%        16.40 s        16.40 s
+
+
+    Name                    ips        average  deviation         median         99th %
+    first attempt          0.95         1.06 s     ±1.84%         1.06 s         1.08 s
   """
   def run([]) do
     input =
@@ -37,7 +41,7 @@ defmodule Mix.Tasks.Tw.Bench do
       |> String.duplicate(250)
 
     Benchee.run(%{
-      "current" => fn -> TailwindFormatter.format(input, []) end
+      "first attempt" => fn -> TailwindFormatter.format(input, []) end
     })
   end
 end
