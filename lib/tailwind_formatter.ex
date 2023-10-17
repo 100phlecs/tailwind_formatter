@@ -98,8 +98,8 @@ defmodule TailwindFormatter do
   end
 
   defp sort(classes) when is_binary(classes) do
-    leading_space = if String.starts_with?(classes, " "), do: " "
-    trailing_space = if String.ends_with?(classes, " "), do: " "
+    leading_space = if classes =~ ~r/\A\s/, do: " "
+    trailing_space = if classes =~ ~r/\s\z/, do: " "
 
     classes =
       classes
