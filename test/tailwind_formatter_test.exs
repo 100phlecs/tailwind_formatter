@@ -487,4 +487,16 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "handles multiple class attributes" do
+    input = """
+    <div class="tomato text-sm uppercase odd:decoration-slate-50" class="sm:lowercase potato text-sm uppercase"></div>
+    """
+
+    expected = """
+    <div class="tomato text-sm uppercase odd:decoration-slate-50" class="potato text-sm uppercase sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
