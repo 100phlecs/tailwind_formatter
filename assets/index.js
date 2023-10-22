@@ -3,17 +3,6 @@ const resolveConfig = require("tailwindcss/resolveConfig.js")
 const fs = require("fs")
 const path = require("path")
 
-function bigSign(bigIntValue) {
-  return (bigIntValue > 0n) - (bigIntValue < 0n)
-}
-
-function sortOrder([, a], [, z]) {
-  if (a === z) return 0
-  if (a === null) return -1
-  if (z === null) return 1
-  return bigSign(a - z)
-}
-
 async function loadCustomConfig(configPath) {
   let finalPath = path.isAbsolute(configPath)
     ? configPath
@@ -33,58 +22,10 @@ async function extract(absoluteConfigPath) {
   const twConfig = await resolveConfig(customConfig)
   const twContext = await createContext(twConfig)
 
-  let allVariants = []
-  let allClasses = []
-  let classIterator = twContext.candidateRuleMap.keys()
+  let allVariants = [...twContext.variantMap.keys()].join("\n")
+  let allClasses = twContext.getClassList().join("\n")
 
-  // first class is an unneeded glob
-  classIterator.next()
-  let currentClass = classIterator.next()
-  while (!currentClass.done) {
-    const baseClass = currentClass.value
-    const rules = twContext.candidateRuleMap.get(currentClass.value)
-
-    for (let [rule, _] of rules) {
-      let potentialClasses = []
-      if ("values" in rule.options) {
-        const classValues = Object.keys(rule.options.values)
-        const supportsNegative = rule.options.supportsNegativeValues
-
-        potentialClasses = classValues.map((value) =>
-          value === "DEFAULT" ? baseClass : `${baseClass}-${value}`
-        )
-        if (supportsNegative) {
-          potentialClasses = potentialClasses
-            .map((c) => (c.includes("auto") ? c : [`-${c}`, c]))
-            .flat()
-        }
-      } else {
-        potentialClasses.push(baseClass)
-      }
-
-      allClasses.push(potentialClasses)
-      allClasses = allClasses.flat()
-    }
-
-    currentClass = classIterator.next()
-  }
-
-  // get unique
-  allClasses = allClasses.filter((value, index, self) => self.indexOf(value) === index)
-
-  twContext.variantMap.forEach((applyFunc, variant) => allVariants.push([variant, applyFunc[0][0]]))
-  allVariants = allVariants
-    .sort(sortOrder)
-    .map(([className, _]) => className)
-    .join("\n")
-
-  let orderedClasses = twContext
-    .getClassOrder(allClasses)
-    .sort(sortOrder)
-    .map(([className, _]) => className)
-    .join("\n")
-
-  fs.writeFileSync("_build/classes.txt", orderedClasses)
+  fs.writeFileSync("_build/classes.txt", allClasses)
   fs.writeFileSync("_build/variants.txt", allVariants)
 }
 
