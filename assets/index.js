@@ -23,7 +23,15 @@ async function extract(absoluteConfigPath) {
   const twContext = await createContext(twConfig)
 
   let allVariants = [...twContext.variantMap.keys()].join("\n")
-  let allClasses = twContext.getClassList().join("\n")
+  let allClasses = twContext
+    .getClassList({ includeMetadata: true })
+    .flatMap((maybeClass) => {
+      if (typeof maybeClass === "string") return maybeClass
+
+      const [className, { modifiers }] = maybeClass
+      return [className, ...modifiers.map((m) => `${className}/${m}`)]
+    })
+    .join("\n")
 
   fs.writeFileSync("_build/classes.txt", allClasses)
   fs.writeFileSync("_build/variants.txt", allVariants)
