@@ -44,6 +44,7 @@ let localModules = {
   "tailwindcss/defaultTheme": require("tailwindcss/defaultTheme"),
   "tailwindcss/resolveConfig": require("tailwindcss/resolveConfig"),
   "@tailwindcss/aspect-ratio": require("@tailwindcss/aspect-ratio"),
+  "@tailwindcss/container-queries": require("@tailwindcss/container-queries"),
   "@tailwindcss/forms": require("@tailwindcss/forms"),
   "@tailwindcss/typography": require("@tailwindcss/typography"),
 }
