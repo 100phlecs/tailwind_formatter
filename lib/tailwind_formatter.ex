@@ -63,7 +63,7 @@ defmodule TailwindFormatter do
 
         node, {placeholder_map, index} ->
           {"#{@placeholder}#{index}#{@placeholder}",
-           {Map.put(placeholder_map, "#{index}", node), index + 1}}
+           {Map.put(placeholder_map, "#{index}", sort_expr(node)), index + 1}}
       end)
 
     classes_with_placeholders

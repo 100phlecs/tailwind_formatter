@@ -64,11 +64,11 @@ defmodule TailwindFormatterTest do
 
   test "supports inline elixir code" do
     input = ~S"""
-    <div class={"text-sm #{if false, do: "bg-white"} potato sm:lowercase uppercase"}></div>
+    <div class={"text-sm #{if false, do: "bg-white flex"} potato sm:lowercase uppercase"}></div>
     """
 
     expected = ~S"""
-    <div class={"#{if false, do: "bg-white"} potato text-sm uppercase sm:lowercase"}></div>
+    <div class={"#{if false, do: "flex bg-white"} potato text-sm uppercase sm:lowercase"}></div>
     """
 
     assert_formatter_output(input, expected)
