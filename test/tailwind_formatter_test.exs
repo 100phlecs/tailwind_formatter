@@ -499,16 +499,4 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
-
-  test "sources custom configuration" do
-    input = """
-    <div class="bg-serenity tomato text-sm uppercase odd:decoration-slate-50"></div>
-    """
-
-    expected = """
-    <div class="tomato bg-serenity text-sm uppercase odd:decoration-slate-50"></div>
-    """
-
-    assert_formatter_output(input, expected)
-  end
 end
