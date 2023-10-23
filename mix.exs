@@ -12,7 +12,6 @@ defmodule TailwindFormatter.MixProject do
       name: "TailwindFormatter",
       description: "A Mix formatter that sorts your Tailwind classes",
       deps: deps(),
-      aliases: aliases(),
       docs: docs(),
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env())
@@ -38,24 +37,20 @@ defmodule TailwindFormatter.MixProject do
     %{
       licenses: ["MIT"],
       maintainers: ["100phlecs"],
-      links: %{"GitHub" => @url}
+      links: %{"GitHub" => @url},
+      files:
+        ~w(assets/js/* lib priv) ++
+          ~w(CHANGELOG.md LICENSE.md mix.exs README.md .formatter.exs)
     }
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:esbuild, "~> 0.2", only: :dev},
+      {:tailwind, "~> 0.2", only: :dev},
       {:benchee, "~> 1.0", only: [:dev], optional: true},
       # docs
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
-    ]
-  end
-
-  defp aliases do
-    [
-      "assets.build": ["esbuild module"],
-      "assets.watch": ["esbuild module --watch"]
     ]
   end
 

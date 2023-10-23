@@ -26,3 +26,5 @@ tailwind_formatter-*.tar
 /tmp/
 
 assets/node_modules
+
+assets/css

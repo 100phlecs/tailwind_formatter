@@ -1,11 +1,14 @@
 import Config
 
 if Mix.env() == :dev do
-  config :esbuild,
-    version: "0.17.11",
-    module: [
-      args: ~w(./index.js --bundle --minify --platform=node --outdir=../priv/static/assets),
-      cd: Path.expand("../assets", __DIR__),
-      env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  config :tailwind,
+    version: "3.3.3",
+    default: [
+      args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../_build/assets/out.css
+    ),
+      cd: Path.expand("../assets", __DIR__)
     ]
 end

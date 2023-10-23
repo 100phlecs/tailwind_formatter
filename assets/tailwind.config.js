@@ -1,9 +1,7 @@
 // See the Tailwind configuration guide for advanced usage
 // https://tailwindcss.com/docs/configuration
 
-const plugin = require("tailwindcss/plugin")
-const fs = require("fs")
-const path = require("path")
+let plugin = require("tailwindcss/plugin")
 
 module.exports = {
   content: ["./js/**/*.js", "../lib/**.ex"],
@@ -23,6 +21,7 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/container-queries"),
+
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:
     //
@@ -42,3 +41,6 @@ module.exports = {
     ),
   ],
 }
+
+let { extract } = require("./js/index")
+extract(module.exports, "../_build")
