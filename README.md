@@ -72,6 +72,20 @@ The above will work with this configuration, for example:
     ]
 ```
 
+Run `mix tailwind default` to force it to extract the configuration.
+
+Afterward, when you run `mix compile` you should see TailwindFormatter loading in your custom classes.
+If you don't, you can run `mix deps.compile tailwind_formatter --force`.
+
+```bash
+❯ mix deps.compile tailwind_formatter --force
+==> tailwind_formatter
+Compiling 5 files (.ex)
+Loading in /path/to/repo/_build/classes.txt.
+Loading in /path/to/repo/_build/variants.txt.
+Generated tailwind_formatter app
+```
+
 ## Usage
 
 After installation and setup, run `mix format`. If you already had
