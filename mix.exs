@@ -37,13 +37,17 @@ defmodule TailwindFormatter.MixProject do
     %{
       licenses: ["MIT"],
       maintainers: ["100phlecs"],
-      links: %{"GitHub" => @url}
+      links: %{"GitHub" => @url},
+      files:
+        ~w(assets/js/* lib priv) ++
+          ~w(CHANGELOG.md LICENSE.md mix.exs README.md .formatter.exs)
     }
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:tailwind, "~> 0.2", only: :dev},
       {:benchee, "~> 1.0", only: [:dev], optional: true},
       # docs
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}

@@ -29,28 +29,7 @@ end
 
 `TailwindFormatter` is most likely to be used alongside `Phoenix.LiveView.HTMLFormatter`,
 so it should be installed in a way that allows the HTML formatter to
-run after the Tailwind formatter. How this is done
-depends on your version of Elixir.
-
-### Setup for Elixir v1.15.0-dev
-
-Elixir v1.15 [will support](https://github.com/elixir-lang/elixir/pull/12032)
-applying multiple plugins to the same file extension type, so the
-plugin can be added before the HTML formatter in your `.formatter.exs`:
-
-```elixir
-[
-  plugins: [TailwindFormatter, Phoenix.LiveView.HTMLFormatter],
-  inputs: [
-    "*.{heex,ex,exs}",
-    "priv/*/seeds.exs",
-    "{config,lib,test}/**/*.{heex,ex,exs}"
-  ],
-  # ...
-]
-```
-
-### Setup
+run after the Tailwind formatter. 
 
 Update your `.formatter.exs` to include `TailwindFormatter`.
 
@@ -64,6 +43,47 @@ Update your `.formatter.exs` to include `TailwindFormatter`.
     ],
     # ...
   ]
+```
+
+## Using Custom TailwindCSS configuration
+
+If you are using the standalone tailwind module, you can append these lines to the end of your `tailwind.config.js` file:
+
+```js
+let { extract } = require("../deps/tailwind_formatter/assets/js")
+extract(module.exports, "../_build")
+```
+
+This will write a `classes.txt` and `variants.txt` to your `_build/` directory. 
+The second argument within `extract` may vary depending on the value of `cd:` in your `:tailwind` config. 
+
+The above will work with this configuration, for example:
+
+```elixir
+  config :tailwind,
+    version: "3.3.3",
+    default: [
+      args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../_build/assets/out.css
+    ),
+      cd: Path.expand("../assets", __DIR__)
+    ]
+```
+
+Run `mix tailwind default` to force it to extract the configuration.
+
+Afterward, when you run `mix compile` you should see TailwindFormatter loading in your custom classes.
+If you don't, you can run `mix deps.compile tailwind_formatter --force`.
+
+```bash
+❯ mix deps.compile tailwind_formatter --force
+==> tailwind_formatter
+Compiling 5 files (.ex)
+Loading in /path/to/repo/_build/classes.txt.
+Loading in /path/to/repo/_build/variants.txt.
+Generated tailwind_formatter app
 ```
 
 ## Usage
@@ -127,15 +147,6 @@ or have it fully written out somewhere else in the source file.
 So, for example, if `@cols = 5` within `grid-cols-#{@cols}`, then you will need
 `grid-cols-5` written in full somewhere in the source so Tailwind won't purge it
 in production.
-
-## Custom classes
-
-As a bonus this plugin supports the [Phoenix variants](https://fly.io/phoenix-files/phoenix-liveview-tailwind-variants/)
-that ship with new applications.
-
-Otherwise custom classes are not supported at this time. It may be supported in the future.
-
-As this is quite new there may be some Tailwind classes missing.
 
 ## Credits
 

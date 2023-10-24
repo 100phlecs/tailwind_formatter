@@ -125,11 +125,14 @@ defmodule TailwindFormatter do
 
   defp placeholder?(class), do: String.contains?(class, @placeholder)
   defp variant?(class), do: String.contains?(class, ":")
+  defp prose?(class), do: String.contains?(class, "prose")
 
   defp class_position(class),
     do: if(placeholder?(class), do: -1_000_000, else: Map.get(Order.classes(), class, -1))
 
-  defp variant_position(variant), do: Map.get(Order.variants(), variant, -1)
+  # prose variant order matters, thus push to front
+  defp variant_position(variant),
+    do: if(prose?(variant), do: 0, else: Map.get(Order.variants(), variant, -1))
 
   defp sort_variant_classes(variants) do
     variants

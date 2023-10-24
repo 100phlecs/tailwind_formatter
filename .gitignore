@@ -24,3 +24,5 @@ tailwind_formatter-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+assets/css
