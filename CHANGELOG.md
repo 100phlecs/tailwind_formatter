@@ -58,6 +58,8 @@ extract(module.exports, "../_build")
 
 This will extract all the classes and variants you are using which TailwindFormatter will use to sort your classes.
 
+## 0.4.1 
+
 ## 0.4.0 (2023-10-24)
 
 - Bump Elixir version to 1.15
