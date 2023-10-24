@@ -29,7 +29,8 @@ defmodule TailwindFormatter.MixProject do
     [
       main: "TailwindFormatter",
       source_ref: "v#{@version}",
-      source_url: @url
+      source_url: @url,
+      extras: ["CHANGELOG.md"]
     ]
   end
 
