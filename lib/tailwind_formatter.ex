@@ -19,7 +19,8 @@ defmodule TailwindFormatter do
     contents
     |> HEExTokenizer.tokenize()
     |> Enum.reduce([contents], fn
-      {:tag, _name, attrs, _meta}, contents ->
+      {elt, _name, attrs, _meta}, contents
+      when elt in [:tag, :local_component, :remote_component] ->
         Enum.reduce(attrs, contents, fn
           {"class", class_attr, _meta}, [remainder | acc] ->
             [attr, remainder] = String.split(remainder, old_classes(class_attr), parts: 2)

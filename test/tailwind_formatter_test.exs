@@ -499,4 +499,28 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "handles local components" do
+    input = """
+    <.img class="text-sm potato sm:lowercase uppercase" />
+    """
+
+    expected = """
+    <.img class="potato text-sm uppercase sm:lowercase" />
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "handles remote components" do
+    input = """
+    <CP.img class="text-sm potato sm:lowercase uppercase" />
+    """
+
+    expected = """
+    <CP.img class="potato text-sm uppercase sm:lowercase" />
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
