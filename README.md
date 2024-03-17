@@ -97,6 +97,27 @@ If some files are not being formatted as expected, double-check the
 `:inputs` option in your `.formatter.exs` to ensure they are being
 matched.
 
+## Usage in CI
+
+To ensure correct sorting, we ask Tailwind to list its configured clases. We then instantiate this
+list at compile-time. Then TailwindFormatter is ready to format, and to check formatting.
+
+In development, all this usually just works due to your existing project setup.
+
+In CI, we have to be a little more explicit. Something like this shown below can be helpful before
+running `--check-formatted` if you're getting CI failures about the ordering of CSS classes.
+
+```yaml
+- name: Generate classes.txt for tailwind
+  run: mix tailwind default
+
+- name: Compile tailwind_formatter plugin
+   run: mix deps.compile tailwind_formatter --force
+
+- name: Check code formatting
+  run: mix format --check-formatted
+```
+
 ## Formatting
 
 The formatter aims to follow a bundle of rules outlined in the [blog post](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier)
