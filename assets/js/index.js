@@ -13,6 +13,7 @@ async function extract(customConfig, buildPath) {
     .getClassList({ includeMetadata: true })
     .flatMap((maybeClass) => {
       if (typeof maybeClass === "string") return maybeClass
+      if (maybeClass instanceof String) return String(maybeClass)
 
       const [className, { modifiers }] = maybeClass
       return [className, ...modifiers.map((m) => `${className}/${m}`)]
