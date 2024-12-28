@@ -114,7 +114,7 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
-  test "dynamic varient classes" do
+  test "dynamic variant classes" do
     input = ~S"""
     <a id="testing" class={"  text-sm potato sm:lowercase   lg:grid-cols-#{@test} uppercase"}
       href="#"></a>
