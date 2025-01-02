@@ -58,7 +58,9 @@ extract(module.exports, "../_build")
 
 This will extract all the classes and variants you are using which TailwindFormatter will use to sort your classes.
 
-## 0.4.2 
+## 0.4.2 (2025-01-02)
+
+- Handle arbitrary values and properties in sorting
 
 ## 0.4.1 (2024-12-28)
 
