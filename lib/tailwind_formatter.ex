@@ -94,7 +94,7 @@ defmodule TailwindFormatter do
 
   defp sort_variant_chains(classes) do
     classes
-    |> String.split()
+    |> String.split(~r/\s+(?![^\[]*\])/i, trim: true)
     |> Enum.map(fn class ->
       class
       |> String.split(":")
@@ -125,7 +125,7 @@ defmodule TailwindFormatter do
   end
 
   defp placeholder?(class), do: String.contains?(class, @placeholder)
-  defp variant?(class), do: String.contains?(class, ":")
+  defp variant?(class), do: String.contains?(class, ":") and not String.starts_with?(class, "[")
   defp prose?(class), do: String.contains?(class, "prose")
 
   defp class_position(class),
