@@ -20,7 +20,7 @@ Add `tailwind_formatter` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false}
+    {:tailwind_formatter, "~> 0.4.2", only: [:dev, :test], runtime: false}
   ]
 end
 ```
