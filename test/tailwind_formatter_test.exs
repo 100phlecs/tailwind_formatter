@@ -523,4 +523,29 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  # https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties
+  test "handles arbitrary properties" do
+    input = """
+      <html lang="en" class="sm:[scrollbar-gutter: stable] potato">
+    """
+
+    expected = """
+      <html lang="en" class="potato sm:[scrollbar-gutter: stable]">
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "splits variants with arbitrary values" do
+    input = """
+    <div class="sm:lowercase sm:px-[1px] potato text-sm uppercase"></div>
+    """
+
+    expected = """
+    <div class="potato text-sm uppercase sm:px-[1px] sm:lowercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
