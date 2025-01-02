@@ -537,6 +537,18 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
   end
 
+  test "issue #63" do
+    input = """
+      <html lang="en" class="[scrollbar-gutter: stable]">
+    """
+
+    expected = """
+      <html lang="en" class="[scrollbar-gutter: stable]">
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
   test "splits variants with arbitrary values" do
     input = """
     <div class="sm:lowercase sm:px-[1px] potato text-sm uppercase"></div>
