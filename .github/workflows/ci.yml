@@ -11,15 +11,24 @@ jobs:
       MIX_ENV: test
     strategy:
       fail-fast: false
+      matrix:
+        include:
+          - pair:
+              elixir: "1.15"
+              otp: "24"
+          - pair:
+              elixir: "1.18"
+              otp: "27"
+            lint: lint
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: erlef/setup-beam@v1
         with:
-          version-file: .tool-versions
-          version-type: strict
+          otp-version: ${{matrix.pair.otp}}
+          elixir-version: ${{matrix.pair.elixir}}
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: |
             deps
@@ -29,13 +38,17 @@ jobs:
       - run: mix deps.get
 
       - run: mix format --check-formatted
+        if: ${{ matrix.lint }}
 
       - run: mix deps.unlock --check-unused
+        if: ${{ matrix.lint }}
 
       - run: mix deps.compile
 
       - run: mix compile --warnings-as-errors
+        if: ${{ matrix.lint }}
 
       - run: mix test
 
       - run: mix test --warnings-as-errors
+        if: ${{ matrix.lint }}
