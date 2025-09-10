@@ -37,6 +37,10 @@ defmodule TailwindFormatter do
     |> Enum.join()
   end
 
+  def render_attribute({"class", {:string, value, meta}, attr_meta}, opts) do
+    {"class", {:string, format(value, opts), meta}, attr_meta}
+  end
+
   defp old_classes({_type, classes, _meta}), do: classes
   defp sort_classes({:string, classes, _meta}), do: sort(classes)
 
