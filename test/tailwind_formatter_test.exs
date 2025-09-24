@@ -560,4 +560,28 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "phx-no-format attribute skips formatting" do
+    input = """
+    <div phx-no-format class="text-sm potato sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div phx-no-format class="text-sm potato sm:lowercase uppercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+  test "phx-no-format with value skips formatting" do
+    input = """
+    <div phx-no-format="true" class="text-sm potato sm:lowercase uppercase"></div>
+    """
+
+    expected = """
+    <div phx-no-format="true" class="text-sm potato sm:lowercase uppercase"></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
