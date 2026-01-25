@@ -2,14 +2,13 @@ defmodule TailwindFormatterTest do
   use ExUnit.Case
   doctest TailwindFormatter
 
-  alias TailwindFormatter
+  defp assert_formatter_output(input, expected) do
+    output =
+      Phoenix.LiveView.HTMLFormatter.format(input,
+        attribute_formatters: %{class: TailwindFormatter}
+      )
 
-  defp assert_formatter_output(input, expected, dot_formatter_opts \\ []) do
-    first_pass = TailwindFormatter.format(input, dot_formatter_opts)
-    assert first_pass == expected
-
-    second_pass = TailwindFormatter.format(first_pass, dot_formatter_opts)
-    assert second_pass == expected
+    assert output == expected
   end
 
   test "works" do
@@ -26,11 +25,13 @@ defmodule TailwindFormatterTest do
 
   test "handles and sorts chained variants" do
     input = """
-    <div class="odd:decoration-slate-50 uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl"></div>
+    <div class="odd:decoration-slate-50 uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl">
+    </div>
     """
 
     expected = """
-    <div class="tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500"></div>
+    <div class="tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500">
+    </div>
     """
 
     assert_formatter_output(input, expected)
@@ -40,11 +41,13 @@ defmodule TailwindFormatterTest do
     input = """
     <div class="text-sm     sm:hover:bg-gray-500 tomato     sm:lowercase uppercase sm:hover:bg-unknown-500    sm:disabled:text-lg
 
-    "></div>
+    ">
+    </div>
     """
 
     expected = """
-    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg "></div>
+    <div class="tomato text-sm uppercase sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg ">
+    </div>
     """
 
     assert_formatter_output(input, expected)
@@ -76,11 +79,13 @@ defmodule TailwindFormatterTest do
 
   test "supports multiple inline elixir codes" do
     input = ~S"""
-    <div class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}></div>
+    <div class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}>
+    </div>
     """
 
     expected = ~S"""
-    <div class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}></div>
+    <div class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}>
+    </div>
     """
 
     assert_formatter_output(input, expected)
@@ -88,13 +93,21 @@ defmodule TailwindFormatterTest do
 
   test "regex allows multiple attributes" do
     input = ~S"""
-    <a id="testing" class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
-      href="#"></a>
+    <a
+      id="testing"
+      class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+      href="#"
+    >
+    </a>
     """
 
     expected = ~S"""
-    <a id="testing" class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
-      href="#"></a>
+    <a
+      id="testing"
+      class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      href="#"
+    >
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -102,13 +115,11 @@ defmodule TailwindFormatterTest do
 
   test "dynamic classes" do
     input = ~S"""
-    <a id="testing" class={"  text-sm potato sm:lowercase   grid-cols-#{@test} uppercase"}
-      href="#"></a>
+    <a id="testing" class={"  text-sm potato sm:lowercase   grid-cols-#{@test} uppercase"} href="#"></a>
     """
 
     expected = ~S"""
-    <a id="testing" class={"grid-cols-#{@test} potato text-sm uppercase sm:lowercase"}
-      href="#"></a>
+    <a id="testing" class={"grid-cols-#{@test} potato text-sm uppercase sm:lowercase"} href="#"></a>
     """
 
     assert_formatter_output(input, expected)
@@ -116,13 +127,13 @@ defmodule TailwindFormatterTest do
 
   test "dynamic variant classes" do
     input = ~S"""
-    <a id="testing" class={"  text-sm potato sm:lowercase   lg:grid-cols-#{@test} uppercase"}
-      href="#"></a>
+    <a id="testing" class={"  text-sm potato sm:lowercase   lg:grid-cols-#{@test} uppercase"} href="#">
+    </a>
     """
 
     expected = ~S"""
-    <a id="testing" class={"potato text-sm uppercase sm:lowercase lg:grid-cols-#{@test}"}
-      href="#"></a>
+    <a id="testing" class={"potato text-sm uppercase sm:lowercase lg:grid-cols-#{@test}"} href="#">
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -130,13 +141,21 @@ defmodule TailwindFormatterTest do
 
   test "allows comparisons inline elixir" do
     input = ~S"""
-    <a id="testing" class={"#{if @page <= 5, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
-      href="#"></a>
+    <a
+      id="testing"
+      class={"#{if @page <= 5, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+      href="#"
+    >
+    </a>
     """
 
     expected = ~S"""
-    <a id="testing" class={"#{if @page <= 5, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
-      href="#"></a>
+    <a
+      id="testing"
+      class={"#{if @page <= 5, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+      href="#"
+    >
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -144,11 +163,11 @@ defmodule TailwindFormatterTest do
 
   test "allows string concatenation" do
     input = ~S"""
-        <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
     """
 
     expected = ~S"""
-        <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
+    <div class={" h-6 " <> if @active, do: "bg-white", else: "bg-red"}></div>
     """
 
     assert_formatter_output(input, expected)
@@ -156,13 +175,13 @@ defmodule TailwindFormatterTest do
 
   test "handles empty classes" do
     input = ~S"""
-      <a class=""></a>
-      <a class={""} id={"id"}></a>
+    <a class=""></a>
+    <a class={""} id={"id"}></a>
     """
 
     expected = ~S"""
-      <a class=""></a>
-      <a class={""} id={"id"}></a>
+    <a class=""></a>
+    <a class="" id="id"></a>
     """
 
     assert_formatter_output(input, expected)
@@ -230,15 +249,21 @@ defmodule TailwindFormatterTest do
 
   test "larger css with unknown classes" do
     input = ~S"""
-    <a class="bg-colorGreen-400 inline-block rounded-lg px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-colorGreen-500 hover:shadow-md hover:text-lg focus:bg-colorGreen-600 focus:ring-colorGreen-500 focus:shadow-sm focus:ring-4 focus:ring-opacity-50"
+    <a
+      class="bg-colorGreen-400 inline-block rounded-lg px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-colorGreen-500 hover:shadow-md hover:text-lg focus:bg-colorGreen-600 focus:ring-colorGreen-500 focus:shadow-sm focus:ring-4 focus:ring-opacity-50"
       id="testing"
-      href="#"></a>
+      href="#"
+    >
+    </a>
     """
 
     expected = ~S"""
-    <a class="bg-colorGreen-400 inline-block rounded-lg px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-colorGreen-500 hover:text-lg hover:shadow-md focus:bg-colorGreen-600 focus:ring-colorGreen-500 focus:shadow-sm focus:ring-4 focus:ring-opacity-50"
+    <a
+      class="bg-colorGreen-400 inline-block rounded-lg px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-colorGreen-500 hover:text-lg hover:shadow-md focus:bg-colorGreen-600 focus:ring-colorGreen-500 focus:shadow-sm focus:ring-4 focus:ring-opacity-50"
       id="testing"
-      href="#"></a>
+      href="#"
+    >
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -246,15 +271,21 @@ defmodule TailwindFormatterTest do
 
   test "larger css with known classes" do
     input = ~S"""
-    <a class="bg-green-400 inline-block rounded-lg px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-green-500 hover:shadow-md hover:text-lg focus:bg-green-600 focus:ring-green-500 focus:shadow-sm focus:ring-4 focus:ring-opacity-50"
+    <a
+      class="bg-green-400 inline-block rounded-lg px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-green-500 hover:shadow-md hover:text-lg focus:bg-green-600 focus:ring-green-500 focus:shadow-sm focus:ring-4 focus:ring-opacity-50"
       id="testing"
-      href="#"></a>
+      href="#"
+    >
+    </a>
     """
 
     expected = ~S"""
-    <a class="inline-block rounded-lg bg-green-400 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-green-500 hover:text-lg hover:shadow-md focus:bg-green-600 focus:shadow-sm focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
+    <a
+      class="inline-block rounded-lg bg-green-400 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-green-500 hover:text-lg hover:shadow-md focus:bg-green-600 focus:shadow-sm focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
       id="testing"
-      href="#"></a>
+      href="#"
+    >
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -262,15 +293,21 @@ defmodule TailwindFormatterTest do
 
   test "placeholding does not change anything outside of class attr" do
     input = ~S"""
-    <a class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
+    <a
+      class={"#{if false, do: "bg-white"} text-sm potato sm:lowercase #{isready?(@check)} uppercase"}
       id="testing-#{@id}"
-      href="#"></a>
+      href="#"
+    >
+    </a>
     """
 
     expected = ~S"""
-    <a class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
+    <a
+      class={"#{if false, do: "bg-white"} #{isready?(@check)} potato text-sm uppercase sm:lowercase"}
       id="testing-#{@id}"
-      href="#"></a>
+      href="#"
+    >
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -291,73 +328,67 @@ defmodule TailwindFormatterTest do
   test "handles classes with placeholders" do
     input = ~S"""
     <tr>
-    <th>ETA/ETD</th>
-    <td>
-    <%= for {vessel, eta, etd} <- list do %>
-      <p class={"qa-thingy-etas-#{vessel.id} has-margin-bottom-sm"}>
-        <span class={"qa-thingy-etas-#{vessel.id}-vessel"}><%= vessel.name %></span>
-        (<span class={"qa-thingy-etas-#{vessel.id}-eta"}><%= convert_date?(
-            eta,
-            "Not Specified"
-          ) %></span> &ndash; <span class={"qa-thingy-etas-#{vessel.id}-etd"}><%= convert_date?(
-            etd,
-            "Not Specified"
-          ) %></span>)
-      </p>
-    <% end %>
-    </td>
+      <th>ETA/ETD</th>
+      <td>
+        <%= for {vessel, eta, etd} <- list do %>
+          <p class={"qa-thingy-etas-#{vessel.id} has-margin-bottom-sm"}>
+            <span class={"qa-thingy-etas-#{vessel.id}-vessel"}><%= vessel.name %></span>
+            (<span class={"qa-thingy-etas-#{vessel.id}-eta"}>
+               <%= convert_date?(eta, "Not Specified") %>
+            </span> &ndash; <span class={"qa-thingy-etas-#{vessel.id}-etd"}>
+              <%= convert_date?(etd, "Not Specified") %>
+            </span>)
+          </p>
+        <% end %>
+      </td>
     </tr>
     <tr>
-    <th>Deliverables</th>
-    <td>
-    <%= for {fuel, vessel_fuels} <- list,
-              vessel_fuel <- vessel_fuels do %>
-      <p class={"qa-thingy-deliverable-#{vessel_fuel.id} has-margin-bottom-sm"}>
-        <span class="qa-thingy-deliverable-quantity"><%= vessel_fuel.quantity %></span>
-        MT of <span class="qa-thingy-deliverable-fuel"><%= fuel.name %></span>
-        to
-        <span class="qa-thingy-deliverable-vessel">
-          <%= vessel_fuel.vessel.name %> (<%= vessel_fuel.vessel.imo %>)
-        </span>
-      </p>
-    <% end %>
-    </td>
+      <th>Deliverables</th>
+      <td>
+        <%= for {fuel, vessel_fuels} <- list, vessel_fuel <- vessel_fuels do %>
+          <p class={"qa-thingy-deliverable-#{vessel_fuel.id} has-margin-bottom-sm"}>
+            <span class="qa-thingy-deliverable-quantity"><%= vessel_fuel.quantity %></span>
+            MT of <span class="qa-thingy-deliverable-fuel">{fuel.name}</span>
+            to
+            <span class="qa-thingy-deliverable-vessel">
+              {vessel_fuel.vessel.name} ({vessel_fuel.vessel.imo})
+            </span>
+          </p>
+        <% end %>
+      </td>
     </tr>
     """
 
     expected = ~S"""
     <tr>
-    <th>ETA/ETD</th>
-    <td>
-    <%= for {vessel, eta, etd} <- list do %>
-      <p class={"qa-thingy-etas-#{vessel.id} has-margin-bottom-sm"}>
-        <span class={"qa-thingy-etas-#{vessel.id}-vessel"}><%= vessel.name %></span>
-        (<span class={"qa-thingy-etas-#{vessel.id}-eta"}><%= convert_date?(
-            eta,
-            "Not Specified"
-          ) %></span> &ndash; <span class={"qa-thingy-etas-#{vessel.id}-etd"}><%= convert_date?(
-            etd,
-            "Not Specified"
-          ) %></span>)
-      </p>
-    <% end %>
-    </td>
+      <th>ETA/ETD</th>
+      <td>
+        <%= for {vessel, eta, etd} <- list do %>
+          <p class={"qa-thingy-etas-#{vessel.id} has-margin-bottom-sm"}>
+            <span class={"qa-thingy-etas-#{vessel.id}-vessel"}>{vessel.name}</span>
+            (<span class={"qa-thingy-etas-#{vessel.id}-eta"}>
+               <%= convert_date?(eta, "Not Specified") %>
+            </span> &ndash; <span class={"qa-thingy-etas-#{vessel.id}-etd"}>
+              <%= convert_date?(etd, "Not Specified") %>
+            </span>)
+          </p>
+        <% end %>
+      </td>
     </tr>
     <tr>
-    <th>Deliverables</th>
-    <td>
-    <%= for {fuel, vessel_fuels} <- list,
-              vessel_fuel <- vessel_fuels do %>
-      <p class={"qa-thingy-deliverable-#{vessel_fuel.id} has-margin-bottom-sm"}>
-        <span class="qa-thingy-deliverable-quantity"><%= vessel_fuel.quantity %></span>
-        MT of <span class="qa-thingy-deliverable-fuel"><%= fuel.name %></span>
-        to
-        <span class="qa-thingy-deliverable-vessel">
-          <%= vessel_fuel.vessel.name %> (<%= vessel_fuel.vessel.imo %>)
-        </span>
-      </p>
-    <% end %>
-    </td>
+      <th>Deliverables</th>
+      <td>
+        <%= for {fuel, vessel_fuels} <- list, vessel_fuel <- vessel_fuels do %>
+          <p class={"qa-thingy-deliverable-#{vessel_fuel.id} has-margin-bottom-sm"}>
+            <span class="qa-thingy-deliverable-quantity">{vessel_fuel.quantity}</span>
+            MT of <span class="qa-thingy-deliverable-fuel">{fuel.name}</span>
+            to
+            <span class="qa-thingy-deliverable-vessel">
+              {vessel_fuel.vessel.name} ({vessel_fuel.vessel.imo})
+            </span>
+          </p>
+        <% end %>
+      </td>
     </tr>
     """
 
@@ -372,7 +403,7 @@ defmodule TailwindFormatterTest do
           <i class={icon}></i>
         </a>
         <:hover_content>
-          <%= text %>
+          {text}
         </:hover_content>
       </CP.tooltip>
     </div>
@@ -385,7 +416,7 @@ defmodule TailwindFormatterTest do
           <i class={icon}></i>
         </a>
         <:hover_content>
-          <%= text %>
+          {text}
         </:hover_content>
       </CP.tooltip>
     </div>
@@ -418,11 +449,13 @@ defmodule TailwindFormatterTest do
 
   test "works with multiple concatenations in one line" do
     input = ~S"""
-    <div class={"odd:decoration-slate-50 #{if false, do: "class"} uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl" <> "px-3  py-3 rounded-lg   " <> "px-3     py-5 rounded-lg " <> "text-sm" <> "tomato"}></div>
+    <div class={"odd:decoration-slate-50 #{if false, do: "class"} uppercase tomato disabled:sm:text-lg text-sm dark:disabled:sm:lg:group-hover:text-blue-500 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-2xl" <> "px-3  py-3 rounded-lg   " <> "px-3     py-5 rounded-lg " <> "text-sm" <> "tomato"}>
+    </div>
     """
 
     expected = ~S"""
-    <div class={"#{if false, do: "class"} tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500" <> "rounded-lg px-3 py-3 " <> "rounded-lg px-3 py-5 " <> "text-sm" <> "tomato"}></div>
+    <div class={"#{if false, do: "class"} tomato text-sm uppercase odd:decoration-slate-50 sm:lowercase sm:hover:bg-unknown-500 sm:hover:bg-gray-500 sm:disabled:text-lg sm:disabled:text-2xl lg:sm:dark:group-hover:disabled:text-blue-500" <> "rounded-lg px-3 py-3 " <> "rounded-lg px-3 py-5 " <> "text-sm" <> "tomato"}>
+    </div>
     """
 
     assert_formatter_output(input, expected)
@@ -442,15 +475,21 @@ defmodule TailwindFormatterTest do
 
   test "custom variant does not flip" do
     input = ~S"""
-    <a class=" p-10  mx-auto xs:p-0 md:w-full md:max-w-md"
-    id="testing"
-    href="#"></a>
+    <a
+      class=" p-10  mx-auto xs:p-0 md:w-full md:max-w-md"
+      id="testing"
+      href="#"
+    >
+    </a>
     """
 
     expected = ~S"""
-    <a class=" mx-auto p-10 xs:p-0 md:w-full md:max-w-md"
-    id="testing"
-    href="#"></a>
+    <a
+      class=" mx-auto p-10 xs:p-0 md:w-full md:max-w-md"
+      id="testing"
+      href="#"
+    >
+    </a>
     """
 
     assert_formatter_output(input, expected)
@@ -478,11 +517,19 @@ defmodule TailwindFormatterTest do
     assert_formatter_output(input, expected)
 
     input = """
-    <div class={["text-sm potato sm:lowercase uppercase", if(false, do: "text-red-500 tomato rounded-lg")]}></div>
+    <div class={[
+      "text-sm potato sm:lowercase uppercase",
+      if(false, do: "text-red-500 tomato rounded-lg")
+    ]}>
+    </div>
     """
 
     expected = """
-    <div class={["potato text-sm uppercase sm:lowercase", if(false, do: "tomato rounded-lg text-red-500")]}></div>
+    <div class={[
+      "potato text-sm uppercase sm:lowercase",
+      if(false, do: "tomato rounded-lg text-red-500")
+    ]}>
+    </div>
     """
 
     assert_formatter_output(input, expected)
@@ -490,11 +537,19 @@ defmodule TailwindFormatterTest do
 
   test "handles multiple class attributes" do
     input = """
-    <div class="tomato text-sm uppercase odd:decoration-slate-50" class="sm:lowercase potato text-sm uppercase"></div>
+    <div
+      class="tomato text-sm uppercase odd:decoration-slate-50"
+      class="sm:lowercase potato text-sm uppercase"
+    >
+    </div>
     """
 
     expected = """
-    <div class="tomato text-sm uppercase odd:decoration-slate-50" class="potato text-sm uppercase sm:lowercase"></div>
+    <div
+      class="tomato text-sm uppercase odd:decoration-slate-50"
+      class="potato text-sm uppercase sm:lowercase"
+    >
+    </div>
     """
 
     assert_formatter_output(input, expected)
@@ -527,11 +582,11 @@ defmodule TailwindFormatterTest do
   # https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties
   test "handles arbitrary properties" do
     input = """
-      <html lang="en" class="sm:[scrollbar-gutter: stable] potato">
+    <html lang="en" class="sm:[scrollbar-gutter: stable] potato"></html>
     """
 
     expected = """
-      <html lang="en" class="potato sm:[scrollbar-gutter: stable]">
+    <html lang="en" class="potato sm:[scrollbar-gutter: stable]"></html>
     """
 
     assert_formatter_output(input, expected)
@@ -539,11 +594,11 @@ defmodule TailwindFormatterTest do
 
   test "issue #63" do
     input = """
-      <html lang="en" class="[scrollbar-gutter: stable]">
+    <html lang="en" class="[scrollbar-gutter: stable]"></html>
     """
 
     expected = """
-      <html lang="en" class="[scrollbar-gutter: stable]">
+    <html lang="en" class="[scrollbar-gutter: stable]"></html>
     """
 
     assert_formatter_output(input, expected)

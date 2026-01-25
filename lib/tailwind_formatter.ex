@@ -5,48 +5,51 @@ defmodule TailwindFormatter do
              |> String.split("<!-- MDOC !-->")
              |> Enum.fetch!(1)
 
-  alias TailwindFormatter.{Order, HEExTokenizer}
-
-  @behaviour Mix.Tasks.Format
+  alias TailwindFormatter.Order
 
   @placeholder "💧"
 
   def features(_opts) do
-    [sigils: [:H], extensions: [".heex"]]
+    raise """
+    TailwindFormatter is now an attribute formatter for Phoenix.LiveView.HTMLFormatter.
+
+    In your .formatter.exs file, make sure to:
+      1. remove TailwindFormatter from the :plugins list 
+      2. add `attribute_formatters: %{class: TailwindFormatter}`
+
+        # .formatter.exs
+        [
+          ...,
+          plugins: [Phoenix.LiveView.HTMLFormatter],
+          attribute_formatters: %{class: TailwindFormatter},
+        ]
+    """
   end
 
-  def format(contents, _opts) do
-    contents
-    |> HEExTokenizer.tokenize()
-    |> Enum.reduce([contents], fn
-      {elt, _name, attrs, _meta}, contents
-      when elt in [:tag, :local_component, :remote_component] ->
-        Enum.reduce(attrs, contents, fn
-          {"class", class_attr, _meta}, [remainder | acc] ->
-            [attr, remainder] = String.split(remainder, old_classes(class_attr), parts: 2)
-            [remainder, sort_classes(class_attr), attr | acc]
+  def render_attribute({"class", class, meta}, _opts) do
+    {
+      "class",
+      case class do
+        {:string, string, meta} ->
+          {:string, sort(string), meta}
 
-          _, contents ->
-            contents
-        end)
+        {:expr, expr, meta} ->
+          {
+            :expr,
+            expr
+            |> Code.string_to_quoted!(literal_encoder: &{:ok, {:__block__, &2, [&1]}})
+            |> sort_expr()
+            |> Code.quoted_to_algebra()
+            |> Inspect.Algebra.format(:infinity)
+            |> IO.iodata_to_binary(),
+            meta
+          }
 
-      _, contents ->
-        contents
-    end)
-    |> Enum.reverse()
-    |> Enum.join()
-  end
-
-  defp old_classes({_type, classes, _meta}), do: classes
-  defp sort_classes({:string, classes, _meta}), do: sort(classes)
-
-  defp sort_classes({:expr, expr_class, _meta}) do
-    expr_class
-    |> Code.string_to_quoted!(literal_encoder: &{:ok, {:__block__, &2, [&1]}})
-    |> sort_expr()
-    |> Code.quoted_to_algebra()
-    |> Inspect.Algebra.format(:infinity)
-    |> IO.iodata_to_binary()
+        nil ->
+          nil
+      end,
+      meta
+    }
   end
 
   defp sort_expr({:<<>>, meta, children}), do: {:<<>>, meta, handle_interpolation(children)}
