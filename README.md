@@ -1,7 +1,5 @@
 # TailwindFormatter
 
-[Online Documentation](https://hexdocs.pm/tailwind_formatter).
-
 <!-- MDOC !-->
 
 > **This package targets Tailwind CSS v3.** For Tailwind v4, use
