@@ -4,6 +4,10 @@
 
 <!-- MDOC !-->
 
+> **This package targets Tailwind CSS v3.** For Tailwind v4, use
+> [`canonical_tailwind`](https://hex.pm/packages/canonical_tailwind), which sorts
+> classes via the `tailwindcss` CLI and Phoenix LiveView's `attribute_formatters` API.
+
 Opinionated sorting for [TailwindCSS](https://tailwindcss.com)
 classes used in HEEx templates and `~H` sigils.
 

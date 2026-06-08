@@ -10,7 +10,8 @@ defmodule TailwindFormatter.MixProject do
       version: @version,
       elixir: "~> 1.15",
       name: "TailwindFormatter",
-      description: "A Mix formatter that sorts your Tailwind classes",
+      description:
+        "Sorts Tailwind CSS v3 classes in HEEx templates. For Tailwind v4, use canonical_tailwind.",
       deps: deps(),
       docs: docs(),
       package: package(),

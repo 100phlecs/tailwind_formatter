@@ -1,4 +1,11 @@
 
+# Changelog for v0.4.3
+
+TailwindFormatter targets Tailwind CSS v3. For Tailwind v4, use
+[canonical_tailwind](https://hex.pm/packages/canonical_tailwind), which sorts
+classes via the `tailwindcss` CLI and Phoenix LiveView's `attribute_formatters`
+API.
+
 # Changelog for v0.4.0
 
 TailwindFormatter v0.4.0 requires Elixir v1.15+.
