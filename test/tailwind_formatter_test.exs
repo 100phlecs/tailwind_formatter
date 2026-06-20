@@ -560,4 +560,31 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "double space inserted by formatter into Enum.join/3" do
+    input = """
+    <.div class={Enum.join([], " ")}></.div>
+    """
+
+    expected = """
+    <.div class={Enum.join([], " ")}></.div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
+
+
+  test "formatting works for space in constant" do
+    input = """
+    {space = " "}
+    <.div class={Enum.join([], space)}></.div>
+    """
+
+    expected = """
+    {space = " "}
+    <.div class={Enum.join([], space)}></.div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
