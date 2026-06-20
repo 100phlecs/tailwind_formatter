@@ -21,14 +21,18 @@ defmodule TailwindFormatter do
     |> Enum.reduce([contents], fn
       {elt, _name, attrs, _meta}, contents
       when elt in [:tag, :local_component, :remote_component] ->
-        Enum.reduce(attrs, contents, fn
-          {"class", class_attr, _meta}, [remainder | acc] ->
-            [attr, remainder] = String.split(remainder, old_classes(class_attr), parts: 2)
-            [remainder, sort_classes(class_attr), attr | acc]
+        if has_phx_no_format?(attrs) do
+          contents
+        else
+          Enum.reduce(attrs, contents, fn
+            {"class", class_attr, _meta}, [remainder | acc] ->
+              [attr, remainder] = String.split(remainder, old_classes(class_attr), parts: 2)
+              [remainder, sort_classes(class_attr), attr | acc]
 
-          _, contents ->
-            contents
-        end)
+            _, contents ->
+              contents
+          end)
+        end
 
       _, contents ->
         contents
@@ -147,5 +151,12 @@ defmodule TailwindFormatter do
     variants
     |> Enum.map(&String.split(&1, ":", parts: 2))
     |> Enum.group_by(&List.first/1, &List.last/1)
+  end
+
+  defp has_phx_no_format?(attrs) do
+    Enum.any?(attrs, fn
+      {"phx-no-format", _value, _meta} -> true
+      _ -> false
+    end)
   end
 end
