@@ -560,4 +560,16 @@ defmodule TailwindFormatterTest do
 
     assert_formatter_output(input, expected)
   end
+
+  test "preserves order of before modifier after nested arbitrary selector" do
+    input = """
+    <div class="[&_.nested]:before:content-['hello_']"><span class="nested">world</span></div>
+    """
+
+    expected = """
+    <div class="[&_.nested]:before:content-['hello_']"><span class="nested">world</span></div>
+    """
+
+    assert_formatter_output(input, expected)
+  end
 end
