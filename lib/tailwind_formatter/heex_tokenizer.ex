@@ -3,11 +3,12 @@ defmodule TailwindFormatter.HEExTokenizer do
   alias TailwindFormatter.PhoenixLiveViewTokenizer, as: Tokenizer
 
   # Taken directly from Phoenix.LiveView.HTMLFormatter
-  # https://github.com/phoenixframework/phoenix_live_view/blob/v0.20.1/lib/phoenix_live_view/html_formatter.ex#L288-L335
+  # https://github.com/phoenixframework/phoenix_live_view/blob/v1.0.10/lib/phoenix_live_view/html_formatter.ex#L277-L304
   @eex_expr [:start_expr, :expr, :end_expr, :middle_expr]
+
   def tokenize(source) do
     {:ok, eex_nodes} = EEx.tokenize(source)
-    {tokens, cont} = Enum.reduce(eex_nodes, {[], :text}, &do_tokenize(&1, &2, source))
+    {tokens, cont} = Enum.reduce(eex_nodes, {[], {:text, :enabled}}, &do_tokenize(&1, &2, source))
     Tokenizer.finalize(tokens, "nofile", cont, source)
   end
 
