@@ -1,6 +1,18 @@
 defmodule TailwindFormatter.Order do
-  custom_classes = Path.join(Path.dirname(Mix.Project.build_path()), "classes.txt")
-  custom_variants = Path.join(Path.dirname(Mix.Project.build_path()), "variants.txt")
+  dir =
+    Application.compile_env(
+      :tailwind_formatter,
+      :custom_file_dir,
+      Path.dirname(Mix.Project.build_path())
+    )
+
+  @dir dir
+
+  @file_hash Path.wildcard(Path.join(dir, "*.txt"))
+             |> :erlang.md5()
+
+  custom_classes = Path.join(dir, "classes.txt")
+  custom_variants = Path.join(dir, "variants.txt")
 
   @external_resource custom_classes
   @external_resource custom_variants
@@ -26,4 +38,8 @@ defmodule TailwindFormatter.Order do
 
   def variants(), do: @variants
   def classes(), do: @classes
+
+  def __mix_recompile__? do
+   Path.wildcard(Path.join(@dir, "*.txt")) |> :erlang.md5() != @file_hash
+  end
 end
