@@ -29,15 +29,12 @@ end
 
 ## Setup
 
-`TailwindFormatter` is most likely to be used alongside `Phoenix.LiveView.HTMLFormatter`,
-so it should be installed in a way that allows the HTML formatter to
-run after the Tailwind formatter. 
-
-Update your `.formatter.exs` to include `TailwindFormatter`.
+Add `TailwindFormatter` as a class attribute formatter of `Phoenix.LiveView.HTMLFormatter` in `.formatter.exs`.
 
 ```elixir
   [
-    plugins: [TailwindFormatter, Phoenix.LiveView.HTMLFormatter],
+    plugins: [Phoenix.LiveView.HTMLFormatter],
+    attribute_formatters: %{class: TailwindFormatter},
     inputs: [
       "*.{heex,ex,exs}",
       "priv/*/seeds.exs",
@@ -56,8 +53,8 @@ let { extract } = require("../deps/tailwind_formatter/assets/js")
 extract(module.exports, "../_build")
 ```
 
-This will write a `classes.txt` and `variants.txt` to your `_build/` directory. 
-The second argument within `extract` may vary depending on the value of `cd:` in your `:tailwind` config. 
+This will write a `classes.txt` and `variants.txt` to your `_build/` directory.
+The second argument within `extract` may vary depending on the value of `cd:` in your `:tailwind` config.
 
 The above will work with this configuration, for example:
 

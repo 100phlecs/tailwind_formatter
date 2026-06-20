@@ -51,6 +51,7 @@ defmodule TailwindFormatter.MixProject do
     [
       {:tailwind, "~> 0.2", only: :dev},
       {:benchee, "~> 1.0", only: [:dev], optional: true},
+      {:phoenix_live_view, "~> 1.1.0", only: :test},
       # docs
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
